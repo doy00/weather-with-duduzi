@@ -1,0 +1,8 @@
+
+{
+  "name": "Galaxy Weather Clone",
+  "description": "A high-performance weather application modeled after the Samsung Galaxy weather app, featuring glassmorphism design, geolocation, and place search for South Korea.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
