@@ -1,0 +1,384 @@
+{
+  "messages": [
+    {
+      "id": 101,
+      "text": "🐶 이번 생일도 진심으로 축하해줘서 너무 고맙고 너가 보내준 마음 받아서 오늘 하루 케이크 없이도 너무 너무 행복해~!!",
+      "conditions": {
+        "type": "specificDate",
+        "date": "02-19"
+      },
+      "priority": 100
+    },
+    {
+      "id": 102,
+      "text": "🐶 앞으로도 우리 같이 좋은 추억 만들어 나가자!!^^",
+      "conditions": {
+        "type": "specificDate",
+        "date": "02-19"
+      },
+      "priority": 100
+    },
+    {
+      "id": 103,
+      "text": "🐶 내가 직접 초콜릿은 주지 못하지만 사이버 초콜릿이라도 주께..🍫🍫",
+      "conditions": {
+        "type": "specificDate",
+        "date": "02-14"
+      },
+      "priority": 100
+    },
+    {
+      "id": 104,
+      "text": "🐶 누구보다 달달한 발렌타인 보냈으면 좋겠고 이런 날엔 슈가지!",
+      "conditions": {
+        "type": "specificDate",
+        "date": "02-14"
+      },
+      "priority": 100
+    },
+    {
+      "id": 105,
+      "text": "🐶 비 온대 우산 챙겨! 꼭 챙기기",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Rain"
+      },
+      "priority": 90
+    },
+    {
+      "id": 106,
+      "text": "🐶 비 오면 길 미끄러우니까 조심해 또 조심",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Rain"
+      },
+      "priority": 90
+    },
+    {
+      "id": 107,
+      "text": "🐶 비 오는 날 좋아해? 오늘 비 온다던데 좋은 하루가 됐음 좋겠네",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Rain"
+      },
+      "priority": 90
+    },
+    {
+      "id": 108,
+      "text": "🐶 비는 질색인데 오늘 좀 좋아지려 해ㅎㅎ 이런 날엔 우산 들어야지",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Rain"
+      },
+      "priority": 90
+    },
+    {
+      "id": 109,
+      "text": "🐶 눈 오는 날 좋아해? 눈사람 만들러 갈래?",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Snow"
+      },
+      "priority": 90
+    },
+    {
+      "id": 110,
+      "text": "🐶 눈 오니까 더 보고 싶다~ 그립군",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Snow"
+      },
+      "priority": 90
+    },
+    {
+      "id": 111,
+      "text": "🐶 눈 얼마나 많이 오려나? 이런 날엔 나 홀로 집에 들어야지",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Snow"
+      },
+      "priority": 90
+    },
+    {
+      "id": 112,
+      "text": "🐶 눈 온다 나 닮은 눈사람 만들어줘 ㅎㅎ",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Snow"
+      },
+      "priority": 90
+    },
+    {
+      "id": 113,
+      "text": "🐶 푹푹 찌니 점심은 아사이볼 먹자!!",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 25,
+          "max": null
+        }
+      },
+      "priority": 70
+    },
+    {
+      "id": 114,
+      "text": "🐶 이런 날씨에는 빙수 같은 거 먹어줘야 하는데",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 25,
+          "max": null
+        }
+      },
+      "priority": 70
+    },
+    {
+      "id": 115,
+      "text": "🐶 선크림 잘 바르구 다니기~~!!",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 25,
+          "max": null
+        }
+      },
+      "priority": 70
+    },
+    {
+      "id": 116,
+      "text": "🐶 점심은 뭐 먹을 거야?! 맛있는 거 먹자",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 18,
+          "max": 24.99
+        }
+      },
+      "priority": 60
+    },
+    {
+      "id": 117,
+      "text": "🐶 온도가 선선한 듯 덥네 선풍기 챙기기!",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 18,
+          "max": 24.99
+        }
+      },
+      "priority": 60
+    },
+    {
+      "id": 118,
+      "text": "🐶 오늘따라 갈비가 먹고 싶어지는 하루네",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 18,
+          "max": 24.99
+        }
+      },
+      "priority": 60
+    },
+    {
+      "id": 119,
+      "text": "🐶 밥 잘 챙겨 먹는 거 잊지 말기!! 알겠지!?",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 18,
+          "max": 24.99
+        }
+      },
+      "priority": 60
+    },
+    {
+      "id": 120,
+      "text": "🐶 산책하기 좋은 온도네!",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 18,
+          "max": 24.99
+        }
+      },
+      "priority": 60
+    },
+    {
+      "id": 121,
+      "text": "🐶 요즘 일교차 크니까 감기 조심해!",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 3,
+          "max": 10.99
+        }
+      },
+      "priority": 65
+    },
+    {
+      "id": 122,
+      "text": "🐶 따듯한 물 많이 마시기!",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 3,
+          "max": 10.99
+        }
+      },
+      "priority": 65
+    },
+    {
+      "id": 123,
+      "text": "🐶 지금 나가면 입김 나오려나? 붕어빵 먹고 싶군",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 3,
+          "max": 10.99
+        }
+      },
+      "priority": 65
+    },
+    {
+      "id": 124,
+      "text": "🐶 오늘 뭐 하기로 했어!? 재밌는 하루 보내",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 3,
+          "max": 10.99
+        }
+      },
+      "priority": 65
+    },
+    {
+      "id": 125,
+      "text": "🐶 감기 조심하고 예방주사도 꼭 맞고 그래! 독감 조심!",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 3,
+          "max": 10.99
+        }
+      },
+      "priority": 65
+    },
+    {
+      "id": 126,
+      "text": "🐶 요새 진짜 춥더라… 꼭 패딩 챙겨 입고 나가, 알겠지? 넘 춥다..",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": null,
+          "max": 2.99
+        }
+      },
+      "priority": 68
+    },
+    {
+      "id": 127,
+      "text": "🐶 나갈 때 손 시리지 않게 주머니에 손 넣고 가! 핫팩 챙기자!!",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": null,
+          "max": 2.99
+        }
+      },
+      "priority": 68
+    },
+    {
+      "id": 128,
+      "text": "🐶 추우니까 꽁꽁 싸매고 나가야 해!! 감기 조심",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": null,
+          "max": 2.99
+        }
+      },
+      "priority": 68
+    },
+    {
+      "id": 129,
+      "text": "🐶 따뜻하게 입었는지 내가 지켜볼 거야! 지켜본다",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": null,
+          "max": 2.99
+        }
+      },
+      "priority": 68
+    },
+    {
+      "id": 130,
+      "text": "🐶 오늘따라 괜시 보고 싶네 그립군..",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": null,
+          "max": 2.99
+        }
+      },
+      "priority": 68
+    },
+    {
+      "id": 131,
+      "text": "🐶 오늘 하루도 화이팅이야! 내가 응원할게",
+      "conditions": {
+        "type": "default"
+      },
+      "priority": 10
+    },
+    {
+      "id": 132,
+      "text": "🐶 무엇보다 건강이 제일 중요한 거 알지? 운동도 꾸준히 하구",
+      "conditions": {
+        "type": "default"
+      },
+      "priority": 10
+    },
+    {
+      "id": 133,
+      "text": "🐶 오늘은 스스로를 응원해주는 하루가 되었으면 좋겠어 응원할게",
+      "conditions": {
+        "type": "default"
+      },
+      "priority": 10
+    },
+    {
+      "id": 134,
+      "text": "🐶 오늘은 분명히 좋은 일만 가득할 거야!!",
+      "conditions": {
+        "type": "default"
+      },
+      "priority": 10
+    },
+    {
+      "id": 135,
+      "text": "🐶 행운 주고 싶어서 들렸다 가! 정우부적",
+      "conditions": {
+        "type": "default"
+      },
+      "priority": 10
+    },
+    {
+      "id": 136,
+      "text": "🐶 오늘 고생많았어ㅎㅎ 미리 말해둔 수고많았어",
+      "conditions": {
+        "type": "default"
+      },
+      "priority": 10
+    },
+    {
+      "id": 137,
+      "text": "🐶 오늘은 특별히 내 기운을 나눠줄게~ 이얍",
+      "conditions": {
+        "type": "default"
+      },
+      "priority": 10
+    }
+  ]
+}

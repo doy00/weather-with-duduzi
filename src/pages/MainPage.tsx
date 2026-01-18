@@ -11,7 +11,7 @@ import { useHourlyForecast } from '../features/weather/hooks/useHourlyForecast';
 import { LocationHeader } from '../features/location/components/LocationHeader';
 import { SearchOverlay } from '../features/location/components/SearchOverlay';
 import { WeatherDisplay } from '../features/weather/components/WeatherDisplay';
-import { GreetingMessage } from '../features/weather/components/GreetingMessage';
+import { BubbleMessage } from '../features/weather/components/BubbleMessage';
 import { WeatherSuggestion } from '../features/weather/components/WeatherSuggestion';
 import { HourlyForecast } from '../features/weather/components/HourlyForecast';
 import { WeatherDetails } from '../features/weather/components/WeatherDetails';
@@ -117,8 +117,8 @@ export const MainPage: React.FC = () => {
           />
         )}
 
-        {/* Greeting Message */}
-        {weather && <GreetingMessage weather={weather} />}
+        {/* Bubble Message */}
+        {weather && <BubbleMessage weather={weather} />}
 
         {/* Main Weather Display */}
         {weather && <WeatherDisplay weather={weather} />}

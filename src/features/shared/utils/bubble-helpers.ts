@@ -7,7 +7,7 @@ const getRandomMessage = (messages: MessageData[]): MessageData | undefined => {
   return messages[randomIndex];
 };
 
-export const getGreetingMessage = (
+export const getBubbleMessage = (
   weather: WeatherData,
   messages: MessageData[]
 ): string => {
@@ -57,4 +57,11 @@ export const getGreetingMessage = (
 
   // Return selected message or fallback to default
   return selectedMessage?.text || 'Error: No message found';
+};
+
+export const getDogBubbleMessage = (
+  weather: WeatherData,
+  messages: MessageData[]
+): string => {
+  return getBubbleMessage(weather, messages);
 };
