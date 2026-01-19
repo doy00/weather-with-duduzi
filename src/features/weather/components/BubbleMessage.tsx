@@ -30,9 +30,9 @@ export const BubbleMessage: React.FC<BubbleMessageProps> = ({ weather }) => {
           <img
             src={dyImage}
             alt="dy 캐릭터"
-            className="w-12 h-12 rounded-full object-cover flex-shrink-0 drop-shadow-lg"
+            className="w-12 h-12 object-cover shrink-0 drop-shadow-lg"
           />
-          <p className="text-lg font-light leading-relaxed opacity-95 whitespace-pre-line flex-1">
+          <p className="text-lg font-light leading-relaxed opacity-95 whitespace-pre-line flex-1 align-center">
             {rabbitMessage}
           </p>
         </div>
@@ -44,7 +44,7 @@ export const BubbleMessage: React.FC<BubbleMessageProps> = ({ weather }) => {
             alt="비지독 이미지"
             className="w-12 h-12 object-cover shrink-0 drop-shadow-lg"
           />
-          <p className="text-lg font-light leading-relaxed opacity-95 whitespace-pre-line flex-1">
+          <p className="text-lg font-light leading-relaxed opacity-95 whitespace-pre-line flex-1 align-center">
             {dogMessage}
           </p>
         </div>
