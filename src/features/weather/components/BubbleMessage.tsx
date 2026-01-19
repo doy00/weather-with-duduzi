@@ -25,7 +25,7 @@ export const BubbleMessage: React.FC<BubbleMessageProps> = ({ weather }) => {
 
   return (
     <div className="space-y-4">
-      <GlassCard className="animate-in fade-in zoom-in duration-500">
+      <GlassCard className="rounded-full p-3 animate-in fade-in zoom-in duration-500">
         <div className="flex gap-3 items-start">
           <img
             src={dyImage}
@@ -37,7 +37,7 @@ export const BubbleMessage: React.FC<BubbleMessageProps> = ({ weather }) => {
           </p>
         </div>
       </GlassCard>
-      <GlassCard className="animate-in fade-in zoom-in duration-500 delay-100">
+      <GlassCard className="rounded-full p-3 animate-in fade-in zoom-in duration-500 delay-100">
         <div className="flex gap-3 items-start">
           <img
             src={busydogImage}
