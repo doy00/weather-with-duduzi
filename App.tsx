@@ -100,7 +100,7 @@ const App: React.FC = () => {
   });
 
   // Queries for Favorite Cards
-  const favoriteWeatherResults = useQueries({
+  const favoriteWeatherResults = useQueries<WeatherData[]>({
     queries: favorites.map(fav => ({
       queryKey: ['weather', fav.lat, fav.lon],
       queryFn: () => fetchCurrentWeather(fav.lat, fav.lon),

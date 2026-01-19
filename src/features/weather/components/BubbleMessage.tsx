@@ -1,9 +1,12 @@
 import React, { useMemo } from 'react';
-import { WeatherData } from '../../../types/weather.types';
-import { GlassCard } from '../../shared/components/GlassCard';
-import { getBubbleMessage, getDogBubbleMessage } from '../../shared/utils/bubble-helpers';
-import messagesData from '../../../data/dy-message.json';
-import dogMessagesData from '../../../data/busydog-message.json';
+import { WeatherData } from '@/types/weather.types';
+import { GlassCard } from '@/features/shared/components/GlassCard';
+import { getBubbleMessage, getDogBubbleMessage } from '@/features/shared/utils/bubble-helpers';
+import { MessageData } from '@/types/message.types';
+import messagesData from '@/data/dy-message.json';
+import dogMessagesData from '@/data/busydog-message.json';
+import dyImage from '@/assets/icons/Gemini_Generated_Image_dy.png';
+import busydogImage from '@/assets/icons/Gemini_Generated_Image_busydog.png';
 
 interface BubbleMessageProps {
   weather: WeatherData;
@@ -11,26 +14,40 @@ interface BubbleMessageProps {
 
 export const BubbleMessage: React.FC<BubbleMessageProps> = ({ weather }) => {
   const rabbitMessage = useMemo(
-    () => getBubbleMessage(weather, messagesData.messages),
+    () => getBubbleMessage(weather, messagesData.messages as MessageData[]),
     [weather]
   );
 
   const dogMessage = useMemo(
-    () => getDogBubbleMessage(weather, dogMessagesData.messages),
+    () => getDogBubbleMessage(weather, dogMessagesData.messages as MessageData[]),
     [weather]
   );
 
   return (
     <div className="space-y-4">
       <GlassCard className="animate-in fade-in zoom-in duration-500">
-        <p className="text-lg font-light leading-relaxed opacity-95 whitespace-pre-line">
-          {rabbitMessage}
-        </p>
+        <div className="flex gap-3 items-start">
+          <img
+            src={dyImage}
+            alt="dy 캐릭터"
+            className="w-12 h-12 rounded-full object-cover flex-shrink-0 drop-shadow-lg"
+          />
+          <p className="text-lg font-light leading-relaxed opacity-95 whitespace-pre-line flex-1">
+            {rabbitMessage}
+          </p>
+        </div>
       </GlassCard>
       <GlassCard className="animate-in fade-in zoom-in duration-500 delay-100">
-        <p className="text-lg font-light leading-relaxed opacity-95 whitespace-pre-line">
-          {dogMessage}
-        </p>
+        <div className="flex gap-3 items-start">
+          <img
+            src={busydogImage}
+            alt="비지독 이미지"
+            className="w-12 h-12 object-cover shrink-0 drop-shadow-lg"
+          />
+          <p className="text-lg font-light leading-relaxed opacity-95 whitespace-pre-line flex-1">
+            {dogMessage}
+          </p>
+        </div>
       </GlassCard>
     </div>
   );

@@ -11,9 +11,11 @@ interface State {
 }
 
 export class ErrorBoundary extends React.Component<Props, State> {
+  declare props: Readonly<Props>;
+  state: State = { hasError: false, error: null };
+
   constructor(props: Props) {
     super(props);
-    this.state = { hasError: false, error: null };
   }
 
   static getDerivedStateFromError(error: Error): State {
@@ -24,7 +26,7 @@ export class ErrorBoundary extends React.Component<Props, State> {
     console.error('ErrorBoundary caught:', error, errorInfo);
   }
 
-  render() {
+  render(): React.ReactNode {
     if (this.state.hasError) {
       return (
         <div className="flex flex-col items-center justify-center h-screen text-white bg-gradient-to-b from-galaxy-blue-start to-galaxy-blue-end p-6 text-center">
@@ -43,6 +45,7 @@ export class ErrorBoundary extends React.Component<Props, State> {
       );
     }
 
-    return this.props.children;
+    const { children } = this.props;
+    return children;
   }
 }
