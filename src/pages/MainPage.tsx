@@ -22,6 +22,8 @@ import { WeatherDetails } from '@/features/weather/components/WeatherDetails';
 import { FavoritesList } from '@/features/favorites/components/FavoritesList';
 import { LoadingScreen } from '@/features/shared/components/LoadingScreen';
 import { ErrorScreen } from '@/features/shared/components/ErrorScreen';
+import { PWAInstallPrompt } from '@/components/PWAInstallPrompt';
+import { WidgetSync } from '@/plugins/WidgetSync';
 import { DEFAULT_LOCATION } from '@/config/constants';
 
 export const MainPage: React.FC = () => {
@@ -96,6 +98,9 @@ export const MainPage: React.FC = () => {
         lat: geo.lat,
         lon: geo.lon,
       });
+
+      await WidgetSync.updateWidgetLocation(geo.lat, geo.lon);
+
       setView('main');
       setSearchQuery("");
     } catch (error) {
@@ -181,7 +186,9 @@ export const MainPage: React.FC = () => {
         <DDayCard />
       </div>
 
-        
+      {/* PWA Install Prompt */}
+      <PWAInstallPrompt />
+
       {/* Search Overlay */}
       <SearchOverlay
         isOpen={view === 'search'}
