@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { REGIONS } from '../constants/regions';
+import { REGIONS } from '@/features/location/constants/regions';
 
 export const useLocationSearch = (query: string) => {
   const results = useMemo(() => {

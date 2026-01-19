@@ -1,7 +1,7 @@
 import React from 'react';
-import { WeatherData } from '../../../types/weather.types';
-import { GlassCard } from '../../shared/components/GlassCard';
-import { formatTemperature } from '../../shared/utils/formatters';
+import { WeatherData } from '@/types/weather.types';
+import { GlassCard } from '@/features/shared/components/GlassCard';
+import { formatTemperature } from '@/features/shared/utils/formatters';
 
 interface WeatherDetailsProps {
   weather: WeatherData;

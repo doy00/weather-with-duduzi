@@ -1,8 +1,8 @@
 import React from 'react';
 import { UseQueryResult } from '@tanstack/react-query';
-import { FavoriteLocation } from '../../../types/location.types';
-import { WeatherData } from '../../../types/weather.types';
-import { FavoriteCard } from './FavoriteCard';
+import { FavoriteLocation } from '@/types/location.types';
+import { WeatherData } from '@/types/weather.types';
+import { FavoriteCard } from '@/features/favorites/components/FavoriteCard';
 
 interface FavoritesListProps {
   favorites: FavoriteLocation[];

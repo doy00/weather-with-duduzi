@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchCurrentWeather } from '../services/weatherService';
-import { WeatherData } from '../../../types/weather.types';
+import { fetchCurrentWeather } from '@/features/weather/services/weatherService';
+import { WeatherData } from '@/types/weather.types';
 
 export const useWeatherData = (lat: number | null, lon: number | null) => {
   const { data, isLoading, isError, error, refetch } = useQuery({

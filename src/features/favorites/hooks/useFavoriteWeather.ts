@@ -1,6 +1,6 @@
 import { useQueries } from '@tanstack/react-query';
-import { FavoriteLocation } from '../../../types/location.types';
-import { fetchCurrentWeather } from '../../weather/services/weatherService';
+import { FavoriteLocation } from '@/types/location.types';
+import { fetchCurrentWeather } from '@/features/weather/services/weatherService';
 
 export const useFavoriteWeather = (favorites: FavoriteLocation[]) => {
   const results = useQueries({

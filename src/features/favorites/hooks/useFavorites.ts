@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { FavoriteLocation } from '../../../types/location.types';
-import { MAX_FAVORITES } from '../../../config/constants';
+import { FavoriteLocation } from '@/types/location.types';
+import { MAX_FAVORITES } from '@/config/constants';
 
 const STORAGE_KEY = 'weather_favorites';
 

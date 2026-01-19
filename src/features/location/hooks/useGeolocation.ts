@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { GEOLOCATION_TIMEOUT, DEFAULT_LOCATION } from '../../../config/constants';
+import { GEOLOCATION_TIMEOUT, DEFAULT_LOCATION } from '@/config/constants';
 
 interface Coords {
   lat: number;

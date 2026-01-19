@@ -1,8 +1,8 @@
 import React from 'react';
 import { Search, ChevronLeft, X, AlertCircle } from 'lucide-react';
-import { GlassCard } from '../../shared/components/GlassCard';
-import { POPULAR_CITIES } from '../constants/regions';
-import { AutocompleteList } from './AutocompleteList';
+import { GlassCard } from '@/features/shared/components/GlassCard';
+import { POPULAR_CITIES } from '@/features/location/constants/regions';
+import { AutocompleteList } from '@/features/location/components/AutocompleteList';
 
 interface SearchOverlayProps {
   isOpen: boolean;

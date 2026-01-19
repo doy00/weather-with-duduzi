@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
-import { geocodeLocation } from '../../weather/services/weatherService';
-import { GeocodingResult } from '../../../types/location.types';
+import { geocodeLocation } from '@/features/weather/services/weatherService';
+import { GeocodingResult } from '@/types/location.types';
 
 export const useGeocode = () => {
   const geocode = useCallback(async (query: string): Promise<GeocodingResult> => {

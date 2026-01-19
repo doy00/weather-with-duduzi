@@ -1,6 +1,6 @@
 import React from 'react';
 import { AlertCircle, RefreshCw } from 'lucide-react';
-import { GlassCard } from './GlassCard';
+import { GlassCard } from '@/features/shared/components/GlassCard';
 
 interface ErrorScreenProps {
   message?: string;

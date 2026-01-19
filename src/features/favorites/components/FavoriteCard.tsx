@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { X, Edit2 } from 'lucide-react';
-import { GlassCard } from '../../shared/components/GlassCard';
-import { FavoriteLocation } from '../../../types/location.types';
-import { WeatherData } from '../../../types/weather.types';
-import { formatTemperature } from '../../shared/utils/formatters';
-import { NicknameEditor } from './NicknameEditor';
+import { GlassCard } from '@/features/shared/components/GlassCard';
+import { FavoriteLocation } from '@/types/location.types';
+import { WeatherData } from '@/types/weather.types';
+import { formatTemperature } from '@/features/shared/utils/formatters';
+import { NicknameEditor } from '@/features/favorites/components/NicknameEditor';
 
 interface FavoriteCardProps {
   favorite: FavoriteLocation;

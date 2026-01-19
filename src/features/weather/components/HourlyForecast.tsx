@@ -1,7 +1,7 @@
 import React from 'react';
-import { HourlyWeather } from '../../../types/weather.types';
-import { GlassCard } from '../../shared/components/GlassCard';
-import { formatTemperature, formatHour } from '../../shared/utils/formatters';
+import { HourlyWeather } from '@/types/weather.types';
+import { GlassCard } from '@/features/shared/components/GlassCard';
+import { formatTemperature, formatHour } from '@/features/shared/utils/formatters';
 
 interface HourlyForecastProps {
   hourlyData?: HourlyWeather;

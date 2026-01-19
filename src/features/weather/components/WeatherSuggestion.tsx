@@ -1,8 +1,8 @@
 import React from 'react';
 import { Info } from 'lucide-react';
-import { WeatherData } from '../../../types/weather.types';
-import { GlassCard } from '../../shared/components/GlassCard';
-import { getWeatherSuggestion } from '../../shared/utils/weather-helpers';
+import { WeatherData } from '@/types/weather.types';
+import { GlassCard } from '@/features/shared/components/GlassCard';
+import { getWeatherSuggestion } from '@/features/shared/utils/weather-helpers';
 
 interface WeatherSuggestionProps {
   weather?: WeatherData;

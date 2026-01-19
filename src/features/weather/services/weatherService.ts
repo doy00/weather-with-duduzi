@@ -1,6 +1,6 @@
-import { WEATHER_API_KEY, WEATHER_BASE_URL } from '../../../config/constants';
-import { WeatherData, HourlyWeather } from '../../../types/weather.types';
-import { GeocodingResult } from '../../../types/location.types';
+import { WEATHER_API_KEY, WEATHER_BASE_URL } from '@/config/constants';
+import { WeatherData, HourlyWeather } from '@/types/weather.types';
+import { GeocodingResult } from '@/types/location.types';
 
 export const fetchCurrentWeather = async (lat: number, lon: number): Promise<WeatherData> => {
   try {
