@@ -57,7 +57,7 @@ export const DetailPage: React.FC = () => {
 
   return (
     <div className="max-w-md mx-auto min-h-screen text-white relative flex flex-col">
-      <div className={`fixed inset-0 z-0 bg-linear-to-b ${gradientClasses} transition-colors duration-1000`}></div>
+      <div className={`fixed inset-0 z-0 bg-gradient-to-b ${gradientClasses} transition-colors duration-1000`}></div>
 
       <div className="relative z-10 px-4 pt-8 pb-20 flex-1 overflow-y-auto">
         {/* Header with Back Button */}
