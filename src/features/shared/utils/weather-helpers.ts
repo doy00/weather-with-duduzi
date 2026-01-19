@@ -1,4 +1,4 @@
-import { WeatherData } from '../../../types/weather.types';
+import { WeatherData, HourlyWeather } from '@/types/weather.types';
 
 export const getWeatherSuggestion = (data: WeatherData | undefined): string => {
   if (!data) return "날씨 정보를 확인하고 있습니다...";
@@ -19,4 +19,26 @@ export const getWeatherSuggestion = (data: WeatherData | undefined): string => {
     return "무더운 날씨입니다. 충분한 수분을 섭취하고 휴식을 취하세요. ☀️";
   }
   return "맑고 쾌적한 날씨입니다. 기분 좋은 하루 보내세요! 😊";
+};
+
+export const calculateDailyMinMax = (hourlyData: HourlyWeather | undefined): { min: number; max: number } | null => {
+  if (!hourlyData || !hourlyData.list.length) return null;
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const tomorrow = new Date(today);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+
+  const todayTimestamps = hourlyData.list.filter(item => {
+    const itemDate = new Date(item.dt * 1000);
+    return itemDate >= today && itemDate < tomorrow;
+  });
+
+  if (todayTimestamps.length === 0) return null;
+
+  const temps = todayTimestamps.map(item => item.main.temp);
+  return {
+    min: Math.min(...temps),
+    max: Math.max(...temps)
+  };
 };
