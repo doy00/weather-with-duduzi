@@ -1,24 +1,26 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LocationItem } from '../types/location.types';
-import { useGeolocation } from '../features/location/hooks/useGeolocation';
-import { useLocationSearch } from '../features/location/hooks/useLocationSearch';
-import { useGeocode } from '../features/location/hooks/useGeocode';
-import { useFavorites } from '../features/favorites/hooks/useFavorites';
-import { useFavoriteWeather } from '../features/favorites/hooks/useFavoriteWeather';
-import { useWeatherData } from '../features/weather/hooks/useWeatherData';
-import { useHourlyForecast } from '../features/weather/hooks/useHourlyForecast';
-import { LocationHeader } from '../features/location/components/LocationHeader';
-import { SearchOverlay } from '../features/location/components/SearchOverlay';
-import { WeatherDisplay } from '../features/weather/components/WeatherDisplay';
-import { BubbleMessage } from '../features/weather/components/BubbleMessage';
-import { WeatherSuggestion } from '../features/weather/components/WeatherSuggestion';
-import { HourlyForecast } from '../features/weather/components/HourlyForecast';
-import { WeatherDetails } from '../features/weather/components/WeatherDetails';
-import { FavoritesList } from '../features/favorites/components/FavoritesList';
-import { LoadingScreen } from '../features/shared/components/LoadingScreen';
-import { ErrorScreen } from '../features/shared/components/ErrorScreen';
-import { DEFAULT_LOCATION } from '../config/constants';
+import { LocationItem } from '@/types/location.types';
+import { useGeolocation } from '@/features/location/hooks/useGeolocation';
+import { useLocationSearch } from '@/features/location/hooks/useLocationSearch';
+import { useGeocode } from '@/features/location/hooks/useGeocode';
+import { useFavorites } from '@/features/favorites/hooks/useFavorites';
+import { useFavoriteWeather } from '@/features/favorites/hooks/useFavoriteWeather';
+import { useWeatherData } from '@/features/weather/hooks/useWeatherData';
+import { useHourlyForecast } from '@/features/weather/hooks/useHourlyForecast';
+import { calculateDailyMinMax } from '@/features/shared/utils/weather-helpers';
+import { LocationHeader } from '@/features/location/components/LocationHeader';
+import { SearchOverlay } from '@/features/location/components/SearchOverlay';
+import { WeatherDisplay } from '@/features/weather/components/WeatherDisplay';
+import { BubbleMessage } from '@/features/weather/components/BubbleMessage';
+import { DDayCard } from '@/features/weather/components/DDayCard';
+import { WeatherSuggestion } from '@/features/weather/components/WeatherSuggestion';
+import { HourlyForecast } from '@/features/weather/components/HourlyForecast';
+import { WeatherDetails } from '@/features/weather/components/WeatherDetails';
+import { FavoritesList } from '@/features/favorites/components/FavoritesList';
+import { LoadingScreen } from '@/features/shared/components/LoadingScreen';
+import { ErrorScreen } from '@/features/shared/components/ErrorScreen';
+import { DEFAULT_LOCATION } from '@/config/constants';
 
 export const MainPage: React.FC = () => {
   const navigate = useNavigate();
@@ -38,6 +40,7 @@ export const MainPage: React.FC = () => {
   const { data: weather, isLoading: isWeatherLoading, isError: isWeatherError, refetch: refetchWeather } = useWeatherData(lat, lon);
   const { data: hourly } = useHourlyForecast(lat, lon);
   const favoriteWeatherResults = useFavoriteWeather(favorites);
+  const dailyMinMax = calculateDailyMinMax(hourly);
 
   // Initialize default location if not set
   if (!selectedLocation && coords) {
@@ -120,8 +123,11 @@ export const MainPage: React.FC = () => {
         {/* Bubble Message */}
         {weather && <BubbleMessage weather={weather} />}
 
+        {/* D-Day Card */}
+        <DDayCard />
+
         {/* Main Weather Display */}
-        {weather && <WeatherDisplay weather={weather} />}
+        {weather && <WeatherDisplay weather={weather} dailyMinMax={dailyMinMax} />}
 
         {/* Weather Suggestion */}
         <WeatherSuggestion weather={weather} />

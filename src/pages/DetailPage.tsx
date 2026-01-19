@@ -1,15 +1,17 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
-import { useFavorites } from '../features/favorites/hooks/useFavorites';
-import { useWeatherData } from '../features/weather/hooks/useWeatherData';
-import { useHourlyForecast } from '../features/weather/hooks/useHourlyForecast';
-import { WeatherDisplay } from '../features/weather/components/WeatherDisplay';
-import { WeatherSuggestion } from '../features/weather/components/WeatherSuggestion';
-import { HourlyForecast } from '../features/weather/components/HourlyForecast';
-import { WeatherDetails } from '../features/weather/components/WeatherDetails';
-import { LoadingScreen } from '../features/shared/components/LoadingScreen';
-import { ErrorScreen } from '../features/shared/components/ErrorScreen';
+import { useFavorites } from '@/features/favorites/hooks/useFavorites';
+import { useWeatherData } from '@/features/weather/hooks/useWeatherData';
+import { useHourlyForecast } from '@/features/weather/hooks/useHourlyForecast';
+import { calculateDailyMinMax } from '@/features/shared/utils/weather-helpers';
+import { WeatherDisplay } from '@/features/weather/components/WeatherDisplay';
+import { DDayCard } from '@/features/weather/components/DDayCard';
+import { WeatherSuggestion } from '@/features/weather/components/WeatherSuggestion';
+import { HourlyForecast } from '@/features/weather/components/HourlyForecast';
+import { WeatherDetails } from '@/features/weather/components/WeatherDetails';
+import { LoadingScreen } from '@/features/shared/components/LoadingScreen';
+import { ErrorScreen } from '@/features/shared/components/ErrorScreen';
 
 export const DetailPage: React.FC = () => {
   const { locationId } = useParams<{ locationId: string }>();
@@ -24,6 +26,7 @@ export const DetailPage: React.FC = () => {
     favorite?.lon ?? null
   );
   const { data: hourly } = useHourlyForecast(favorite?.lat ?? null, favorite?.lon ?? null);
+  const dailyMinMax = calculateDailyMinMax(hourly);
 
   if (!favorite) {
     return (
@@ -51,7 +54,7 @@ export const DetailPage: React.FC = () => {
 
   return (
     <div className="max-w-md mx-auto min-h-screen text-white relative flex flex-col">
-      <div className="fixed inset-0 z-0 bg-gradient-to-b from-galaxy-blue-start to-galaxy-blue-end"></div>
+      <div className="fixed inset-0 z-0 bg-lineaer-to-b from-galaxy-blue-start to-galaxy-blue-end"></div>
 
       <div className="relative z-10 px-4 pt-8 pb-20 flex-1 overflow-y-auto">
         {/* Header with Back Button */}
@@ -68,7 +71,7 @@ export const DetailPage: React.FC = () => {
         </div>
 
         {/* Main Weather Display */}
-        {weather && <WeatherDisplay weather={weather} />}
+        {weather && <WeatherDisplay weather={weather} dailyMinMax={dailyMinMax} />}
 
         {/* Weather Suggestion */}
         <WeatherSuggestion weather={weather} />
@@ -78,6 +81,9 @@ export const DetailPage: React.FC = () => {
 
         {/* Weather Details */}
         {weather && <WeatherDetails weather={weather} />}
+
+        {/* D-Day Card */}
+        <DDayCard />
       </div>
     </div>
   );
