@@ -1,5 +1,5 @@
-import { WeatherData } from '../../../types/weather.types';
-import { MessageData } from '../../../types/message.types';
+import { WeatherData } from '@/types/weather.types';
+import { MessageData } from '@/types/message.types';
 
 const getRandomMessage = (messages: MessageData[]): MessageData | undefined => {
   if (messages.length === 0) return undefined;
@@ -21,8 +21,18 @@ export const getBubbleMessage = (
     const { type, date, weatherMain: msgWeather, feelsLike: tempRange } = message.conditions;
 
     if (type === 'specificDate') {
-      // Match month-day (repeats every year)
-      return date === monthDay;
+      if (date) {
+        // Support both "YYYY-MM-DD" (specific year) and "MM-DD" (repeats every year)
+        if (date.length === 10) {
+          // Full date with year
+          const fullDate = `${today.getFullYear()}-${monthDay}`;
+          return date === fullDate;
+        } else {
+          // Month-day only (repeats every year)
+          return date === monthDay;
+        }
+      }
+      return false;
     }
 
     if (type === 'weather') {
