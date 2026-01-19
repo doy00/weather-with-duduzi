@@ -1,4 +1,4 @@
-import { WEATHER_API_KEY, WEATHER_BASE_URL } from '@/config/constants';
+import { WEATHER_API_KEY, WEATHER_BASE_URL, KAKAO_API_KEY } from '@/config/constants';
 import { WeatherData, HourlyWeather } from '@/types/weather.types';
 import { GeocodingResult } from '@/types/location.types';
 
@@ -70,33 +70,88 @@ export const geocodeLocation = async (query: string): Promise<GeocodingResult[]>
   }
 };
 
-export const reverseGeocode = async (lat: number, lon: number): Promise<string> => {
-  try {
-    const response = await fetch(
-      `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${WEATHER_API_KEY}`
-    );
+// Kakao Local API를 사용한 상세 주소 조회
+const getDetailedAddressFromKakao = async (lat: number, lon: number): Promise<string> => {
+  if (!KAKAO_API_KEY) {
+    throw new Error('Kakao API 키가 설정되지 않았습니다.');
+  }
 
-    if (!response.ok) {
-      throw new Error("역지오코딩에 실패했습니다.");
+  const response = await fetch(
+    `https://dapi.kakao.com/v2/local/geo/coord2address.json?x=${lon}&y=${lat}`,
+    {
+      headers: {
+        Authorization: `KakaoAK ${KAKAO_API_KEY}`,
+      },
     }
+  );
 
-    const results = await response.json();
-    if (!Array.isArray(results) || results.length === 0) {
-      throw new Error("위치 정보를 찾을 수 없습니다.");
-    }
+  if (!response.ok) {
+    throw new Error('Kakao API 호출에 실패했습니다.');
+  }
 
-    const result = results[0];
-    // 한글 지역명 구성: 시/도 + 시/군/구 (있는 경우)
+  const data = await response.json();
+
+  if (!data.documents || data.documents.length === 0) {
+    throw new Error('주소 정보를 찾을 수 없습니다.');
+  }
+
+  const address = data.documents[0].address;
+  const roadAddress = data.documents[0].road_address;
+
+  // 도로명 주소가 있으면 우선 사용: 시/도 + 시/군/구 + 동
+  if (roadAddress) {
     const parts = [];
-    if (result.local_names?.ko) {
-      return result.local_names.ko;
-    }
-    if (result.state) parts.push(result.state);
-    if (result.name) parts.push(result.name);
+    if (roadAddress.region_1depth_name) parts.push(roadAddress.region_1depth_name); // 시/도
+    if (roadAddress.region_2depth_name) parts.push(roadAddress.region_2depth_name); // 시/군/구
+    if (roadAddress.region_3depth_name) parts.push(roadAddress.region_3depth_name); // 동
+    return parts.join(' ');
+  }
 
-    return parts.join(' ') || result.name || '알 수 없는 위치';
-  } catch (error) {
-    // 실패 시 영어 이름 반환
-    return '내 위치';
+  // 지번 주소 사용: 시/도 + 시/군/구 + 동
+  if (address) {
+    const parts = [];
+    if (address.region_1depth_name) parts.push(address.region_1depth_name);
+    if (address.region_2depth_name) parts.push(address.region_2depth_name);
+    if (address.region_3depth_name) parts.push(address.region_3depth_name);
+    return parts.join(' ');
+  }
+
+  throw new Error('주소 정보를 찾을 수 없습니다.');
+};
+
+export const reverseGeocode = async (lat: number, lon: number): Promise<string> => {
+  // 1순위: Kakao API로 상세 주소 가져오기 (동 단위)
+  try {
+    return await getDetailedAddressFromKakao(lat, lon);
+  } catch (kakaoError) {
+    // Kakao API 실패 시 OpenWeatherMap API 사용 (시/도 수준)
+    try {
+      const response = await fetch(
+        `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${WEATHER_API_KEY}`
+      );
+
+      if (!response.ok) {
+        throw new Error("역지오코딩에 실패했습니다.");
+      }
+
+      const results = await response.json();
+      if (!Array.isArray(results) || results.length === 0) {
+        throw new Error("위치 정보를 찾을 수 없습니다.");
+      }
+
+      const result = results[0];
+      // 한글 지역명 구성: 시/도 + 시/군/구 (있는 경우)
+      const parts = [];
+      if (result.local_names?.ko) {
+        return result.local_names.ko;
+      }
+      if (result.state) parts.push(result.state);
+      if (result.name) parts.push(result.name);
+
+      return parts.join(' ') || result.name || '알 수 없는 위치';
+    } catch (error) {
+      // 모든 API 실패 시 fallback
+      return '내 위치';
+    }
   }
 };

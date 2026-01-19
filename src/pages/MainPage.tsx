@@ -153,9 +153,6 @@ export const MainPage: React.FC = () => {
         {/* Bubble Message */}
         {weather && <BubbleMessage weather={weather} />}
 
-        {/* D-Day Card */}
-        <DDayCard />
-
         {/* Main Weather Display */}
         {weather && <WeatherDisplay weather={weather} dailyMinMax={dailyMinMax} />}
 
@@ -164,6 +161,7 @@ export const MainPage: React.FC = () => {
 
         {/* Hourly Forecast */}
         <HourlyForecast hourlyData={hourly} />
+
 
         {/* Favorites List */}
         <FavoritesList
@@ -178,8 +176,12 @@ export const MainPage: React.FC = () => {
 
         {/* Weather Details */}
         {weather && <WeatherDetails weather={weather} />}
+        
+        {/* D-Day Card */}
+        <DDayCard />
       </div>
 
+        
       {/* Search Overlay */}
       <SearchOverlay
         isOpen={view === 'search'}
