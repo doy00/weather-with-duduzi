@@ -5,6 +5,7 @@ import { useFavorites } from '@/features/favorites/hooks/useFavorites';
 import { useWeatherData } from '@/features/weather/hooks/useWeatherData';
 import { useHourlyForecast } from '@/features/weather/hooks/useHourlyForecast';
 import { calculateDailyMinMax } from '@/features/shared/utils/weather-helpers';
+import { useTimeBasedBackground } from '@/features/shared/hooks/useTimeBasedBackground';
 import { WeatherDisplay } from '@/features/weather/components/WeatherDisplay';
 import { DDayCard } from '@/features/weather/components/DDayCard';
 import { WeatherSuggestion } from '@/features/weather/components/WeatherSuggestion';
@@ -18,6 +19,9 @@ export const DetailPage: React.FC = () => {
   const navigate = useNavigate();
   const { favorites } = useFavorites();
 
+  // Time-based background
+  const { gradientClasses } = useTimeBasedBackground();
+
   const favorite = favorites.find(f => f.id === locationId);
 
   // Weather queries
@@ -30,7 +34,7 @@ export const DetailPage: React.FC = () => {
 
   if (!favorite) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen text-white bg-gradient-to-b from-galaxy-blue-start to-galaxy-blue-end p-6 text-center">
+      <div className={`flex flex-col items-center justify-center h-screen text-white bg-gradient-to-b ${gradientClasses} transition-colors duration-1000 p-6 text-center`}>
         <p className="font-bold text-2xl mb-4">즐겨찾기를 찾을 수 없습니다.</p>
         <button
           onClick={() => navigate('/')}
@@ -54,7 +58,7 @@ export const DetailPage: React.FC = () => {
 
   return (
     <div className="max-w-md mx-auto min-h-screen text-white relative flex flex-col">
-      <div className="fixed inset-0 z-0 bg-lineaer-to-b from-galaxy-blue-start to-galaxy-blue-end"></div>
+      <div className={`fixed inset-0 z-0 bg-gradient-to-b ${gradientClasses} transition-colors duration-1000`}></div>
 
       <div className="relative z-10 px-4 pt-8 pb-20 flex-1 overflow-y-auto">
         {/* Header with Back Button */}

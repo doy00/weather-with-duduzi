@@ -69,3 +69,34 @@ export const geocodeLocation = async (query: string): Promise<GeocodingResult[]>
     throw new Error("지역 검색 중 오류가 발생했습니다.");
   }
 };
+
+export const reverseGeocode = async (lat: number, lon: number): Promise<string> => {
+  try {
+    const response = await fetch(
+      `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${WEATHER_API_KEY}`
+    );
+
+    if (!response.ok) {
+      throw new Error("역지오코딩에 실패했습니다.");
+    }
+
+    const results = await response.json();
+    if (!Array.isArray(results) || results.length === 0) {
+      throw new Error("위치 정보를 찾을 수 없습니다.");
+    }
+
+    const result = results[0];
+    // 한글 지역명 구성: 시/도 + 시/군/구 (있는 경우)
+    const parts = [];
+    if (result.local_names?.ko) {
+      return result.local_names.ko;
+    }
+    if (result.state) parts.push(result.state);
+    if (result.name) parts.push(result.name);
+
+    return parts.join(' ') || result.name || '알 수 없는 위치';
+  } catch (error) {
+    // 실패 시 영어 이름 반환
+    return '내 위치';
+  }
+};

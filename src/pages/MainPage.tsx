@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LocationItem } from '@/types/location.types';
 import { useGeolocation } from '@/features/location/hooks/useGeolocation';
 import { useLocationSearch } from '@/features/location/hooks/useLocationSearch';
 import { useGeocode } from '@/features/location/hooks/useGeocode';
+import { reverseGeocode } from '@/features/weather/services/weatherService';
 import { useFavorites } from '@/features/favorites/hooks/useFavorites';
 import { useFavoriteWeather } from '@/features/favorites/hooks/useFavoriteWeather';
 import { useWeatherData } from '@/features/weather/hooks/useWeatherData';
 import { useHourlyForecast } from '@/features/weather/hooks/useHourlyForecast';
 import { calculateDailyMinMax } from '@/features/shared/utils/weather-helpers';
+import { useTimeBasedBackground } from '@/features/shared/hooks/useTimeBasedBackground';
 import { LocationHeader } from '@/features/location/components/LocationHeader';
 import { SearchOverlay } from '@/features/location/components/SearchOverlay';
 import { WeatherDisplay } from '@/features/weather/components/WeatherDisplay';
@@ -28,6 +30,9 @@ export const MainPage: React.FC = () => {
   const [selectedLocation, setSelectedLocation] = useState<LocationItem | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
 
+  // Time-based background
+  const { gradientClasses } = useTimeBasedBackground();
+
   // Location management
   const { coords, locationStatus } = useGeolocation();
   const searchResults = useLocationSearch(searchQuery);
@@ -41,6 +46,31 @@ export const MainPage: React.FC = () => {
   const { data: hourly } = useHourlyForecast(lat, lon);
   const favoriteWeatherResults = useFavoriteWeather(favorites);
   const dailyMinMax = calculateDailyMinMax(hourly);
+
+  // Update location name from weather data when using geolocation
+  useEffect(() => {
+    const updateLocationName = async () => {
+      if (weather && selectedLocation?.id === 'current' && selectedLocation.name === '내 위치') {
+        try {
+          const koreanName = await reverseGeocode(selectedLocation.lat, selectedLocation.lon);
+          setSelectedLocation(prev => prev ? {
+            ...prev,
+            name: koreanName,
+            fullName: koreanName
+          } : null);
+        } catch (error) {
+          // 실패 시 영어 이름 사용
+          setSelectedLocation(prev => prev ? {
+            ...prev,
+            name: weather.name,
+            fullName: weather.name
+          } : null);
+        }
+      }
+    };
+
+    updateLocationName();
+  }, [weather, selectedLocation?.id, selectedLocation?.name, selectedLocation?.lat, selectedLocation?.lon]);
 
   // Initialize default location if not set
   if (!selectedLocation && coords) {
@@ -107,7 +137,7 @@ export const MainPage: React.FC = () => {
 
   return (
     <div className="max-w-md mx-auto min-h-screen text-white relative flex flex-col">
-      <div className="fixed inset-0 z-0 bg-gradient-to-b from-galaxy-blue-start to-galaxy-blue-end"></div>
+      <div className={`fixed inset-0 z-0 bg-gradient-to-b ${gradientClasses} transition-colors duration-1000`}></div>
 
       <div className="relative z-10 px-4 pt-8 pb-20 flex-1 overflow-y-auto">
         {/* Header */}
