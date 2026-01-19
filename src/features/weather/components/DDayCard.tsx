@@ -18,13 +18,9 @@ export function DDayCard() {
   const dday = calculateDDay(targetDate);
 
   return (
-    <div className="mb-4 animate-in fade-in zoom-in duration-500">
-      <div className="glass rounded-3xl p-4">
-        <div className="flex items-center justify-between">
-          <div className="text-xl">
-            {dday}
-          </div>
-        </div>
+    <div className="mb-4 w-fit animate-in fade-in zoom-in duration-500">
+      <div className="text-base text-white/60">
+        {dday}
       </div>
     </div>
   );
