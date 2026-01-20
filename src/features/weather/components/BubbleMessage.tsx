@@ -24,27 +24,27 @@ export const BubbleMessage: React.FC<BubbleMessageProps> = ({ weather }) => {
   );
 
   return (
-    <div className="space-y-4">
-      <GlassCard className="min-h-0 rounded-full p-3 animate-in fade-in zoom-in duration-500">
-        <div className="flex gap-3 items-start">
+    <div className="space-y-2 md:space-y-4">
+      <GlassCard className="min-h-0 rounded-full p-2 md:p-3 animate-in fade-in slide-in-from-left-8 duration-500">
+        <div className="flex gap-2 md:gap-3 items-center md:items-start">
           <img
             src={dyImage}
             alt="dy 캐릭터"
-            className="w-12 h-12 object-cover shrink-0 drop-shadow-lg"
+            className="w-6 h-6 md:w-12 md:h-12 object-cover shrink-0 drop-shadow-lg"
           />
-          <p className="text-lg font-light leading-relaxed opacity-95 whitespace-pre-line flex-1 justify-center align-center">
+          <p className="text-sm md:text-base lg:text-lg font-light leading-snug md:leading-relaxed opacity-95 whitespace-pre-line flex-1">
             {rabbitMessage}
           </p>
         </div>
       </GlassCard>
-      <GlassCard className="min-h-0 rounded-full p-3 animate-in fade-in zoom-in duration-500 delay-100">
-        <div className="flex gap-3 items-start">
+      <GlassCard className="min-h-0 rounded-full p-2 md:p-3 animate-in fade-in slide-in-from-left-8 duration-500 delay-300">
+        <div className="flex gap-2 md:gap-3 items-center md:items-start">
           <img
             src={busydogImage}
             alt="비지독 이미지"
-            className="w-12 h-12 -translate-y-1 object-cover shrink-0 drop-shadow-lg"
+            className="w-6 h-6 md:w-12 md:h-12 object-cover shrink-0 drop-shadow-lg"
           />
-          <p className="text-lg font-light leading-relaxed opacity-95 whitespace-pre-line flex-1 align-center">
+          <p className="text-sm md:text-base lg:text-lg font-light leading-snug md:leading-relaxed opacity-95 whitespace-pre-line flex-1">
             {dogMessage}
           </p>
         </div>
