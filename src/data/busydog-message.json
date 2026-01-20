@@ -314,7 +314,7 @@
     },
     {
       "id": 130,
-      "text": "오늘따라 괜시 보고 싶네 그립군..",
+      "text": "오늘따라 괜히 보고 싶네 그립군..",
       "conditions": {
         "type": "temperature",
         "feelsLike": {
