@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { UseQueryResult } from '@tanstack/react-query';
-import { FavoriteLocation } from '@/types/location.types';
-import { WeatherData } from '@/types/weather.types';
+import type { FavoriteLocation } from '@/features/favorites/types/favorite.types';
+import type { WeatherData } from '@/types/weather.types';
 import { FavoriteCard } from '@/features/favorites/components/FavoriteCard';
 
 interface FavoritesListProps {
@@ -9,16 +9,24 @@ interface FavoritesListProps {
   weatherResults: UseQueryResult<WeatherData, Error>[];
   onSelectFavorite: (favorite: FavoriteLocation) => void;
   onRemove: (id: string) => void;
-  onUpdateNickname: (id: string, nickname: string) => void;
+  onUpdateNickname: (id: string, nickname: string) => Promise<void>;
 }
 
-export const FavoritesList: React.FC<FavoritesListProps> = ({
+export const FavoritesList = React.memo<FavoritesListProps>(({
   favorites,
   weatherResults,
   onSelectFavorite,
   onRemove,
   onUpdateNickname,
 }) => {
+  const handleRemove = useCallback((id: string) => {
+    onRemove(id);
+  }, [onRemove]);
+
+  const handleUpdateNickname = useCallback((id: string, nickname: string) => {
+    return onUpdateNickname(id, nickname);
+  }, [onUpdateNickname]);
+
   if (favorites.length === 0) return null;
 
   return (
@@ -38,12 +46,12 @@ export const FavoritesList: React.FC<FavoritesListProps> = ({
               weather={favWeather}
               isLoading={favLoading ?? false}
               onClick={() => onSelectFavorite(fav)}
-              onRemove={onRemove}
-              onEditNickname={onUpdateNickname}
+              onRemove={handleRemove}
+              onEditNickname={handleUpdateNickname}
             />
           );
         })}
       </div>
     </div>
   );
-};
+});

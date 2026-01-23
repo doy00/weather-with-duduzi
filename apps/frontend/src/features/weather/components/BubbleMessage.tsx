@@ -12,7 +12,7 @@ interface BubbleMessageProps {
   weather: WeatherData;
 }
 
-export const BubbleMessage: React.FC<BubbleMessageProps> = ({ weather }) => {
+export const BubbleMessage = React.memo<BubbleMessageProps>(({ weather }) => {
   const rabbitMessage = useMemo(
     () => getBubbleMessage(weather, messagesData.messages as MessageData[]),
     [weather]
@@ -51,4 +51,4 @@ export const BubbleMessage: React.FC<BubbleMessageProps> = ({ weather }) => {
       </GlassCard>
     </div>
   );
-};
+});

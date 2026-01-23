@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LocationItem } from '@/types/location.types';
 import { useGeolocation } from '@/features/location/hooks/useGeolocation';
 import { useLocationSearch } from '@/features/location/hooks/useLocationSearch';
 import { useGeocode } from '@/features/location/hooks/useGeocode';
 import { reverseGeocode } from '@/features/weather/services/weatherService';
-import { useFavorites } from '@/features/favorites/hooks/useFavorites';
+import { useFavoritesQuery } from '@/features/favorites/hooks/useFavoritesQuery';
 import { useFavoriteWeather } from '@/features/favorites/hooks/useFavoriteWeather';
+import { handleApiError, isErrorStatus } from '@/lib/error';
+import { toast } from '@/features/shared/components/Toast';
 import { useWeatherData } from '@/features/weather/hooks/useWeatherData';
 import { useHourlyForecast } from '@/features/weather/hooks/useHourlyForecast';
 import { calculateDailyMinMax } from '@/features/shared/utils/weather-helpers';
@@ -40,7 +42,7 @@ export const MainPage: React.FC = () => {
   const { coords, locationStatus } = useGeolocation();
   const searchResults = useLocationSearch(searchQuery);
   const { geocode } = useGeocode();
-  const { favorites, addFavorite, removeFavorite, updateNickname, isFavorite } = useFavorites();
+  const { favorites, addFavorite, removeFavorite, updateNickname, isFavorite } = useFavoritesQuery();
 
   // Weather queries
   const lat = selectedLocation?.lat ?? coords?.lat ?? DEFAULT_LOCATION.lat;
@@ -86,7 +88,7 @@ export const MainPage: React.FC = () => {
     });
   }
 
-  const handleSelectLocation = async (fullName: string) => {
+  const handleSelectLocation = useCallback(async (fullName: string) => {
     try {
       const parts = fullName.split('-');
       const name = parts[parts.length - 1];
@@ -105,31 +107,49 @@ export const MainPage: React.FC = () => {
       setView('main');
       setSearchQuery("");
     } catch (error) {
-      if (error instanceof Error) {
-        alert(error.message);
-      } else {
-        alert("날씨 정보를 가져오는 중 오류가 발생했습니다.");
-      }
+      const message = handleApiError(error, 'Select Location', '위치 선택에 실패했습니다.');
+      toast.error(message);
     }
-  };
+  }, [geocode]);
 
-  const handleToggleFavorite = () => {
+  const handleToggleFavorite = useCallback(async () => {
     if (!selectedLocation) return;
 
     const isFav = isFavorite(selectedLocation.fullName);
+
     if (isFav) {
-      const fav = favorites.find(f => f.fullName === selectedLocation.fullName);
-      if (fav) removeFavorite(fav.id);
+      try {
+        const fav = favorites.find(f => f.fullName === selectedLocation.fullName);
+        if (fav) {
+          await removeFavorite(fav.id);
+          toast.success('즐겨찾기에서 제거되었습니다.');
+        }
+      } catch (error) {
+        const message = handleApiError(error, 'Remove Favorite', '즐겨찾기 제거에 실패했습니다.');
+        toast.error(message);
+      }
     } else {
       try {
-        addFavorite(selectedLocation);
+        await addFavorite(selectedLocation);
+        toast.success('즐겨찾기에 추가되었습니다.');
       } catch (error) {
-        if (error instanceof Error) {
-          alert(error.message);
+        if (isErrorStatus(error, 409)) {
+          toast.error('이미 즐겨찾기에 등록된 지역입니다.');
+          return;
         }
+        if (isErrorStatus(error, 400)) {
+          toast.error('즐겨찾기는 최대 6개까지 가능합니다.');
+          return;
+        }
+        const message = handleApiError(error, 'Add Favorite', '즐겨찾기 추가에 실패했습니다.');
+        toast.error(message);
       }
     }
-  };
+  }, [selectedLocation, favorites, isFavorite, addFavorite, removeFavorite]);
+
+  const handleSelectFavorite = useCallback((fav: import('@/types/location.types').FavoriteLocation) => {
+    navigate(`/detail/${fav.id}`);
+  }, [navigate]);
 
   // Loading state
   if ((isWeatherLoading || locationStatus) && !weather) {
@@ -177,9 +197,7 @@ export const MainPage: React.FC = () => {
         <FavoritesList
           favorites={favorites}
           weatherResults={favoriteWeatherResults}
-          onSelectFavorite={(fav) => {
-            navigate(`/detail/${fav.id}`);
-          }}
+          onSelectFavorite={handleSelectFavorite}
           onRemove={removeFavorite}
           onUpdateNickname={updateNickname}
         />

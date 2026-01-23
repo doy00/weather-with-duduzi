@@ -15,7 +15,7 @@ interface FavoriteCardProps {
   onEditNickname: (id: string, nickname: string) => Promise<void>;
 }
 
-export const FavoriteCard: React.FC<FavoriteCardProps> = ({
+export const FavoriteCard = React.memo<FavoriteCardProps>(({
   favorite,
   weather,
   isLoading,
@@ -93,4 +93,4 @@ export const FavoriteCard: React.FC<FavoriteCardProps> = ({
       </div>
     </GlassCard>
   );
-};
+});

@@ -8,7 +8,7 @@ interface WeatherSuggestionProps {
   weather?: WeatherData;
 }
 
-export const WeatherSuggestion: React.FC<WeatherSuggestionProps> = ({ weather }) => (
+export const WeatherSuggestion = React.memo<WeatherSuggestionProps>(({ weather }) => (
   <GlassCard className="bg-white/10 border-white/20 mb-6">
     <div className="flex items-start gap-4">
       <div className="bg-white/20 p-2.5 rounded-2xl">
@@ -24,4 +24,4 @@ export const WeatherSuggestion: React.FC<WeatherSuggestionProps> = ({ weather })
       </div>
     </div>
   </GlassCard>
-);
+));

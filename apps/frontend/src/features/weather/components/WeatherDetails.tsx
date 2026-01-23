@@ -7,7 +7,7 @@ interface WeatherDetailsProps {
   weather: WeatherData;
 }
 
-export const WeatherDetails: React.FC<WeatherDetailsProps> = ({ weather }) => (
+export const WeatherDetails = React.memo<WeatherDetailsProps>(({ weather }) => (
   <GlassCard className="mt-4 mb-10">
     <div className="grid grid-cols-2 gap-8 py-2">
       <div className="border-r border-white/10">
@@ -24,4 +24,4 @@ export const WeatherDetails: React.FC<WeatherDetailsProps> = ({ weather }) => (
       </div>
     </div>
   </GlassCard>
-);
+));

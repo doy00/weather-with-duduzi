@@ -2,18 +2,22 @@ import React from 'react';
 import { WeatherData } from '@/types/weather.types';
 import { formatTemperature } from '@/features/shared/utils/formatters';
 import { getWeatherDescription } from '@/features/shared/utils/weather-helpers';
+import { WeatherIcon } from './WeatherIcon';
 
 interface WeatherDisplayProps {
   weather: WeatherData;
   dailyMinMax?: { min: number; max: number } | null;
 }
 
-export const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ weather, dailyMinMax }) => {
+export const WeatherDisplay = React.memo<WeatherDisplayProps>(({ weather, dailyMinMax }) => {
   const tempMax = dailyMinMax?.max ?? weather.main.temp_max;
   const tempMin = dailyMinMax?.min ?? weather.main.temp_min;
 
   return (
     <div className="text-center mb-10 animate-in fade-in zoom-in duration-500">
+      <div className="mb-4 flex justify-center">
+        <WeatherIcon iconCode={weather.weather[0].icon} size={80} className="text-white/90" />
+      </div>
       <p className="text-[80px] sm:text-[100px] lg:text-[120px] font-thin leading-none mb-4 tracking-tighter">
         {formatTemperature(weather.main.temp)}
       </p>
@@ -31,4 +35,4 @@ export const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ weather, dailyMi
       </p>
     </div>
   );
-};
+});
