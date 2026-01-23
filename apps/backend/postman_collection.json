@@ -1,0 +1,324 @@
+{
+  "info": {
+    "name": "Weather with Duduzi API",
+    "description": "날씨 앱 + Daily Inspiration Message API Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "1"
+  },
+  "item": [
+    {
+      "name": "Favorites",
+      "item": [
+        {
+          "name": "Get All Favorites",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/favorites",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "favorites"]
+            },
+            "description": "저장된 모든 즐겨찾기 지역을 조회합니다."
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/favorites",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "favorites"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"favorites\": [\n    {\n      \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"full_name\": \"서울특별시 강남구\",\n      \"name\": \"강남구\",\n      \"nickname\": \"우리집\",\n      \"lat\": 37.4979,\n      \"lon\": 127.0276,\n      \"created_at\": \"2024-01-24T12:00:00Z\",\n      \"updated_at\": \"2024-01-24T12:00:00Z\"\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Create Favorite",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"서울특별시 강남구\",\n  \"name\": \"강남구\",\n  \"nickname\": \"우리집\",\n  \"lat\": 37.4979,\n  \"lon\": 127.0276\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/favorites",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "favorites"]
+            },
+            "description": "새로운 지역을 즐겨찾기에 추가합니다."
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fullName\": \"서울특별시 강남구\",\n  \"name\": \"강남구\",\n  \"nickname\": \"우리집\",\n  \"lat\": 37.4979,\n  \"lon\": 127.0276\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/favorites",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "favorites"]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"favorite\": {\n    \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"full_name\": \"서울특별시 강남구\",\n    \"name\": \"강남구\",\n    \"nickname\": \"우리집\",\n    \"lat\": 37.4979,\n    \"lon\": 127.0276,\n    \"created_at\": \"2024-01-24T12:00:00Z\",\n    \"updated_at\": \"2024-01-24T12:00:00Z\"\n  }\n}"
+            },
+            {
+              "name": "Validation Error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fullName\": \"서울특별시 강남구\",\n  \"lat\": 100\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/favorites",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "favorites"]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 400,\n  \"message\": [\n    \"name must be a string\",\n    \"lat must not be greater than 90\",\n    \"lon must be a number conforming to the specified constraints\"\n  ],\n  \"error\": \"Bad Request\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Favorite Nickname",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nickname\": \"회사\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/favorites/:id/nickname",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "favorites", ":id", "nickname"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "123e4567-e89b-12d3-a456-426614174000",
+                  "description": "즐겨찾기 ID (UUID)"
+                }
+              ]
+            },
+            "description": "특정 즐겨찾기의 닉네임을 변경합니다."
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nickname\": \"회사\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/favorites/:id/nickname",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "favorites", ":id", "nickname"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "123e4567-e89b-12d3-a456-426614174000"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"favorite\": {\n    \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"full_name\": \"서울특별시 강남구\",\n    \"name\": \"강남구\",\n    \"nickname\": \"회사\",\n    \"lat\": 37.4979,\n    \"lon\": 127.0276,\n    \"created_at\": \"2024-01-24T12:00:00Z\",\n    \"updated_at\": \"2024-01-24T12:05:00Z\"\n  }\n}"
+            },
+            {
+              "name": "Not Found",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nickname\": \"회사\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/favorites/:id/nickname",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "favorites", ":id", "nickname"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "invalid-id"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 404,\n  \"message\": \"즐겨찾기를 찾을 수 없습니다\",\n  \"error\": \"Not Found\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete Favorite",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/favorites/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "favorites", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "123e4567-e89b-12d3-a456-426614174000",
+                  "description": "즐겨찾기 ID (UUID)"
+                }
+              ]
+            },
+            "description": "특정 즐겨찾기를 삭제합니다."
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/favorites/:id",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "favorites", ":id"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "123e4567-e89b-12d3-a456-426614174000"
+                    }
+                  ]
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "_postman_previewlanguage": null,
+              "header": [],
+              "body": null
+            },
+            {
+              "name": "Not Found",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/favorites/:id",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "favorites", ":id"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "invalid-id"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 404,\n  \"message\": \"즐겨찾기를 찾을 수 없습니다\",\n  \"error\": \"Not Found\"\n}"
+            }
+          ]
+        }
+      ],
+      "description": "즐겨찾기 관리 API 엔드포인트"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3001",
+      "type": "string"
+    }
+  ]
+}
