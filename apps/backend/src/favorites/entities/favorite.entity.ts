@@ -43,6 +43,12 @@ export class FavoriteEntity {
   })
   lon: number;
 
+  @ApiPropertyOptional({
+    description: '표시 순서 (0부터 시작)',
+    example: 0,
+  })
+  display_order?: number;
+
   @ApiProperty({
     description: '생성 일시 (ISO 8601)',
     example: '2024-01-24T12:00:00Z',

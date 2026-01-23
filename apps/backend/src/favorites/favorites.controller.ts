@@ -19,6 +19,7 @@ import {
 import { FavoritesService } from './favorites.service';
 import { CreateFavoriteDto } from './dto/create-favorite.dto';
 import { UpdateNicknameDto } from './dto/update-nickname.dto';
+import { ReorderFavoritesDto } from './dto/reorder-favorites.dto';
 import { FavoriteEntity } from './entities/favorite.entity';
 
 @ApiTags('Favorites')
@@ -118,5 +119,30 @@ export class FavoritesController {
       updateNicknameDto,
     );
     return { favorite };
+  }
+
+  @Patch('reorder')
+  @ApiOperation({
+    summary: '즐겨찾기 순서 변경',
+    description: '즐겨찾기 목록의 표시 순서를 변경합니다.',
+  })
+  @ApiBody({ type: ReorderFavoritesDto })
+  @ApiResponse({
+    status: 200,
+    description: '순서 변경 성공',
+    schema: {
+      type: 'object',
+      properties: {
+        success: { type: 'boolean', example: true },
+        message: { type: 'string', example: '즐겨찾기 순서가 변경되었습니다.' },
+      },
+    },
+  })
+  @ApiResponse({
+    status: 400,
+    description: '잘못된 요청 (유효성 검증 실패)',
+  })
+  async reorder(@Body() reorderDto: ReorderFavoritesDto) {
+    return this.favoritesService.reorder(reorderDto);
   }
 }
