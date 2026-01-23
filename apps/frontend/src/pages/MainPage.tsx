@@ -7,6 +7,7 @@ import { useGeocode } from '@/features/location/hooks/useGeocode';
 import { reverseGeocode } from '@/features/weather/services/weatherService';
 import { useFavoritesQuery } from '@/features/favorites/hooks/useFavoritesQuery';
 import { useFavoriteWeather } from '@/features/favorites/hooks/useFavoriteWeather';
+import { useTheme } from '@/features/favorites/hooks/useTheme';
 import { handleApiError, isErrorStatus } from '@/lib/error';
 import { toast } from '@/features/shared/components/Toast';
 import { useWeatherData } from '@/features/weather/hooks/useWeatherData';
@@ -22,6 +23,7 @@ import { WeatherSuggestion } from '@/features/weather/components/WeatherSuggesti
 import { HourlyForecast } from '@/features/weather/components/HourlyForecast';
 import { WeatherDetails } from '@/features/weather/components/WeatherDetails';
 import { FavoritesList } from '@/features/favorites/components/FavoritesList';
+import { ThemeSelector } from '@/features/favorites/components/ThemeSelector';
 import { LoadingScreen } from '@/features/shared/components/LoadingScreen';
 import { ErrorScreen } from '@/features/shared/components/ErrorScreen';
 import { PWAInstallPrompt } from '@/components/PWAInstallPrompt';
@@ -42,7 +44,17 @@ export const MainPage: React.FC = () => {
   const { coords, locationStatus } = useGeolocation();
   const searchResults = useLocationSearch(searchQuery);
   const { geocode } = useGeocode();
-  const { favorites, addFavorite, removeFavorite, updateNickname, isFavorite } = useFavoritesQuery();
+  const {
+    favorites,
+    addFavorite,
+    removeFavorite,
+    updateNickname,
+    reorderFavorites,
+    isFavorite,
+  } = useFavoritesQuery();
+
+  // Theme management
+  const { theme, themeId, setThemeId } = useTheme();
 
   // Weather queries
   const lat = selectedLocation?.lat ?? coords?.lat ?? DEFAULT_LOCATION.lat;
@@ -151,6 +163,23 @@ export const MainPage: React.FC = () => {
     navigate(`/detail/${fav.id}`);
   }, [navigate]);
 
+  const handleReorderFavorites = useCallback(
+    async (favoriteIds: string[]) => {
+      try {
+        await reorderFavorites({ favoriteIds });
+      } catch (error) {
+        const message = handleApiError(
+          error,
+          'Reorder Favorites',
+          '순서 변경에 실패했습니다.'
+        );
+        toast.error(message);
+        throw error;
+      }
+    },
+    [reorderFavorites]
+  );
+
   // Loading state
   if ((isWeatherLoading || locationStatus) && !weather) {
     return <LoadingScreen statusMessage={locationStatus || "전 세계 기상 데이터를 확인 중..."} />;
@@ -172,14 +201,19 @@ export const MainPage: React.FC = () => {
         )}
       >
         {/* Header */}
-        {selectedLocation && (
-          <LocationHeader
-            locationName={selectedLocation.name}
-            isFavorite={isFavorite(selectedLocation.fullName)}
-            onSearchClick={() => setView('search')}
-            onFavoriteToggle={handleToggleFavorite}
-          />
-        )}
+        <div className="flex items-center justify-between mb-2">
+          {selectedLocation && (
+            <LocationHeader
+              locationName={selectedLocation.name}
+              isFavorite={isFavorite(selectedLocation.fullName)}
+              onSearchClick={() => setView('search')}
+              onFavoriteToggle={handleToggleFavorite}
+            />
+          )}
+          {favorites.length > 0 && (
+            <ThemeSelector currentThemeId={themeId} onThemeChange={setThemeId} />
+          )}
+        </div>
 
         {/* Bubble Message */}
         {weather && <BubbleMessage weather={weather} />}
@@ -200,6 +234,9 @@ export const MainPage: React.FC = () => {
           onSelectFavorite={handleSelectFavorite}
           onRemove={removeFavorite}
           onUpdateNickname={updateNickname}
+          onReorder={handleReorderFavorites}
+          themeClassName={theme.cardClassName}
+          themeTextClassName={theme.textClassName}
         />
 
         {/* Weather Details */}
