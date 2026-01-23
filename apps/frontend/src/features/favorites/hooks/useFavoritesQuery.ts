@@ -1,12 +1,17 @@
 import { useEffect } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import type { FavoriteLocation, AddFavoriteInput } from '../types/favorite.types';
+import type {
+  FavoriteLocation,
+  AddFavoriteInput,
+  ReorderFavoritesInput,
+} from '../types/favorite.types';
 import { FAVORITES_QUERY_KEY } from '../constants';
 import {
   fetchFavorites,
   addFavoriteApi,
   removeFavoriteApi,
   updateNicknameApi,
+  reorderFavoritesApi,
 } from '../services/favoritesApi';
 import { tabSync } from '@/lib/tabSync';
 import { fetchCurrentWeather } from '@/features/weather/services/weatherService';
@@ -28,6 +33,7 @@ export function useFavoritesQuery() {
         case 'FAVORITE_ADDED':
         case 'FAVORITE_REMOVED':
         case 'NICKNAME_UPDATED':
+        case 'FAVORITES_REORDERED':
           queryClient.invalidateQueries({ queryKey: FAVORITES_QUERY_KEY });
           break;
       }
@@ -80,6 +86,35 @@ export function useFavoritesQuery() {
     },
   });
 
+  const reorderMutation = useMutation({
+    mutationFn: reorderFavoritesApi,
+    onMutate: async (newOrder: ReorderFavoritesInput) => {
+      await queryClient.cancelQueries({ queryKey: FAVORITES_QUERY_KEY });
+      const previousFavorites = queryClient.getQueryData<FavoriteLocation[]>(
+        FAVORITES_QUERY_KEY
+      );
+
+      queryClient.setQueryData<FavoriteLocation[]>(FAVORITES_QUERY_KEY, (old = []) => {
+        const orderMap = new Map(newOrder.favoriteIds.map((id, index) => [id, index]));
+        return [...old].sort((a, b) => {
+          const orderA = orderMap.get(a.id) ?? 999;
+          const orderB = orderMap.get(b.id) ?? 999;
+          return orderA - orderB;
+        });
+      });
+
+      return { previousFavorites };
+    },
+    onError: (_, __, context) => {
+      if (context?.previousFavorites) {
+        queryClient.setQueryData(FAVORITES_QUERY_KEY, context.previousFavorites);
+      }
+    },
+    onSuccess: () => {
+      tabSync.send({ type: 'FAVORITES_REORDERED', data: {} });
+    },
+  });
+
   const isFavorite = (fullName: string) => {
     return favorites.some((f) => f.fullName === fullName);
   };
@@ -91,9 +126,11 @@ export function useFavoritesQuery() {
     removeFavorite: removeMutation.mutateAsync,
     updateNickname: ({ id, nickname }: { id: string; nickname: string }) =>
       updateNicknameMutation.mutateAsync({ id, nickname }),
+    reorderFavorites: reorderMutation.mutateAsync,
     isAddingFavorite: addMutation.isPending,
     isRemovingFavorite: removeMutation.isPending,
     isUpdatingNickname: updateNicknameMutation.isPending,
+    isReordering: reorderMutation.isPending,
     ...queryState,
   };
 }

@@ -5,6 +5,7 @@ export interface FavoriteLocation {
   nickname?: string;
   lat: number;
   lon: number;
+  display_order?: number;
   created_at?: string;
   updated_at?: string;
 }
@@ -20,4 +21,8 @@ export interface AddFavoriteInput {
 export interface UpdateNicknameInput {
   id: string;
   nickname: string;
+}
+
+export interface ReorderFavoritesInput {
+  favoriteIds: string[];
 }

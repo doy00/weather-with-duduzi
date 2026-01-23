@@ -1,4 +1,8 @@
-import type { FavoriteLocation, AddFavoriteInput } from '../types/favorite.types';
+import type {
+  FavoriteLocation,
+  AddFavoriteInput,
+  ReorderFavoritesInput,
+} from '../types/favorite.types';
 import { API_BASE_URL } from '@/config/constants';
 
 const getAuthHeaders = () => ({
@@ -75,4 +79,23 @@ export const updateNicknameApi = async (
 
   const data = await response.json();
   return data.favorite;
+};
+
+export const reorderFavoritesApi = async (
+  input: ReorderFavoritesInput
+): Promise<{ success: boolean; message: string }> => {
+  const response = await fetch(`${API_BASE_URL}/api/favorites/reorder`, {
+    method: 'PATCH',
+    headers: getAuthHeaders(),
+    body: JSON.stringify(input),
+  });
+
+  if (!response.ok) {
+    throw {
+      status: response.status,
+      message: '순서 변경에 실패했습니다.',
+    };
+  }
+
+  return response.json();
 };

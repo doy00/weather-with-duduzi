@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { X, Edit2 } from 'lucide-react';
-import { GlassCard } from '@/features/shared/components/GlassCard';
+import { cn } from '@/lib/utils';
 import type { FavoriteLocation } from '@/features/favorites/types/favorite.types';
 import type { WeatherData } from '@/types/weather.types';
 import { formatTemperature } from '@/features/shared/utils/formatters';
@@ -13,6 +13,8 @@ interface FavoriteCardProps {
   onClick?: () => void;
   onRemove: (id: string) => void;
   onEditNickname: (id: string, nickname: string) => Promise<void>;
+  themeClassName?: string;
+  themeTextClassName?: string;
 }
 
 export const FavoriteCard = React.memo<FavoriteCardProps>(({
@@ -22,20 +24,33 @@ export const FavoriteCard = React.memo<FavoriteCardProps>(({
   onClick,
   onRemove,
   onEditNickname,
+  themeClassName = 'glass bg-white/10',
+  themeTextClassName = 'text-white',
 }) => {
   const [editingId, setEditingId] = useState<string | null>(null);
 
   return (
-    <GlassCard
+    <div
       onClick={onClick}
-      className="p-5 relative"
+      className={cn(
+        'p-5 relative rounded-3xl transition-all duration-300 cursor-pointer active:scale-95',
+        themeClassName,
+        themeTextClassName
+      )}
+      role="button"
+      tabIndex={0}
     >
       <button
         onClick={(e) => {
           e.stopPropagation();
           onRemove(favorite.id);
         }}
-        className="absolute top-3 right-3 p-1 glass bg-black/10 rounded-full hover:bg-black/20"
+        className={cn(
+          'absolute top-3 right-3 p-1 rounded-full',
+          themeTextClassName === 'text-white'
+            ? 'glass bg-black/10 hover:bg-black/20'
+            : 'bg-gray-200/80 hover:bg-gray-300/80'
+        )}
         aria-label={`${favorite.nickname || favorite.name} 즐겨찾기 제거`}
       >
         <X size={14} aria-hidden="true" />
@@ -91,6 +106,6 @@ export const FavoriteCard = React.memo<FavoriteCardProps>(({
           )}
         </div>
       </div>
-    </GlassCard>
+    </div>
   );
 });
