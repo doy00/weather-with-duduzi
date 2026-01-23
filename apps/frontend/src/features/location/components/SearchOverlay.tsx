@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Search, ChevronLeft, X, AlertCircle } from 'lucide-react';
 import { GlassCard } from '@/features/shared/components/GlassCard';
 import { POPULAR_CITIES } from '@/features/location/constants/regions';
 import { AutocompleteList } from '@/features/location/components/AutocompleteList';
+import { Portal } from '@/features/shared/components/Portal';
+import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
 
 interface SearchOverlayProps {
   isOpen: boolean;
@@ -21,9 +23,27 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({
   onSelectLocation,
   searchResults,
 }) => {
+  // Body scroll lock
+  useBodyScrollLock(isOpen);
+
+  // ESC 키로 닫기
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   return (
+    <Portal>
     <div className="fixed inset-0 z-50 bg-galaxy-blue-start flex flex-col animate-in slide-in-from-bottom duration-500">
       <div className="p-6">
         <div className="flex items-center gap-4 mb-8">
@@ -80,5 +100,6 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({
         </div>
       </div>
     </div>
+    </Portal>
   );
 };

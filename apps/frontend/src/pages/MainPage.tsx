@@ -25,6 +25,7 @@ import { ErrorScreen } from '@/features/shared/components/ErrorScreen';
 import { PWAInstallPrompt } from '@/components/PWAInstallPrompt';
 import { WidgetSync } from '@/plugins/WidgetSync';
 import { DEFAULT_LOCATION } from '@/config/constants';
+import { cn } from '@/lib/utils';
 
 export const MainPage: React.FC = () => {
   const navigate = useNavigate();
@@ -144,7 +145,12 @@ export const MainPage: React.FC = () => {
     <div className="max-w-md mx-auto min-h-screen text-white relative flex flex-col">
       <div className={`fixed inset-0 z-0 bg-gradient-to-b ${gradientClasses} transition-colors duration-1000`}></div>
 
-      <div className="relative z-10 px-3 md:px-4 pt-6 md:pt-8 pb-20 flex-1 overflow-y-auto space-y-3 md:space-y-6">
+      <div
+        className={cn(
+          "relative z-10 px-3 md:px-4 pt-6 md:pt-8 pb-20 flex-1 overflow-y-auto space-y-3 md:space-y-6",
+          view === 'search' && "pointer-events-none opacity-0"
+        )}
+      >
         {/* Header */}
         {selectedLocation && (
           <LocationHeader
