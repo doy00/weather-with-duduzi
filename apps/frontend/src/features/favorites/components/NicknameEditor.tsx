@@ -17,6 +17,16 @@ export const NicknameEditor: React.FC<NicknameEditorProps> = ({
     setValue(initialValue);
   }, [initialValue]);
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      e.stopPropagation();
+      onSave(value);
+    } else if (e.key === 'Escape') {
+      e.stopPropagation();
+      onCancel();
+    }
+  };
+
   return (
     <div className="flex flex-col gap-2">
       <input
@@ -25,6 +35,8 @@ export const NicknameEditor: React.FC<NicknameEditorProps> = ({
         value={value}
         onChange={(e) => setValue(e.target.value)}
         onClick={(e) => e.stopPropagation()}
+        onKeyDown={handleKeyDown}
+        aria-label="별칭 입력"
       />
       <button
         onClick={(e) => {
@@ -32,6 +44,7 @@ export const NicknameEditor: React.FC<NicknameEditorProps> = ({
           onSave(value);
         }}
         className="text-[10px] font-bold bg-white/40 rounded-md py-1"
+        aria-label="별칭 저장"
       >
         완료
       </button>

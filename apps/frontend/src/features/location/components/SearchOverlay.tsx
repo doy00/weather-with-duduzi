@@ -44,27 +44,39 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({
 
   return (
     <Portal>
-    <div className="fixed inset-0 z-50 bg-galaxy-blue-start flex flex-col animate-in slide-in-from-bottom duration-500">
+    <div
+      className="fixed inset-0 z-50 bg-galaxy-blue-start flex flex-col animate-in slide-in-from-bottom duration-500"
+      role="dialog"
+      aria-modal="true"
+      aria-label="지역 검색"
+    >
       <div className="p-6">
         <div className="flex items-center gap-4 mb-8">
-          <button onClick={onClose} className="p-2 glass rounded-full">
-            <ChevronLeft size={24} />
+          <button
+            onClick={onClose}
+            className="p-2 glass rounded-full"
+            aria-label="검색 닫기"
+          >
+            <ChevronLeft size={24} aria-hidden="true" />
           </button>
           <div className="flex-1 glass rounded-2xl flex items-center px-4 border border-white/20">
-            <Search size={18} className="opacity-50" />
+            <Search size={18} className="opacity-50" aria-hidden="true" />
             <input
               autoFocus
               placeholder="지역 이름 또는 동 이름 (예: 청운동)"
               className="bg-transparent border-none outline-none py-4 px-3 flex-1 placeholder:text-white/40 text-white font-medium"
               value={searchQuery}
               onChange={(e) => onSearchChange(e.target.value)}
+              aria-label="지역 검색"
             />
             {searchQuery && (
-              <X
-                size={20}
+              <button
                 onClick={() => onSearchChange("")}
-                className="cursor-pointer opacity-60"
-              />
+                className="cursor-pointer opacity-60 p-1"
+                aria-label="검색어 지우기"
+              >
+                <X size={20} aria-hidden="true" />
+              </button>
             )}
           </div>
         </div>
@@ -74,8 +86,8 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({
             searchResults.length > 0 ? (
               <AutocompleteList results={searchResults} onSelect={onSelectLocation} />
             ) : (
-              <div className="flex flex-col items-center py-20 opacity-60">
-                <AlertCircle size={40} className="mb-4" />
+              <div className="flex flex-col items-center py-20 opacity-60" role="status" aria-live="polite">
+                <AlertCircle size={40} className="mb-4" aria-hidden="true" />
                 <p className="font-bold text-lg">해당 장소의 정보가 제공되지 않습니다.</p>
               </div>
             )
@@ -84,7 +96,7 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({
               <p className="text-xs font-black opacity-50 uppercase tracking-widest px-2">
                 인기 도시
               </p>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-4" role="list">
                 {POPULAR_CITIES.map(city => (
                   <button
                     key={city}

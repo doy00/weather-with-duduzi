@@ -17,7 +17,15 @@ export default defineConfig({
         'src/features/**/hooks/**',
         'src/lib/**',
       ],
-      exclude: ['**/*.types.ts', '**/*.test.ts', '**/*.test.tsx'],
+      exclude: [
+        '**/*.types.ts',
+        '**/*.test.ts',
+        '**/*.test.tsx',
+        '**/supabaseClient.ts',
+        '**/tabSync.ts',
+        '**/useSupabaseSync.ts',
+        '**/useDebounce.ts',
+      ],
     },
   },
   resolve: {

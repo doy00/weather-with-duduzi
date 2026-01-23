@@ -78,5 +78,82 @@ describe('bubble-helpers', () => {
       const result = getBubbleMessage(mockWeatherDataRainy(), messagesWithDuplicates);
       expect(['비가 오는 날이에요 🌧️', '비가 많이 와요 🌧️']).toContain(result);
     });
+
+    it('특정 연도를 포함한 날짜 (YYYY-MM-DD 형식)', () => {
+      vi.setSystemTime(new Date('2026-01-15T12:00:00Z'));
+
+      const messagesWithFullDate = [
+        {
+          id: 10,
+          text: '2026년 1월 15일입니다!',
+          conditions: { type: 'specificDate' as const, date: '2026-01-15' },
+          priority: 100,
+        },
+        ...mockMessages,
+      ];
+
+      const result = getBubbleMessage(mockWeatherData(37, 126), messagesWithFullDate);
+      expect(result).toBe('2026년 1월 15일입니다!');
+    });
+
+    it('specificDate에 date가 없을 때: 매칭 실패', () => {
+      vi.setSystemTime(new Date('2026-06-15T12:00:00Z'));
+
+      const messagesWithNoDate = [
+        {
+          id: 11,
+          text: '날짜 없음',
+          conditions: { type: 'specificDate' as const },
+          priority: 100,
+        },
+        ...mockMessages,
+      ];
+
+      const result = getBubbleMessage(mockWeatherData(37, 126), messagesWithNoDate);
+      expect(result).not.toBe('날짜 없음');
+    });
+
+    it('temperature에 tempRange가 없을 때: 매칭 실패', () => {
+      vi.setSystemTime(new Date('2026-06-15T12:00:00Z'));
+
+      const messagesWithNoRange = [
+        {
+          id: 12,
+          text: '온도 범위 없음',
+          conditions: { type: 'temperature' as const },
+          priority: 70,
+        },
+        ...mockMessages,
+      ];
+
+      const result = getBubbleMessage(mockWeatherData(37, 126), messagesWithNoRange);
+      expect(result).not.toBe('온도 범위 없음');
+    });
+
+    it('알 수 없는 type: 매칭 실패', () => {
+      vi.setSystemTime(new Date('2026-06-15T12:00:00Z'));
+
+      const messagesWithUnknownType = [
+        {
+          id: 13,
+          text: '알 수 없는 타입',
+          conditions: { type: 'unknown' as any },
+          priority: 100,
+        },
+        ...mockMessages,
+      ];
+
+      const result = getBubbleMessage(mockWeatherData(37, 126), messagesWithUnknownType);
+      expect(result).not.toBe('알 수 없는 타입');
+    });
+  });
+
+  describe('getDogBubbleMessage', () => {
+    it('getBubbleMessage와 동일한 결과 반환', async () => {
+      const { getDogBubbleMessage } = await import('./bubble-helpers');
+      vi.setSystemTime(new Date('2026-01-01T12:00:00Z'));
+      const result = getDogBubbleMessage(mockWeatherData(37, 126), mockMessages);
+      expect(result).toBe('새해 복 많이 받으세요! 🎉');
+    });
   });
 });
