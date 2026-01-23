@@ -8,7 +8,7 @@ export class SupabaseService {
 
   constructor(private configService: ConfigService) {
     const supabaseUrl = this.configService.get<string>('SUPABASE_URL');
-    const supabaseKey = this.configService.get<string>('SUPABASE_ANON_KEY');
+    const supabaseKey = this.configService.get<string>('SUPABASE_SECRET_KEY');
 
     if (!supabaseUrl || !supabaseKey) {
       throw new Error('Supabase credentials are not configured');
