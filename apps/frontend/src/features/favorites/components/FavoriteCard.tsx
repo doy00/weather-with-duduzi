@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { X, Edit2 } from 'lucide-react';
 import { GlassCard } from '@/features/shared/components/GlassCard';
-import { FavoriteLocation } from '@/types/location.types';
-import { WeatherData } from '@/types/weather.types';
+import type { FavoriteLocation } from '@/features/favorites/types/favorite.types';
+import type { WeatherData } from '@/types/weather.types';
 import { formatTemperature } from '@/features/shared/utils/formatters';
 import { NicknameEditor } from '@/features/favorites/components/NicknameEditor';
 
@@ -12,7 +12,7 @@ interface FavoriteCardProps {
   isLoading: boolean;
   onClick?: () => void;
   onRemove: (id: string) => void;
-  onEditNickname: (id: string, nickname: string) => void;
+  onEditNickname: (id: string, nickname: string) => Promise<void>;
 }
 
 export const FavoriteCard: React.FC<FavoriteCardProps> = ({
@@ -36,8 +36,9 @@ export const FavoriteCard: React.FC<FavoriteCardProps> = ({
           onRemove(favorite.id);
         }}
         className="absolute top-3 right-3 p-1 glass bg-black/10 rounded-full hover:bg-black/20"
+        aria-label={`${favorite.nickname || favorite.name} 즐겨찾기 제거`}
       >
-        <X size={14} />
+        <X size={14} aria-hidden="true" />
       </button>
 
       <div className="flex flex-col h-full justify-between">
@@ -45,9 +46,13 @@ export const FavoriteCard: React.FC<FavoriteCardProps> = ({
           {editingId === favorite.id ? (
             <NicknameEditor
               initialValue={favorite.nickname || favorite.name}
-              onSave={(nickname) => {
-                onEditNickname(favorite.id, nickname);
-                setEditingId(null);
+              onSave={async (nickname) => {
+                try {
+                  await onEditNickname(favorite.id, nickname);
+                  setEditingId(null);
+                } catch (error) {
+                  console.error('Failed to update nickname:', error);
+                }
               }}
               onCancel={() => setEditingId(null)}
             />
@@ -62,8 +67,9 @@ export const FavoriteCard: React.FC<FavoriteCardProps> = ({
                   setEditingId(favorite.id);
                 }}
                 className="text-[10px] opacity-60 flex items-center gap-1 mt-1 font-semibold"
+                aria-label={`${favorite.nickname || favorite.name} 별칭 편집`}
               >
-                <Edit2 size={10} /> 별칭
+                <Edit2 size={10} aria-hidden="true" /> 별칭
               </button>
             </div>
           )}
