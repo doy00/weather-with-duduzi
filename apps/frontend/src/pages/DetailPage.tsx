@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
-import { useFavorites } from '@/features/favorites/hooks/useFavorites';
+import { useFavoritesQuery } from '@/features/favorites/hooks/useFavoritesQuery';
 import { useWeatherData } from '@/features/weather/hooks/useWeatherData';
 import { useHourlyForecast } from '@/features/weather/hooks/useHourlyForecast';
 import { calculateDailyMinMax } from '@/features/shared/utils/weather-helpers';
@@ -16,7 +16,7 @@ import { ErrorScreen } from '@/features/shared/components/ErrorScreen';
 export const DetailPage: React.FC = () => {
   const { locationId } = useParams<{ locationId: string }>();
   const navigate = useNavigate();
-  const { favorites } = useFavorites();
+  const { favorites } = useFavoritesQuery();
 
   // Time-based background
   const { gradientClasses } = useTimeBasedBackground();

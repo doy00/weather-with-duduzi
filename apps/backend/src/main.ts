@@ -7,7 +7,11 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.enableCors({
-    origin: 'http://localhost:5173', // Vite 개발 서버
+    origin: [
+      'http://localhost:3000', // 현재 프론트엔드 개발 서버
+      'http://localhost:5173', // Vite 기본 포트
+      'http://localhost:4173', // Vite preview 포트
+    ],
     credentials: true,
   });
 

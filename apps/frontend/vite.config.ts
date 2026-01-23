@@ -60,7 +60,7 @@ export default defineConfig(({ mode }) => {
             clientsClaim: true,
           },
           devOptions: {
-            enabled: true,
+            enabled: false, // 개발 모드에서는 PWA 비활성화 (경고 제거)
           },
         }),
       ],
