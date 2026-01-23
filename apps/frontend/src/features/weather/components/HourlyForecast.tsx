@@ -2,12 +2,13 @@ import React from 'react';
 import { HourlyWeather } from '@/types/weather.types';
 import { GlassCard } from '@/features/shared/components/GlassCard';
 import { formatTemperature, formatHour } from '@/features/shared/utils/formatters';
+import { WeatherIcon } from './WeatherIcon';
 
 interface HourlyForecastProps {
   hourlyData?: HourlyWeather;
 }
 
-export const HourlyForecast: React.FC<HourlyForecastProps> = ({ hourlyData }) => {
+export const HourlyForecast = React.memo<HourlyForecastProps>(({ hourlyData }) => {
   if (!hourlyData) return null;
 
   return (
@@ -19,21 +20,17 @@ export const HourlyForecast: React.FC<HourlyForecastProps> = ({ hourlyData }) =>
         {hourlyData.list.slice(0, 15).map((item, idx) => (
           <div
             key={idx}
-            className="flex flex-col items-center min-w-[55px] animate-in fade-in slide-in-from-right-2 duration-300"
-            style={{ animationDelay: `${idx * 50}ms` }}
+            className="flex flex-col items-center min-w-[55px] opacity-0 animate-[fadeIn_0.3s_ease-in-out_forwards]"
+            style={{ animationDelay: `${Math.min(idx * 30, 300)}ms` }}
           >
             <span className="text-[11px] font-bold opacity-60 mb-3">
               {formatHour(item.dt, idx)}
             </span>
-            <img
-              src={`https://openweathermap.org/img/wn/${item.weather[0].icon}.png`}
-              alt="weather"
-              className="w-12 h-12 drop-shadow-md"
-            />
+            <WeatherIcon iconCode={item.weather[0].icon} size={40} className="text-white" />
             <span className="text-lg font-bold mt-2">{formatTemperature(item.main.temp)}</span>
           </div>
         ))}
       </div>
     </GlassCard>
   );
-};
+});
