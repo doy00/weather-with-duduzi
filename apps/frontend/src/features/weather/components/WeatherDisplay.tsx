@@ -1,6 +1,7 @@
 import React from 'react';
 import { WeatherData } from '@/types/weather.types';
 import { formatTemperature } from '@/features/shared/utils/formatters';
+import { getWeatherDescription } from '@/features/shared/utils/weather-helpers';
 
 interface WeatherDisplayProps {
   weather: WeatherData;
@@ -25,7 +26,9 @@ export const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ weather, dailyMi
           ↓{formatTemperature(tempMin)}
         </span>
       </div>
-      <p className="mt-4 text-2xl font-light opacity-90">{weather.weather[0].description}</p>
+      <p className="mt-4 text-2xl font-light opacity-90">
+        {getWeatherDescription(weather.weather[0].main, weather.weather[0].description)}
+      </p>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { getWeatherSuggestion, calculateDailyMinMax } from './weather-helpers';
+import { getWeatherDescription, getWeatherSuggestion, calculateDailyMinMax } from './weather-helpers';
 import {
   mockWeatherData,
   mockWeatherDataRainy,
@@ -11,6 +11,58 @@ import {
 } from '@/test/mocks/fixtures/weatherFixtures';
 
 describe('weather-helpers', () => {
+  describe('getWeatherDescription', () => {
+    it('Clear -> 맑음', () => {
+      const result = getWeatherDescription('Clear', 'clear sky');
+      expect(result).toBe('맑음');
+    });
+
+    it('Clouds -> 구름 조금', () => {
+      const result = getWeatherDescription('Clouds', '튼구름');
+      expect(result).toBe('구름 조금');
+    });
+
+    it('Rain -> 비', () => {
+      const result = getWeatherDescription('Rain', 'moderate rain');
+      expect(result).toBe('비');
+    });
+
+    it('Drizzle -> 이슬비', () => {
+      const result = getWeatherDescription('Drizzle', 'light intensity drizzle');
+      expect(result).toBe('이슬비');
+    });
+
+    it('Snow -> 눈', () => {
+      const result = getWeatherDescription('Snow', 'light snow');
+      expect(result).toBe('눈');
+    });
+
+    it('Thunderstorm -> 천둥번개', () => {
+      const result = getWeatherDescription('Thunderstorm', 'thunderstorm with rain');
+      expect(result).toBe('천둥번개');
+    });
+
+    it('Mist -> 안개', () => {
+      const result = getWeatherDescription('Mist', 'mist');
+      expect(result).toBe('안개');
+    });
+
+    it('Fog -> 안개', () => {
+      const result = getWeatherDescription('Fog', 'fog');
+      expect(result).toBe('안개');
+    });
+
+    it('대소문자 구분 없음', () => {
+      const result = getWeatherDescription('CLEAR', 'clear sky');
+      expect(result).toBe('맑음');
+    });
+
+    it('매핑되지 않은 값은 원본 description 반환', () => {
+      const result = getWeatherDescription('Unknown', '알 수 없음');
+      expect(result).toBe('알 수 없음');
+    });
+  });
+
   describe('getWeatherSuggestion', () => {
     it('undefined 입력 시 로딩 메시지', () => {
       const result = getWeatherSuggestion(undefined);
