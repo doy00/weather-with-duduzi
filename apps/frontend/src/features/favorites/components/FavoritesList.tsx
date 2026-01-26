@@ -15,6 +15,7 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import { UseQueryResult } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import type { FavoriteLocation } from '@/features/favorites/types/favorite.types';
 import type { WeatherData } from '@/types/weather.types';
 import { SortableItem } from './SortableItem';
@@ -40,6 +41,7 @@ export const FavoritesList = React.memo<FavoritesListProps>(({
   themeClassName = 'glass bg-white/10',
   themeTextClassName = 'text-white',
 }) => {
+  const { t } = useTranslation('common');
   const [localFavorites, setLocalFavorites] = useState(favorites);
 
   useEffect(() => {
@@ -91,7 +93,7 @@ export const FavoritesList = React.memo<FavoritesListProps>(({
   return (
     <div className="mt-10 mb-6">
       <h3 className="text-xs font-black opacity-60 mb-4 uppercase tracking-widest px-2">
-        즐겨찾는 지역
+        {t('favorites.title')}
       </h3>
       <DndContext
         sensors={sensors}

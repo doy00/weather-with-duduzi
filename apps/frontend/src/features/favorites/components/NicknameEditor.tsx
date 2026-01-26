@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface NicknameEditorProps {
   initialValue: string;
@@ -11,6 +12,7 @@ export const NicknameEditor: React.FC<NicknameEditorProps> = ({
   onSave,
   onCancel,
 }) => {
+  const { t } = useTranslation('common');
   const [value, setValue] = useState(initialValue);
 
   useEffect(() => {
@@ -36,7 +38,7 @@ export const NicknameEditor: React.FC<NicknameEditorProps> = ({
         onChange={(e) => setValue(e.target.value)}
         onClick={(e) => e.stopPropagation()}
         onKeyDown={handleKeyDown}
-        aria-label="별칭 입력"
+        aria-label={t('favorites.ariaLabel.input')}
       />
       <button
         onClick={(e) => {
@@ -44,9 +46,9 @@ export const NicknameEditor: React.FC<NicknameEditorProps> = ({
           onSave(value);
         }}
         className="text-[10px] font-bold bg-white/40 rounded-md py-1"
-        aria-label="별칭 저장"
+        aria-label={t('favorites.ariaLabel.save')}
       >
-        완료
+        {t('favorites.complete')}
       </button>
     </div>
   );

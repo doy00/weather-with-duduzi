@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { X, Edit2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { cn } from '@/lib/utils';
 import type { FavoriteLocation } from '@/features/favorites/types/favorite.types';
 import type { WeatherData } from '@/types/weather.types';
@@ -27,6 +28,7 @@ export const FavoriteCard = React.memo<FavoriteCardProps>(({
   themeClassName = 'glass bg-white/10',
   themeTextClassName = 'text-white',
 }) => {
+  const { t } = useTranslation('common');
   const [editingId, setEditingId] = useState<string | null>(null);
 
   return (
@@ -51,7 +53,7 @@ export const FavoriteCard = React.memo<FavoriteCardProps>(({
             ? 'glass bg-black/10 hover:bg-black/20'
             : 'bg-gray-200/80 hover:bg-gray-300/80'
         )}
-        aria-label={`${favorite.nickname || favorite.name} 즐겨찾기 제거`}
+        aria-label={`${favorite.nickname || favorite.name} ${t('favorites.ariaLabel.remove')}`}
       >
         <X size={14} aria-hidden="true" />
       </button>
@@ -82,9 +84,9 @@ export const FavoriteCard = React.memo<FavoriteCardProps>(({
                   setEditingId(favorite.id);
                 }}
                 className="text-[10px] opacity-60 flex items-center gap-1 mt-1 font-semibold"
-                aria-label={`${favorite.nickname || favorite.name} 별칭 편집`}
+                aria-label={`${favorite.nickname || favorite.name} ${t('favorites.ariaLabel.edit')}`}
               >
-                <Edit2 size={10} aria-hidden="true" /> 별칭
+                <Edit2 size={10} aria-hidden="true" /> {t('favorites.nickname')}
               </button>
             </div>
           )}
@@ -102,7 +104,7 @@ export const FavoriteCard = React.memo<FavoriteCardProps>(({
               </div>
             </>
           ) : (
-            <span className="text-[10px] opacity-40">정보 없음</span>
+            <span className="text-[10px] opacity-40">{t('favorites.noData')}</span>
           )}
         </div>
       </div>
