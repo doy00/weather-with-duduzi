@@ -124,7 +124,7 @@ export function useFavoritesQuery() {
     isFavorite,
     addFavorite: addMutation.mutateAsync,
     removeFavorite: removeMutation.mutateAsync,
-    updateNickname: ({ id, nickname }: { id: string; nickname: string }) =>
+    updateNickname: (id: string, nickname: string) =>
       updateNicknameMutation.mutateAsync({ id, nickname }),
     reorderFavorites: reorderMutation.mutateAsync,
     isAddingFavorite: addMutation.isPending,

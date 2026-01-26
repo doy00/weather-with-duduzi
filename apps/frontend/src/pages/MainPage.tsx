@@ -142,7 +142,8 @@ export const MainPage: React.FC = () => {
       }
     } else {
       try {
-        await addFavorite(selectedLocation);
+        const { id, ...locationData } = selectedLocation;
+        await addFavorite(locationData);
         toast.success('즐겨찾기에 추가되었습니다.');
       } catch (error) {
         if (isErrorStatus(error, 409)) {
