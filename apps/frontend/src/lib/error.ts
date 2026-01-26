@@ -1,3 +1,5 @@
+import i18n from '@/config/i18n';
+
 interface ApiError {
   status?: number;
   message?: string;
@@ -19,17 +21,17 @@ export const handleApiError = (
 
     switch (apiError.status) {
       case 400:
-        return apiError.message || '잘못된 요청입니다.';
+        return apiError.message || i18n.t('errors:api.400');
       case 401:
-        return '인증이 필요합니다.';
+        return i18n.t('errors:api.401');
       case 404:
-        return '요청한 데이터를 찾을 수 없습니다.';
+        return i18n.t('errors:api.404');
       case 409:
-        return apiError.message || '이미 존재하는 데이터입니다.';
+        return apiError.message || i18n.t('errors:api.409');
       case 500:
-        return '서버 오류가 발생했습니다.';
+        return i18n.t('errors:api.500');
       default:
-        return apiError.message || fallbackMessage || '요청에 실패했습니다.';
+        return apiError.message || fallbackMessage || i18n.t('errors:api.default');
     }
   }
 
@@ -40,10 +42,10 @@ export const handleApiError = (
 
   // 네트워크 에러
   if (!navigator.onLine) {
-    return '네트워크 연결을 확인해 주세요.';
+    return i18n.t('errors:api.network');
   }
 
-  return fallbackMessage || '알 수 없는 오류가 발생했습니다.';
+  return fallbackMessage || i18n.t('errors:api.unknown');
 };
 
 export const isErrorStatus = (error: unknown, status: number): boolean => {

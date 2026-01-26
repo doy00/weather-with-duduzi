@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { GEOLOCATION_TIMEOUT, DEFAULT_LOCATION } from '@/config/constants';
 
 interface Coords {
@@ -7,22 +8,23 @@ interface Coords {
 }
 
 export const useGeolocation = () => {
+  const { t } = useTranslation('errors');
   const [coords, setCoords] = useState<Coords | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [locationStatus, setLocationStatus] = useState<string>("위치 정보 확인 중...");
+  const [locationStatus, setLocationStatus] = useState<string>(t('geolocation.checking'));
 
   useEffect(() => {
     const initLocation = () => {
       if (!navigator.geolocation) {
-        setError("브라우저가 위치 정보를 지원하지 않습니다.");
-        setLocationStatus("위치 정보를 가져올 수 없어 기본 위치(서울)를 사용합니다.");
+        setError(t('geolocation.notSupported'));
+        setLocationStatus(t('geolocation.fallbackToSeoul'));
         setCoords({ lat: DEFAULT_LOCATION.lat, lon: DEFAULT_LOCATION.lon });
         setIsLoading(false);
         return;
       }
 
-      setLocationStatus("사용자 위치를 파악하고 있습니다...");
+      setLocationStatus(t('geolocation.checking'));
 
       const geoOptions = {
         enableHighAccuracy: false,
@@ -40,7 +42,7 @@ export const useGeolocation = () => {
         (err) => {
           console.warn(`Geolocation error (${err.code}): ${err.message}`);
           setError(err.message);
-          setLocationStatus("위치 정보를 가져올 수 없어 기본 위치(서울)를 사용합니다.");
+          setLocationStatus(t('geolocation.fallbackToSeoul'));
           setCoords({ lat: DEFAULT_LOCATION.lat, lon: DEFAULT_LOCATION.lon });
           setIsLoading(false);
         },
@@ -49,7 +51,7 @@ export const useGeolocation = () => {
     };
 
     initLocation();
-  }, []);
+  }, [t]);
 
   return {
     coords,
