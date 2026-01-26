@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { HourlyWeather } from '@/types/weather.types';
 import { GlassCard } from '@/features/shared/components/GlassCard';
 import { formatTemperature, formatHour } from '@/features/shared/utils/formatters';
@@ -9,12 +10,14 @@ interface HourlyForecastProps {
 }
 
 export const HourlyForecast = React.memo<HourlyForecastProps>(({ hourlyData }) => {
+  const { t } = useTranslation('weather');
+
   if (!hourlyData) return null;
 
   return (
     <GlassCard>
       <h3 className="text-xs font-black opacity-60 mb-6 uppercase tracking-widest">
-        오늘의 시간대별 날씨
+        {t('hourly.title')}
       </h3>
       <div className="flex overflow-x-auto gap-8 pb-4 custom-scrollbar">
         {hourlyData.list.slice(0, 15).map((item, idx) => (

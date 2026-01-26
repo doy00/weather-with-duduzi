@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { WeatherData } from '@/types/weather.types';
 import { GlassCard } from '@/features/shared/components/GlassCard';
 import { getBubbleMessage, getDogBubbleMessage } from '@/features/shared/utils/bubble-helpers';
@@ -13,6 +14,7 @@ interface BubbleMessageProps {
 }
 
 export const BubbleMessage = React.memo<BubbleMessageProps>(({ weather }) => {
+  const { t } = useTranslation('weather');
   const rabbitMessage = useMemo(
     () => getBubbleMessage(weather, messagesData.messages as MessageData[]),
     [weather]
@@ -29,7 +31,7 @@ export const BubbleMessage = React.memo<BubbleMessageProps>(({ weather }) => {
         <div className="flex gap-2 md:gap-3 items-center">
           <img
             src={dyImage}
-            alt="dy 캐릭터"
+            alt={t('character.dyAlt')}
             className="w-6 h-6 md:w-12 md:h-12 object-cover shrink-0 drop-shadow-lg"
           />
           <p className="text-sm md:text-base lg:text-lg font-light leading-snug md:leading-relaxed opacity-95 whitespace-pre-line flex-1">
@@ -41,7 +43,7 @@ export const BubbleMessage = React.memo<BubbleMessageProps>(({ weather }) => {
         <div className="flex gap-2 md:gap-3 items-center">
           <img
             src={busydogImage}
-            alt="비지독 이미지"
+            alt={t('character.busydogAlt')}
             className="w-6 h-6 md:w-12 md:h-12 object-cover shrink-0 drop-shadow-lg"
           />
           <p className="text-sm md:text-base lg:text-lg font-light leading-snug md:leading-relaxed opacity-95 whitespace-pre-line flex-1">
