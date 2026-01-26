@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { useFavoritesQuery } from '@/features/favorites/hooks/useFavoritesQuery';
 import { useWeatherData } from '@/features/weather/hooks/useWeatherData';
 import { useHourlyForecast } from '@/features/weather/hooks/useHourlyForecast';
@@ -10,11 +11,13 @@ import { WeatherDisplay } from '@/features/weather/components/WeatherDisplay';
 import { WeatherSuggestion } from '@/features/weather/components/WeatherSuggestion';
 import { HourlyForecast } from '@/features/weather/components/HourlyForecast';
 import { WeatherDetails } from '@/features/weather/components/WeatherDetails';
+import { LanguageSwitcher } from '@/features/shared/components/LanguageSwitcher';
 import { LoadingScreen } from '@/features/shared/components/LoadingScreen';
 import { ErrorScreen } from '@/features/shared/components/ErrorScreen';
 import { SEO } from '@/lib/components/SEO';
 
 export const DetailPage: React.FC = () => {
+  const { t } = useTranslation(['errors', 'common']);
   const { locationId } = useParams<{ locationId: string }>();
   const navigate = useNavigate();
   const { favorites } = useFavoritesQuery();
@@ -35,12 +38,12 @@ export const DetailPage: React.FC = () => {
   if (!favorite) {
     return (
       <div className={`flex flex-col items-center justify-center h-screen text-white bg-gradient-to-b ${gradientClasses} transition-colors duration-1000 p-6 text-center`}>
-        <p className="font-bold text-2xl mb-4">즐겨찾기를 찾을 수 없습니다.</p>
+        <p className="font-bold text-2xl mb-4">{t('errors:screen.favoriteNotFound')}</p>
         <button
           onClick={() => navigate('/')}
           className="px-8 py-3 font-bold glass rounded-3xl active:scale-95 transition-all"
         >
-          메인으로 돌아가기
+          {t('common:button.backToMain')}
         </button>
       </div>
     );
@@ -59,13 +62,13 @@ export const DetailPage: React.FC = () => {
   // Dynamic SEO data
   const locationName = favorite.nickname || favorite.name;
   const currentTemp = weather ? `${Math.round(weather.main.temp)}°` : '';
-  const weatherDesc = weather?.weather[0]?.description || '실시간 날씨';
+  const weatherDesc = weather?.weather[0]?.description || t('common:seo.defaultTitle');
   const seoTitle = weather
     ? `${locationName} ${currentTemp} - ${weatherDesc}`
-    : `${locationName} 날씨 정보`;
+    : `${locationName} ${t('common:seo.defaultTitle')}`;
   const seoDescription = weather
     ? `${locationName}의 현재 날씨는 ${currentTemp}, ${weatherDesc}입니다. 시간별 예보와 상세 날씨 정보를 확인하세요.`
-    : `${locationName}의 실시간 날씨 정보와 시간별 예보를 확인하세요.`;
+    : `${locationName}의 ${t('common:seo.defaultDescription')}`;
 
   return (
     <>
@@ -91,6 +94,7 @@ export const DetailPage: React.FC = () => {
           <h1 className="text-2xl font-bold flex-1">
             {favorite.nickname || favorite.name}
           </h1>
+          <LanguageSwitcher />
         </div>
 
         {/* Main Weather Display */}
