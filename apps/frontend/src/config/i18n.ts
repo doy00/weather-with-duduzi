@@ -9,6 +9,12 @@ import koErrors from '@/lib/locales/ko/errors.json';
 import koLocations from '@/lib/locales/ko/locations.json';
 import koThemes from '@/lib/locales/ko/themes.json';
 
+import enCommon from '@/lib/locales/en/common.json';
+import enWeather from '@/lib/locales/en/weather.json';
+import enErrors from '@/lib/locales/en/errors.json';
+import enLocations from '@/lib/locales/en/locations.json';
+import enThemes from '@/lib/locales/en/themes.json';
+
 const resources = {
   ko: {
     common: koCommon,
@@ -16,6 +22,13 @@ const resources = {
     errors: koErrors,
     locations: koLocations,
     themes: koThemes,
+  },
+  en: {
+    common: enCommon,
+    weather: enWeather,
+    errors: enErrors,
+    locations: enLocations,
+    themes: enThemes,
   },
 };
 
