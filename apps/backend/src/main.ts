@@ -28,6 +28,8 @@ async function bootstrap() {
     .setTitle('Weather with Duduzi API')
     .setDescription('날씨 앱 + Daily Inspiration Message API 문서')
     .setVersion('1.0')
+    .addTag('Weather', '날씨 조회 API')
+    .addTag('Location', '위치 검색 API')
     .addTag('Favorites', '즐겨찾기 관리 API')
     .build();
 

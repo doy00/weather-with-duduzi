@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { SupabaseModule } from './supabase/supabase.module';
 import { FavoritesModule } from './favorites/favorites.module';
 import { NotificationsModule } from './notifications/notifications.module';
+import { WeatherModule } from './weather/weather.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { NotificationsModule } from './notifications/notifications.module';
     SupabaseModule,
     FavoritesModule,
     NotificationsModule,
+    WeatherModule,
   ],
   controllers: [AppController],
   providers: [AppService],
