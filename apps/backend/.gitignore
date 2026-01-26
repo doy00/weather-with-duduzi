@@ -2,6 +2,13 @@
 /dist
 /node_modules
 
+# TypeScript build artifacts
+*.js
+*.d.ts
+*.js.map
+!jest.config.js
+!.eslintrc.js
+
 # Logs
 logs
 *.log
