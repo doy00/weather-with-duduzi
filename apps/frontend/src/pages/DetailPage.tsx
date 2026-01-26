@@ -12,6 +12,7 @@ import { HourlyForecast } from '@/features/weather/components/HourlyForecast';
 import { WeatherDetails } from '@/features/weather/components/WeatherDetails';
 import { LoadingScreen } from '@/features/shared/components/LoadingScreen';
 import { ErrorScreen } from '@/features/shared/components/ErrorScreen';
+import { SEO } from '@/lib/components/SEO';
 
 export const DetailPage: React.FC = () => {
   const { locationId } = useParams<{ locationId: string }>();
@@ -55,9 +56,28 @@ export const DetailPage: React.FC = () => {
     return <ErrorScreen onRetry={() => refetch()} />;
   }
 
+  // Dynamic SEO data
+  const locationName = favorite.nickname || favorite.name;
+  const currentTemp = weather ? `${Math.round(weather.main.temp)}°` : '';
+  const weatherDesc = weather?.weather[0]?.description || '실시간 날씨';
+  const seoTitle = weather
+    ? `${locationName} ${currentTemp} - ${weatherDesc}`
+    : `${locationName} 날씨 정보`;
+  const seoDescription = weather
+    ? `${locationName}의 현재 날씨는 ${currentTemp}, ${weatherDesc}입니다. 시간별 예보와 상세 날씨 정보를 확인하세요.`
+    : `${locationName}의 실시간 날씨 정보와 시간별 예보를 확인하세요.`;
+
   return (
-    <div className="max-w-md mx-auto min-h-screen text-white relative flex flex-col">
-      <div className={`fixed inset-0 z-0 bg-gradient-to-b ${gradientClasses} transition-colors duration-1000`}></div>
+    <>
+      <SEO
+        title={seoTitle}
+        description={seoDescription}
+        keywords={`${locationName} 날씨, ${locationName} 날씨 예보, ${locationName} 실시간 날씨`}
+        ogUrl={window.location.href}
+        canonical={window.location.href}
+      />
+      <div className="max-w-md mx-auto min-h-screen text-white relative flex flex-col">
+        <div className={`fixed inset-0 z-0 bg-gradient-to-b ${gradientClasses} transition-colors duration-1000`}></div>
 
       <div className="relative z-10 px-4 pt-8 pb-20 flex-1 overflow-y-auto">
         {/* Header with Back Button */}
@@ -87,5 +107,6 @@ export const DetailPage: React.FC = () => {
 
       </div>
     </div>
+    </>
   );
 };

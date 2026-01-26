@@ -30,6 +30,7 @@ import { PWAInstallPrompt } from '@/components/PWAInstallPrompt';
 import { WidgetSync } from '@/plugins/WidgetSync';
 import { DEFAULT_LOCATION } from '@/config/constants';
 import { cn } from '@/lib/utils';
+import { SEO } from '@/lib/components/SEO';
 
 export const MainPage: React.FC = () => {
   const navigate = useNavigate();
@@ -191,9 +192,28 @@ export const MainPage: React.FC = () => {
     return <ErrorScreen onRetry={() => refetchWeather()} />;
   }
 
+  // Dynamic SEO data
+  const locationName = selectedLocation?.name || '내 위치';
+  const currentTemp = weather ? `${Math.round(weather.main.temp)}°` : '';
+  const weatherDesc = weather?.weather[0]?.description || '실시간 날씨';
+  const seoTitle = weather
+    ? `${locationName} ${currentTemp} - ${weatherDesc}`
+    : '실시간 날씨 정보';
+  const seoDescription = weather
+    ? `${locationName}의 현재 날씨는 ${currentTemp}, ${weatherDesc}입니다. 시간별 예보와 상세 날씨 정보를 확인하세요.`
+    : '실시간 날씨 정보와 시간별 예보를 제공하는 날씨 앱. 즐겨찾기 기능으로 여러 지역의 날씨를 한눈에 확인하세요.';
+
   return (
-    <div className="max-w-md mx-auto min-h-screen text-white relative flex flex-col">
-      <div className={`fixed inset-0 z-0 bg-gradient-to-b ${gradientClasses} transition-colors duration-1000`}></div>
+    <>
+      <SEO
+        title={seoTitle}
+        description={seoDescription}
+        keywords="날씨, 날씨 예보, 실시간 날씨, 시간별 예보, 일기예보, weather, forecast"
+        ogUrl={window.location.href}
+        canonical={window.location.href}
+      />
+      <div className="max-w-md mx-auto min-h-screen text-white relative flex flex-col">
+        <div className={`fixed inset-0 z-0 bg-gradient-to-b ${gradientClasses} transition-colors duration-1000`}></div>
 
       <div
         className={cn(
@@ -260,5 +280,6 @@ export const MainPage: React.FC = () => {
         searchResults={searchResults}
       />
     </div>
+    </>
   );
 };

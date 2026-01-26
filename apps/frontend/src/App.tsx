@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import { ErrorBoundary } from '@/features/shared/components/ErrorBoundary';
 import { OfflineIndicator } from '@/features/shared/components/OfflineIndicator';
 import { RealtimeStatus } from '@/features/shared/components/RealtimeStatus';
@@ -14,19 +15,21 @@ const App: React.FC = () => {
   useSupabaseSync();
 
   return (
-    <ErrorBoundary>
-      <OfflineIndicator />
-      <RealtimeStatus />
-      <ToastContainer />
-      <Router>
-        <Suspense fallback={<LoadingScreen statusMessage="페이지를 불러오는 중..." />}>
-          <Routes>
-            <Route path="/" element={<MainPage />} />
-            <Route path="/detail/:locationId" element={<DetailPage />} />
-          </Routes>
-        </Suspense>
-      </Router>
-    </ErrorBoundary>
+    <HelmetProvider>
+      <ErrorBoundary>
+        <OfflineIndicator />
+        <RealtimeStatus />
+        <ToastContainer />
+        <Router>
+          <Suspense fallback={<LoadingScreen statusMessage="페이지를 불러오는 중..." />}>
+            <Routes>
+              <Route path="/" element={<MainPage />} />
+              <Route path="/detail/:locationId" element={<DetailPage />} />
+            </Routes>
+          </Suspense>
+        </Router>
+      </ErrorBoundary>
+    </HelmetProvider>
   );
 };
 
