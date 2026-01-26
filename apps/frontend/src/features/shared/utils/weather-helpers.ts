@@ -36,19 +36,18 @@ export const getWeatherSuggestion = (data: WeatherData | undefined): string => {
 export const calculateDailyMinMax = (hourlyData: HourlyWeather | undefined): { min: number; max: number } | null => {
   if (!hourlyData || !hourlyData.list.length) return null;
 
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  const tomorrow = new Date(today);
-  tomorrow.setDate(tomorrow.getDate() + 1);
+  // 현재 시간부터 24시간 이내의 데이터 사용 (rolling 24시간)
+  const now = new Date();
+  const next24Hours = new Date(now.getTime() + 24 * 60 * 60 * 1000);
 
-  const todayTimestamps = hourlyData.list.filter(item => {
+  const next24HoursData = hourlyData.list.filter(item => {
     const itemDate = new Date(item.dt * 1000);
-    return itemDate >= today && itemDate < tomorrow;
+    return itemDate >= now && itemDate <= next24Hours;
   });
 
-  if (todayTimestamps.length === 0) return null;
+  if (next24HoursData.length === 0) return null;
 
-  const temps = todayTimestamps.map(item => item.main.temp);
+  const temps = next24HoursData.map(item => item.main.temp);
   return {
     min: Math.min(...temps),
     max: Math.max(...temps)
