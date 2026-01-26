@@ -1,5 +1,6 @@
 import React from 'react';
-import { Search, MapPin, Heart } from 'lucide-react';
+import { Search, MapPin, Heart, Bell } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { GlassCard } from '@/features/shared/components/GlassCard';
 
 interface LocationHeaderProps {
@@ -7,6 +8,7 @@ interface LocationHeaderProps {
   isFavorite: boolean;
   onSearchClick: () => void;
   onFavoriteToggle: () => void;
+  onNotificationClick?: () => void;
 }
 
 export const LocationHeader = React.memo<LocationHeaderProps>(({
@@ -14,26 +16,42 @@ export const LocationHeader = React.memo<LocationHeaderProps>(({
   isFavorite,
   onSearchClick,
   onFavoriteToggle,
-}) => (
-  <div className="flex justify-between items-center mb-8">
-    <button
-      onClick={onSearchClick}
-      className="p-3 glass rounded-full active:scale-90 transition-all"
-      aria-label="지역 검색"
-    >
-      <Search size={24} aria-hidden="true" />
-    </button>
-    <div className="flex items-center gap-2">
-      <MapPin size={18} className="text-white/80" aria-hidden="true" />
-      <h1 className="text-xl font-bold tracking-tight">{locationName}</h1>
+  onNotificationClick,
+}) => {
+  const { t } = useTranslation('common');
+
+  return (
+    <div className="flex justify-between items-center mb-8">
+      <div className="flex gap-2">
+        <button
+          onClick={onSearchClick}
+          className="p-3 glass rounded-full active:scale-90 transition-all"
+          aria-label={t('search.ariaLabel.search')}
+        >
+          <Search size={24} aria-hidden="true" />
+        </button>
+        {onNotificationClick && (
+          <button
+            onClick={onNotificationClick}
+            className="p-3 glass rounded-full active:scale-90 transition-all"
+            aria-label={t('notifications.ariaLabel.settings')}
+          >
+            <Bell size={24} aria-hidden="true" />
+          </button>
+        )}
+      </div>
+      <div className="flex items-center gap-2">
+        <MapPin size={18} className="text-white/80" aria-hidden="true" />
+        <h1 className="text-xl font-bold tracking-tight">{locationName}</h1>
+      </div>
+      <button
+        onClick={onFavoriteToggle}
+        className="p-3 glass rounded-full active:scale-90 transition-all"
+        aria-label={isFavorite ? t('favorites.ariaLabel.remove') : t('favorites.ariaLabel.add')}
+        aria-pressed={isFavorite}
+      >
+        <Heart size={24} fill={isFavorite ? "white" : "none"} aria-hidden="true" />
+      </button>
     </div>
-    <button
-      onClick={onFavoriteToggle}
-      className="p-3 glass rounded-full active:scale-90 transition-all"
-      aria-label={isFavorite ? "즐겨찾기에서 제거" : "즐겨찾기에 추가"}
-      aria-pressed={isFavorite}
-    >
-      <Heart size={24} fill={isFavorite ? "white" : "none"} aria-hidden="true" />
-    </button>
-  </div>
-));
+  );
+});

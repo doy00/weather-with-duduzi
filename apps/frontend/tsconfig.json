@@ -19,9 +19,13 @@
     "moduleDetection": "force",
     "allowJs": true,
     "jsx": "react-jsx",
+    "resolveJsonModule": true,
     "paths": {
       "@/*": [
         "./src/*"
+      ],
+      "@weather-duduzi/shared/*": [
+        "../../packages/shared/*"
       ]
     },
     "allowImportingTsExtensions": true,

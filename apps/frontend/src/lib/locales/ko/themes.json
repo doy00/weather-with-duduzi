@@ -1,0 +1,22 @@
+{
+  "default": {
+    "name": "기본",
+    "description": "반투명 글래스 스타일"
+  },
+  "dark": {
+    "name": "다크",
+    "description": "진한 검정 배경"
+  },
+  "light": {
+    "name": "라이트",
+    "description": "밝은 흰색 배경"
+  },
+  "colorful": {
+    "name": "컬러풀",
+    "description": "핑크-퍼플 그라데이션"
+  },
+  "selector": {
+    "button": "테마",
+    "title": "카드 테마 선택"
+  }
+}

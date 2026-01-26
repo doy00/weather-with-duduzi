@@ -1,3 +1,6 @@
+import '@/config/i18n';
+import '@/types/i18n.types';
+
 import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
@@ -10,6 +13,7 @@ import { useSupabaseSync } from '@/features/favorites/hooks/useSupabaseSync';
 
 const MainPage = lazy(() => import('@/pages/MainPage').then(m => ({ default: m.MainPage })));
 const DetailPage = lazy(() => import('@/pages/DetailPage').then(m => ({ default: m.DetailPage })));
+const NotificationSettingsPage = lazy(() => import('@/features/notifications/pages/NotificationSettingsPage').then(m => ({ default: m.NotificationSettingsPage })));
 
 const App: React.FC = () => {
   useSupabaseSync();
@@ -25,6 +29,7 @@ const App: React.FC = () => {
             <Routes>
               <Route path="/" element={<MainPage />} />
               <Route path="/detail/:locationId" element={<DetailPage />} />
+              <Route path="/settings/notifications" element={<NotificationSettingsPage />} />
             </Routes>
           </Suspense>
         </Router>

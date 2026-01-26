@@ -3,8 +3,8 @@ import { WeatherData } from '@/types/weather.types';
 import { GlassCard } from '@/features/shared/components/GlassCard';
 import { getBubbleMessage, getDogBubbleMessage } from '@/features/shared/utils/bubble-helpers';
 import { MessageData } from '@/types/message.types';
-import messagesData from '@/data/dy-message.json';
-import dogMessagesData from '@/data/busydog-message.json';
+import messagesData from '@weather-duduzi/shared/data/dy-message.json';
+import dogMessagesData from '@weather-duduzi/shared/data/busydog-message.json';
 import dyImage from '@/assets/icons/ImageDy.png';
 import busydogImage from '@/assets/icons/ImageBusydog.png';
 
@@ -26,7 +26,7 @@ export const BubbleMessage = React.memo<BubbleMessageProps>(({ weather }) => {
   return (
     <div className="space-y-2 md:space-y-4">
       <GlassCard className="min-h-0 rounded-full p-2 md:p-3 animate-in fade-in slide-in-from-left-8 duration-500">
-        <div className="flex gap-2 md:gap-3 items-center md:items-start">
+        <div className="flex gap-2 md:gap-3 items-center">
           <img
             src={dyImage}
             alt="dy 캐릭터"
@@ -38,7 +38,7 @@ export const BubbleMessage = React.memo<BubbleMessageProps>(({ weather }) => {
         </div>
       </GlassCard>
       <GlassCard className="min-h-0 rounded-full p-2 md:p-3 animate-in fade-in slide-in-from-left-8 duration-500 delay-300">
-        <div className="flex gap-2 md:gap-3 items-center md:items-start">
+        <div className="flex gap-2 md:gap-3 items-center">
           <img
             src={busydogImage}
             alt="비지독 이미지"

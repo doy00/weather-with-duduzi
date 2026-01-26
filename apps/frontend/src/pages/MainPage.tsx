@@ -229,6 +229,7 @@ export const MainPage: React.FC = () => {
               isFavorite={isFavorite(selectedLocation.fullName)}
               onSearchClick={() => setView('search')}
               onFavoriteToggle={handleToggleFavorite}
+              onNotificationClick={() => navigate('/settings/notifications')}
             />
           )}
           {favorites.length > 0 && (
