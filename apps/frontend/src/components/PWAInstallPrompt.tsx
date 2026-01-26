@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Download, X } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { usePWAInstall } from '@/hooks/usePWAInstall';
 
 export function PWAInstallPrompt() {
+  const { t } = useTranslation('common');
   const { isInstallable, handleInstallClick } = usePWAInstall();
   const [dismissed, setDismissed] = useState(false);
 
@@ -16,8 +18,8 @@ export function PWAInstallPrompt() {
             <Download className="w-5 h-5 text-white" />
           </div>
           <div className="flex-1">
-            <p className="text-white font-medium text-sm">앱 설치</p>
-            <p className="text-white/80 text-xs">홈 화면에 추가하고 빠르게 접속하세요</p>
+            <p className="text-white font-medium text-sm">{t('pwa.installTitle')}</p>
+            <p className="text-white/80 text-xs">{t('pwa.installDescription')}</p>
           </div>
         </div>
         <div className="flex items-center gap-2">
@@ -25,7 +27,7 @@ export function PWAInstallPrompt() {
             onClick={handleInstallClick}
             className="px-3 py-1.5 bg-white/30 hover:bg-white/40 rounded-lg text-white text-sm font-medium transition-colors"
           >
-            설치
+            {t('pwa.installButton')}
           </button>
           <button
             onClick={() => setDismissed(true)}

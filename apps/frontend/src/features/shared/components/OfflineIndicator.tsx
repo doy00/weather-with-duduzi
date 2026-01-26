@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { WifiOff } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export function OfflineIndicator() {
+  const { t } = useTranslation('errors');
   const [isOnline, setIsOnline] = useState(navigator.onLine);
 
   useEffect(() => {
@@ -24,8 +26,8 @@ export function OfflineIndicator() {
       <div className="glass p-3 flex items-center gap-3 shadow-lg rounded-2xl">
         <WifiOff className="w-5 h-5 text-white" />
         <div className="flex-1">
-          <p className="text-white font-medium text-sm">오프라인 모드</p>
-          <p className="text-white/80 text-xs">캐시된 데이터를 표시하고 있습니다</p>
+          <p className="text-white font-medium text-sm">{t('screen.offline')}</p>
+          <p className="text-white/80 text-xs">{t('screen.offlineDetail')}</p>
         </div>
       </div>
     </div>
