@@ -52,9 +52,7 @@ self.addEventListener('push', (event) => {
       icon: icon || '/icons/icon-192x192.png',
       badge: '/icons/icon-72x72.png',
       data: notificationData,
-      vibrate: [200, 100, 200],
       tag: notificationData?.favoriteId || 'weather-alert',
-      renotify: false,
     })
   );
 });

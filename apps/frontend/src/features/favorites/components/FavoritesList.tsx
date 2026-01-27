@@ -42,7 +42,7 @@ export const FavoritesList = React.memo<FavoritesListProps>(({
   themeTextClassName = 'text-white',
 }) => {
   const { t } = useTranslation('common');
-  const [localFavorites, setLocalFavorites] = useState(favorites);
+  const [localFavorites, setLocalFavorites] = useState<FavoriteLocation[]>(favorites);
 
   useEffect(() => {
     setLocalFavorites(favorites);
@@ -62,15 +62,15 @@ export const FavoritesList = React.memo<FavoritesListProps>(({
       const { active, over } = event;
       if (!over || active.id === over.id) return;
 
-      const oldIndex = localFavorites.findIndex((f) => f.id === active.id);
-      const newIndex = localFavorites.findIndex((f) => f.id === over.id);
+      const oldIndex = localFavorites.findIndex((f) => f.id === String(active.id));
+      const newIndex = localFavorites.findIndex((f) => f.id === String(over.id));
 
-      const newOrder = arrayMove(localFavorites, oldIndex, newIndex);
+      const newOrder = arrayMove(localFavorites, oldIndex, newIndex) as FavoriteLocation[];
       setLocalFavorites(newOrder);
 
       try {
         await onReorder(newOrder.map((f) => f.id));
-      } catch (error) {
+      } catch {
         setLocalFavorites(favorites);
       }
     },

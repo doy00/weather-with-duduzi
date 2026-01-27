@@ -57,6 +57,6 @@ export const isErrorStatus = (error: unknown, status: number): boolean => {
   );
 };
 
-export const isNetworkError = (error: unknown): boolean => {
+export const isNetworkError = (): boolean => {
   return !navigator.onLine;
 };

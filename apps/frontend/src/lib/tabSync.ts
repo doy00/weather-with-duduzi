@@ -4,7 +4,7 @@ export type SyncMessage =
   | { type: 'FAVORITE_ADDED'; data: { id: string } }
   | { type: 'FAVORITE_REMOVED'; data: { id: string } }
   | { type: 'NICKNAME_UPDATED'; data: { id: string; nickname: string } }
-  | { type: 'FAVORITES_REORDERED'; data: {} };
+  | { type: 'FAVORITES_REORDERED'; data: Record<string, never> };
 
 export type SyncListener = (message: SyncMessage) => void;
 

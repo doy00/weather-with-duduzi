@@ -81,7 +81,7 @@ export const reverseGeocode = async (lat: number, lon: number): Promise<string> 
 
     const data = await response.json();
     return data.locationName;
-  } catch (error) {
+  } catch {
     // reverseGeocode는 실패해도 fallback 반환 (UX 향상)
     return '내 위치';
   }

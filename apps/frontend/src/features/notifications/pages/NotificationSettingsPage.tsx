@@ -10,6 +10,16 @@ export function NotificationSettingsPage() {
   const isGranted = permission === 'granted';
   const isDenied = permission === 'denied';
 
+  const handleSaveNotification = async (data: {
+    favorite_id: string;
+    subscription_id: string;
+    enabled: boolean;
+    scheduled_time?: string;
+    scheduled_days?: number[];
+  }) => {
+    await createNotificationSetting(data);
+  };
+
   return (
     <div className="container mx-auto px-4 py-8 max-w-2xl">
       <h1 className="text-2xl font-bold mb-6">날씨 알림 설정</h1>
@@ -64,7 +74,7 @@ export function NotificationSettingsPage() {
                   key={favorite.id}
                   favorite={favorite}
                   subscriptionId={subscriptionId}
-                  onSave={createNotificationSetting}
+                  onSave={handleSaveNotification}
                 />
               ))}
             </div>

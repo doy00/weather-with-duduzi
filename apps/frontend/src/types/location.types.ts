@@ -7,7 +7,7 @@ export interface LocationItem {
   lon: number;
 }
 
-export interface FavoriteLocation extends LocationItem {}
+export type FavoriteLocation = LocationItem;
 
 export interface GeocodingResult {
   lat: number;

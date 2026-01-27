@@ -1,3 +1,5 @@
+import type React from 'react';
+
 interface TimePickerProps {
   value?: string;
   onChange: (time: string) => void;

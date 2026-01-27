@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import type {
   FavoriteLocation,
-  AddFavoriteInput,
   ReorderFavoritesInput,
 } from '../types/favorite.types';
 import { FAVORITES_QUERY_KEY } from '../constants';

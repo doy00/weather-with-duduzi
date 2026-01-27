@@ -4,7 +4,7 @@ export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       refetchOnWindowFocus: false,
-      retry: (failureCount, error) => {
+      retry: (failureCount) => {
         if (!navigator.onLine) return false;
         return failureCount < 1;
       },

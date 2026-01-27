@@ -79,7 +79,7 @@ export const MainPage: React.FC = () => {
             name: koreanName,
             fullName: koreanName
           } : null);
-        } catch (error) {
+        } catch {
           // 실패 시 영어 이름 사용
           setSelectedLocation(prev => prev ? {
             ...prev,
@@ -146,6 +146,7 @@ export const MainPage: React.FC = () => {
       }
     } else {
       try {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { id, ...locationData } = selectedLocation;
         await addFavorite(locationData);
         toast.success(t('errors:toast.favoriteAdded'));
