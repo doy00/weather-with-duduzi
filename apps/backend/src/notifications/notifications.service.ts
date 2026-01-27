@@ -38,6 +38,36 @@ interface WeatherData {
   weather: Array<{ main: string }>;
 }
 
+interface NotificationSubscription {
+  id: string;
+  endpoint: string;
+  p256dh: string;
+  auth: string;
+}
+
+interface NotificationSetting {
+  id: string;
+  favorite_id: string;
+  scheduled_days?: number[];
+  favorite: {
+    lat: number;
+    lon: number;
+    name: string;
+    nickname?: string;
+  };
+  subscription: NotificationSubscription;
+}
+
+interface NotificationPayload {
+  title: string;
+  body: string;
+  icon: string;
+  data: {
+    url: string;
+    favoriteId?: string;
+  };
+}
+
 // ===== Service =====
 @Injectable()
 export class NotificationsService {
@@ -46,22 +76,33 @@ export class NotificationsService {
 
   constructor(private configService: ConfigService) {
     // VAPID 설정
-    webPush.setVapidDetails(
-      this.configService.get('VAPID_SUBJECT'),
-      this.configService.get('VAPID_PUBLIC_KEY'),
-      this.configService.get('VAPID_PRIVATE_KEY')
+    (
+      webPush as {
+        setVapidDetails: (
+          subject: string,
+          publicKey: string,
+          privateKey: string,
+        ) => void;
+      }
+    ).setVapidDetails(
+      this.configService.get('VAPID_SUBJECT') as string,
+      this.configService.get('VAPID_PUBLIC_KEY') as string,
+      this.configService.get('VAPID_PRIVATE_KEY') as string,
     );
 
     // Supabase 클라이언트
     this.supabase = createClient(
       this.configService.get<string>('SUPABASE_URL')!,
-      this.configService.get<string>('SUPABASE_SECRET_KEY')!
-    );
+      this.configService.get<string>('SUPABASE_SECRET_KEY')!,
+    ) as SupabaseClient;
   }
 
   // ===== Public API =====
 
-  async subscribePush(dto: SubscribePushDto, userAgent?: string) {
+  async subscribePush(
+    dto: SubscribePushDto,
+    userAgent?: string,
+  ): Promise<unknown> {
     const { endpoint, keys } = dto;
 
     // 기존 구독 확인
@@ -72,7 +113,7 @@ export class NotificationsService {
       .single();
 
     if (existing) {
-      return existing;
+      return existing as unknown;
     }
 
     // 새 구독 생성
@@ -92,13 +133,13 @@ export class NotificationsService {
       throw new Error('구독 생성에 실패했습니다');
     }
 
-    return data;
+    return data as unknown;
   }
 
   async createNotificationSetting(
     subscriptionId: string,
-    dto: CreateNotificationSettingDto
-  ) {
+    dto: CreateNotificationSettingDto,
+  ): Promise<unknown> {
     const { data, error } = await this.supabase
       .from('notification_settings')
       .insert({
@@ -116,10 +157,12 @@ export class NotificationsService {
       throw new Error('알림 설정 생성에 실패했습니다');
     }
 
-    return data;
+    return data as unknown;
   }
 
-  async getNotificationSettingsByFavorite(favoriteId: string) {
+  async getNotificationSettingsByFavorite(
+    favoriteId: string,
+  ): Promise<unknown[]> {
     const { data, error } = await this.supabase
       .from('notification_settings')
       .select('*')
@@ -130,10 +173,13 @@ export class NotificationsService {
       throw new Error('알림 설정 조회에 실패했습니다');
     }
 
-    return data || [];
+    return (data as unknown[]) || [];
   }
 
-  async updateNotificationSetting(id: string, dto: UpdateNotificationSettingDto) {
+  async updateNotificationSetting(
+    id: string,
+    dto: UpdateNotificationSettingDto,
+  ): Promise<unknown> {
     const { data, error } = await this.supabase
       .from('notification_settings')
       .update({
@@ -150,7 +196,7 @@ export class NotificationsService {
       throw new NotFoundException('알림 설정을 찾을 수 없습니다');
     }
 
-    return data;
+    return data as unknown;
   }
 
   async deleteNotificationSetting(id: string) {
@@ -180,11 +226,13 @@ export class NotificationsService {
 
     const { data: settings, error } = await this.supabase
       .from('notification_settings')
-      .select(`
+      .select(
+        `
         *,
         favorite:favorites(*),
         subscription:notification_subscriptions(*)
-      `)
+      `,
+      )
       .eq('enabled', true)
       .eq('scheduled_time', currentTime)
       .not('scheduled_days', 'is', null);
@@ -194,8 +242,8 @@ export class NotificationsService {
       return;
     }
 
-    const todaySettings = (settings || []).filter(
-      (setting) => setting.scheduled_days?.includes(currentDay)
+    const todaySettings = ((settings as NotificationSetting[]) || []).filter(
+      (setting) => setting.scheduled_days?.includes(currentDay),
     );
 
     this.logger.log(`전송할 알림: ${todaySettings.length}개`);
@@ -204,7 +252,7 @@ export class NotificationsService {
       try {
         const weather = await this.fetchWeather(
           setting.favorite.lat,
-          setting.favorite.lon
+          setting.favorite.lon,
         );
 
         const message = this.selectMessage(weather);
@@ -216,7 +264,9 @@ export class NotificationsService {
           data: { url: '/', favoriteId: setting.favorite_id },
         });
 
-        this.logger.log(`알림 전송 성공: ${setting.favorite.name} - "${message}"`);
+        this.logger.log(
+          `알림 전송 성공: ${setting.favorite.name} - "${message}"`,
+        );
       } catch (error) {
         this.logger.error(`알림 전송 실패: ${setting.id}`, error);
       }
@@ -239,7 +289,12 @@ export class NotificationsService {
 
     // 조건 필터링
     const matchedMessages = messages.filter((message) => {
-      const { type, date, weatherMain: msgWeather, feelsLike: tempRange } = message.conditions;
+      const {
+        type,
+        date,
+        weatherMain: msgWeather,
+        feelsLike: tempRange,
+      } = message.conditions;
 
       if (type === 'specificDate') {
         if (!date) return false;
@@ -268,17 +323,21 @@ export class NotificationsService {
     });
 
     // Priority 정렬 및 랜덤 선택
-    const sortedMessages = matchedMessages.sort((a, b) => b.priority - a.priority);
+    const sortedMessages = matchedMessages.sort(
+      (a, b) => b.priority - a.priority,
+    );
     const highestPriority = sortedMessages[0]?.priority;
     const highestPriorityMessages = sortedMessages.filter(
-      (msg) => msg.priority === highestPriority
+      (msg) => msg.priority === highestPriority,
     );
 
     if (highestPriorityMessages.length === 0) {
       return '좋은 하루 보내세요!';
     }
 
-    const randomIndex = Math.floor(Math.random() * highestPriorityMessages.length);
+    const randomIndex = Math.floor(
+      Math.random() * highestPriorityMessages.length,
+    );
     return highestPriorityMessages[randomIndex].text;
   }
 
@@ -296,7 +355,10 @@ export class NotificationsService {
   }
 
   // ===== Private: 푸시 전송 =====
-  private async sendPushNotification(subscription: any, payload: any) {
+  private async sendPushNotification(
+    subscription: NotificationSubscription,
+    payload: NotificationPayload,
+  ): Promise<void> {
     const pushSubscription = {
       endpoint: subscription.endpoint,
       keys: {
@@ -307,8 +369,9 @@ export class NotificationsService {
 
     try {
       await webPush.sendNotification(pushSubscription, JSON.stringify(payload));
-    } catch (error: any) {
-      if (error.statusCode === 410 || error.statusCode === 404) {
+    } catch (error: unknown) {
+      const typedError = error as { statusCode?: number };
+      if (typedError.statusCode === 410 || typedError.statusCode === 404) {
         this.logger.warn(`구독 만료, 삭제: ${subscription.endpoint}`);
         await this.supabase
           .from('notification_subscriptions')

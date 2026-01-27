@@ -20,31 +20,35 @@ export class NotificationsController {
   @Post('subscribe')
   async subscribePush(
     @Body() dto: SubscribePushDto,
-    @Headers('user-agent') userAgent?: string
+    @Headers('user-agent') userAgent?: string,
   ) {
     return this.notificationsService.subscribePush(dto, userAgent);
   }
 
   @Post('settings')
   async createNotificationSetting(
-    @Body() dto: CreateNotificationSettingDto & { subscription_id: string }
+    @Body() dto: CreateNotificationSettingDto & { subscription_id: string },
   ) {
     const { subscription_id, ...settingDto } = dto;
     return this.notificationsService.createNotificationSetting(
       subscription_id,
-      settingDto
+      settingDto,
     );
   }
 
   @Get('settings/favorite/:favoriteId')
-  async getNotificationSettingsByFavorite(@Param('favoriteId') favoriteId: string) {
-    return this.notificationsService.getNotificationSettingsByFavorite(favoriteId);
+  async getNotificationSettingsByFavorite(
+    @Param('favoriteId') favoriteId: string,
+  ) {
+    return this.notificationsService.getNotificationSettingsByFavorite(
+      favoriteId,
+    );
   }
 
   @Patch('settings/:id')
   async updateNotificationSetting(
     @Param('id') id: string,
-    @Body() dto: UpdateNotificationSettingDto
+    @Body() dto: UpdateNotificationSettingDto,
   ) {
     return this.notificationsService.updateNotificationSetting(id, dto);
   }

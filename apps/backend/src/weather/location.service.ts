@@ -4,6 +4,35 @@ import { ConfigService } from '@nestjs/config';
 import { firstValueFrom } from 'rxjs';
 import { AxiosError } from 'axios';
 
+interface GeocodingResult {
+  lat: number;
+  lon: number;
+  name: string;
+  country: string;
+  state?: string;
+}
+
+interface KakaoAddress {
+  region_1depth_name?: string;
+  region_2depth_name?: string;
+  region_3depth_name?: string;
+}
+
+interface ReverseGeocodingResult {
+  name: string;
+  state?: string;
+  local_names?: {
+    ko?: string;
+  };
+}
+
+interface KakaoResponse {
+  documents: Array<{
+    address: KakaoAddress;
+    road_address: KakaoAddress;
+  }>;
+}
+
 @Injectable()
 export class LocationService {
   private readonly logger = new Logger(LocationService.name);
@@ -14,7 +43,8 @@ export class LocationService {
     private readonly httpService: HttpService,
     private readonly configService: ConfigService,
   ) {
-    this.weatherApiKey = this.configService.get<string>('OPENWEATHERMAP_API_KEY') || '';
+    this.weatherApiKey =
+      this.configService.get<string>('OPENWEATHERMAP_API_KEY') || '';
     this.kakaoApiKey = this.configService.get<string>('KAKAO_API_KEY');
   }
 
@@ -25,16 +55,16 @@ export class LocationService {
       this.logger.debug(`Geocoding query: ${query}`);
 
       const response = await firstValueFrom(
-        this.httpService.get(url, { timeout: 5000 })
+        this.httpService.get(url, { timeout: 5000 }),
       );
 
-      const results = response.data;
+      const results = response.data as GeocodingResult[];
 
       if (!Array.isArray(results) || results.length === 0) {
         return [];
       }
 
-      return results.map((result: any) => ({
+      return results.map((result) => ({
         lat: result.lat,
         lon: result.lon,
         name: result.name,
@@ -57,7 +87,7 @@ export class LocationService {
         if (locationName) {
           return locationName;
         }
-      } catch (error) {
+      } catch {
         this.logger.debug('Kakao API failed, falling back to OpenWeatherMap');
       }
     }
@@ -69,10 +99,10 @@ export class LocationService {
       this.logger.debug(`Reverse geocoding for lat=${lat}, lon=${lon}`);
 
       const response = await firstValueFrom(
-        this.httpService.get(url, { timeout: 5000 })
+        this.httpService.get(url, { timeout: 5000 }),
       );
 
-      const results = response.data;
+      const results = response.data as ReverseGeocodingResult[];
 
       if (!Array.isArray(results) || results.length === 0) {
         return '내 위치';
@@ -93,7 +123,10 @@ export class LocationService {
       return parts.join(' ') || result.name || '내 위치';
     } catch (error) {
       if (error instanceof AxiosError) {
-        this.logger.error(`Reverse geocoding failed: ${error.message}`, error.stack);
+        this.logger.error(
+          `Reverse geocoding failed: ${error.message}`,
+          error.stack,
+        );
       }
 
       // 3단계: 모든 API 실패 시 fallback
@@ -101,7 +134,10 @@ export class LocationService {
     }
   }
 
-  private async getDetailedAddressFromKakao(lat: number, lon: number): Promise<string | null> {
+  private async getDetailedAddressFromKakao(
+    lat: number,
+    lon: number,
+  ): Promise<string | null> {
     if (!this.kakaoApiKey) {
       return null;
     }
@@ -115,10 +151,10 @@ export class LocationService {
             Authorization: `KakaoAK ${this.kakaoApiKey}`,
           },
           timeout: 5000,
-        })
+        }),
       );
 
-      const data = response.data;
+      const data = response.data as KakaoResponse;
 
       if (!data.documents || data.documents.length === 0) {
         return null;
@@ -130,18 +166,24 @@ export class LocationService {
       // 도로명 주소가 있으면 우선 사용: 시/도 + 시/군/구 + 동
       if (roadAddress) {
         const parts: string[] = [];
-        if (roadAddress.region_1depth_name) parts.push(roadAddress.region_1depth_name);
-        if (roadAddress.region_2depth_name) parts.push(roadAddress.region_2depth_name);
-        if (roadAddress.region_3depth_name) parts.push(roadAddress.region_3depth_name);
+        if (roadAddress.region_1depth_name)
+          parts.push(String(roadAddress.region_1depth_name));
+        if (roadAddress.region_2depth_name)
+          parts.push(String(roadAddress.region_2depth_name));
+        if (roadAddress.region_3depth_name)
+          parts.push(String(roadAddress.region_3depth_name));
         return parts.join(' ');
       }
 
       // 지번 주소 사용: 시/도 + 시/군/구 + 동
       if (address) {
         const parts: string[] = [];
-        if (address.region_1depth_name) parts.push(address.region_1depth_name);
-        if (address.region_2depth_name) parts.push(address.region_2depth_name);
-        if (address.region_3depth_name) parts.push(address.region_3depth_name);
+        if (address.region_1depth_name)
+          parts.push(String(address.region_1depth_name));
+        if (address.region_2depth_name)
+          parts.push(String(address.region_2depth_name));
+        if (address.region_3depth_name)
+          parts.push(String(address.region_3depth_name));
         return parts.join(' ');
       }
 

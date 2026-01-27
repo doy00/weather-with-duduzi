@@ -25,7 +25,7 @@ export class FavoritesService {
       .order('created_at', { ascending: false });
 
     if (error) throw error;
-    return data || [];
+    return (data as FavoriteEntity[]) || [];
   }
 
   async create(createFavoriteDto: CreateFavoriteDto): Promise<FavoriteEntity> {
@@ -65,7 +65,9 @@ export class FavoritesService {
       .limit(1)
       .single();
 
-    const newOrder = maxOrderData ? maxOrderData.display_order + 1 : 0;
+    const newOrder = maxOrderData
+      ? (maxOrderData as { display_order: number }).display_order + 1
+      : 0;
 
     // 추가
     const { data, error } = await supabase
@@ -84,7 +86,7 @@ export class FavoritesService {
       .single();
 
     if (error) throw error;
-    return data;
+    return data as FavoriteEntity;
   }
 
   async remove(id: string): Promise<{ success: boolean }> {
@@ -113,7 +115,7 @@ export class FavoritesService {
       .single();
 
     if (error) throw new NotFoundException('즐겨찾기를 찾을 수 없습니다.');
-    return data;
+    return data as FavoriteEntity;
   }
 
   async reorder(reorderDto: ReorderFavoritesDto) {

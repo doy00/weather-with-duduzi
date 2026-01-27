@@ -1,4 +1,10 @@
-import { Injectable, Logger, UnauthorizedException, NotFoundException, InternalServerErrorException } from '@nestjs/common';
+import {
+  Injectable,
+  Logger,
+  UnauthorizedException,
+  NotFoundException,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { ConfigService } from '@nestjs/config';
 import { firstValueFrom } from 'rxjs';
@@ -14,18 +20,19 @@ export class WeatherService {
     private readonly httpService: HttpService,
     private readonly configService: ConfigService,
   ) {
-    this.apiKey = this.configService.get<string>('OPENWEATHERMAP_API_KEY') || '';
+    this.apiKey =
+      this.configService.get<string>('OPENWEATHERMAP_API_KEY') || '';
     this.baseUrl = 'https://api.openweathermap.org/data/2.5';
   }
 
-  async fetchCurrentWeather(lat: number, lon: number) {
+  async fetchCurrentWeather(lat: number, lon: number): Promise<unknown> {
     try {
       const url = `${this.baseUrl}/weather?lat=${lat}&lon=${lon}&appid=${this.apiKey}&units=metric&lang=kr`;
 
       this.logger.debug(`Fetching current weather for lat=${lat}, lon=${lon}`);
 
       const response = await firstValueFrom(
-        this.httpService.get(url, { timeout: 5000 })
+        this.httpService.get<unknown>(url, { timeout: 5000 }),
       );
 
       return response.data;
@@ -34,14 +41,14 @@ export class WeatherService {
     }
   }
 
-  async fetchHourlyWeather(lat: number, lon: number) {
+  async fetchHourlyWeather(lat: number, lon: number): Promise<unknown> {
     try {
       const url = `${this.baseUrl}/forecast?lat=${lat}&lon=${lon}&appid=${this.apiKey}&units=metric&lang=kr`;
 
       this.logger.debug(`Fetching hourly weather for lat=${lat}, lon=${lon}`);
 
       const response = await firstValueFrom(
-        this.httpService.get(url, { timeout: 5000 })
+        this.httpService.get<unknown>(url, { timeout: 5000 }),
       );
 
       return response.data;
@@ -53,7 +60,10 @@ export class WeatherService {
   private handleApiError(error: unknown, context: string): never {
     if (error instanceof AxiosError) {
       const status = error.response?.status;
-      const message = error.response?.data?.message || error.message;
+      const responseData = error.response?.data as
+        | { message?: string }
+        | undefined;
+      const message = responseData?.message ?? error.message;
 
       this.logger.error(`${context} failed: ${message}`, error.stack);
 
@@ -64,7 +74,9 @@ export class WeatherService {
         throw new NotFoundException('해당 장소의 정보가 제공되지 않습니다.');
       }
 
-      throw new InternalServerErrorException('날씨 데이터를 가져올 수 없습니다.');
+      throw new InternalServerErrorException(
+        '날씨 데이터를 가져올 수 없습니다.',
+      );
     }
 
     this.logger.error(`${context} failed with unknown error`, error);

@@ -15,7 +15,10 @@ export class WeatherController {
   @ApiResponse({ status: 401, description: 'API 키 유효하지 않음' })
   @ApiResponse({ status: 404, description: '해당 장소 정보 없음' })
   async getCurrentWeather(@Query() query: WeatherQueryDto) {
-    const weather = await this.weatherService.fetchCurrentWeather(query.lat, query.lon);
+    const weather: unknown = await this.weatherService.fetchCurrentWeather(
+      query.lat,
+      query.lon,
+    );
     return { weather };
   }
 
@@ -25,7 +28,10 @@ export class WeatherController {
   @ApiResponse({ status: 401, description: 'API 키 유효하지 않음' })
   @ApiResponse({ status: 404, description: '해당 장소 정보 없음' })
   async getHourlyWeather(@Query() query: WeatherQueryDto) {
-    const forecast = await this.weatherService.fetchHourlyWeather(query.lat, query.lon);
+    const forecast: unknown = await this.weatherService.fetchHourlyWeather(
+      query.lat,
+      query.lon,
+    );
     return { forecast };
   }
 }

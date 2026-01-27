@@ -22,7 +22,10 @@ export class LocationController {
   @ApiOperation({ summary: '좌표 → 지역명 변환' })
   @ApiResponse({ status: 200, description: '성공' })
   async reverseGeocode(@Query() query: WeatherQueryDto) {
-    const locationName = await this.locationService.reverseGeocode(query.lat, query.lon);
+    const locationName = await this.locationService.reverseGeocode(
+      query.lat,
+      query.lon,
+    );
     return { locationName };
   }
 }
