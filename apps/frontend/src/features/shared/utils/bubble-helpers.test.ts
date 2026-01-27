@@ -70,7 +70,7 @@ describe('bubble-helpers', () => {
         {
           id: 8,
           text: '비가 많이 와요 🌧️',
-          conditions: { type: 'weather', weatherMain: 'Rain' },
+          conditions: { type: 'weather' as const, weatherMain: 'Rain' },
           priority: 80,
         },
       ];
@@ -137,7 +137,7 @@ describe('bubble-helpers', () => {
         {
           id: 13,
           text: '알 수 없는 타입',
-          conditions: { type: 'unknown' as any },
+          conditions: { type: 'unknown' as 'default' },
           priority: 100,
         },
         ...mockMessages,

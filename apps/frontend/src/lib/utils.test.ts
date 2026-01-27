@@ -11,14 +11,21 @@ describe('cn', () => {
   });
 
   it('조건부 클래스: falsy 값 제거', () => {
-    expect(cn('base', false && 'hidden', 'active')).toBe('base active');
-    expect(cn('base', null && 'hidden', 'active')).toBe('base active');
-    expect(cn('base', undefined && 'hidden', 'active')).toBe('base active');
+    const condition1 = false;
+    const condition2: boolean | null = null;
+    const condition3: boolean | undefined = undefined;
+
+    expect(cn('base', condition1 && 'hidden', 'active')).toBe('base active');
+    expect(cn('base', condition2 && 'hidden', 'active')).toBe('base active');
+    expect(cn('base', condition3 && 'hidden', 'active')).toBe('base active');
   });
 
   it('조건부 클래스: truthy 값 포함', () => {
-    expect(cn('base', true && 'active')).toBe('base active');
-    expect(cn('base', 1 && 'active')).toBe('base active');
+    const condition1 = true;
+    const condition2 = 1;
+
+    expect(cn('base', condition1 && 'active')).toBe('base active');
+    expect(cn('base', condition2 && 'active')).toBe('base active');
   });
 
   it('중복 Tailwind 클래스 병합: 마지막 값 우선', () => {

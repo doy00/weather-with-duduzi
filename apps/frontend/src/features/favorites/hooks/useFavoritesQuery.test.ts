@@ -241,10 +241,7 @@ describe('useFavoritesQuery', () => {
 
       const idToUpdate = result.current.favorites[0].id;
 
-      await result.current.updateNickname({
-        id: idToUpdate,
-        nickname: '새로운 별칭',
-      });
+      await result.current.updateNickname(idToUpdate, '새로운 별칭');
 
       await waitFor(() => {
         const updatedFavorite = result.current.favorites.find(
@@ -265,10 +262,7 @@ describe('useFavoritesQuery', () => {
 
       const idToUpdate = result.current.favorites[0].id;
 
-      await result.current.updateNickname({
-        id: idToUpdate,
-        nickname: '업데이트된 별칭',
-      });
+      await result.current.updateNickname(idToUpdate, '업데이트된 별칭');
 
       // 캐시가 업데이트되었는지 확인
       const cachedData = queryClient.getQueryData(['favorites']);
@@ -286,7 +280,7 @@ describe('useFavoritesQuery', () => {
       const longNickname = '가'.repeat(21);
 
       await expect(
-        result.current.updateNickname({ id: idToUpdate, nickname: longNickname })
+        result.current.updateNickname(idToUpdate, longNickname)
       ).rejects.toEqual({
         status: 400,
         message: '별칭 수정에 실패했습니다.',
@@ -301,7 +295,7 @@ describe('useFavoritesQuery', () => {
       });
 
       await expect(
-        result.current.updateNickname({ id: '999', nickname: '별칭' })
+        result.current.updateNickname('999', '별칭')
       ).rejects.toEqual({
         status: 404,
         message: '별칭 수정에 실패했습니다.',

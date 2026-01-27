@@ -193,7 +193,7 @@ describe('isNetworkError', () => {
       value: false,
     });
 
-    const result = isNetworkError({});
+    const result = isNetworkError();
 
     expect(result).toBe(true);
 
@@ -210,7 +210,7 @@ describe('isNetworkError', () => {
       value: true,
     });
 
-    const result = isNetworkError({});
+    const result = isNetworkError();
 
     expect(result).toBe(false);
   });
