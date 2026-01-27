@@ -5,6 +5,9 @@ import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
 
 export default [
+  {
+    ignores: ['**/dist/**', '**/dev-dist/**', '**/node_modules/**', '**/public/workbox-*.js', '**/*.config.js', '**/*.config.ts'],
+  },
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
@@ -24,14 +27,16 @@ export default [
       },
     },
     rules: {
-      // Enforce absolute imports using @ alias
+      // TypeScript - any 절대 금지
+      '@typescript-eslint/no-explicit-any': 'error',
+      // Enforce absolute imports using @ alias (feature 간 import만)
       'no-restricted-imports': [
         'error',
         {
           patterns: [
             {
-              group: ['../*', './*'],
-              message: 'Use absolute imports with @ alias instead of relative imports (e.g., @/features/... instead of ../...)',
+              group: ['../../*'],
+              message: 'Use absolute imports with @ alias for cross-feature imports (e.g., @/features/... instead of ../../...)',
             },
           ],
         },
@@ -57,6 +62,12 @@ export default [
       react: {
         version: 'detect',
       },
+    },
+  },
+  {
+    files: ['**/*.test.{ts,tsx}', '**/test/**/*.{ts,tsx}', '**/tests/**/*.{ts,tsx}'],
+    rules: {
+      'no-restricted-imports': 'off',
     },
   },
 ];
