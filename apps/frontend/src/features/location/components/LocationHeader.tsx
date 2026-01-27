@@ -1,6 +1,7 @@
 import React from 'react';
 import { Search, MapPin, Heart, Bell } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { LanguageSwitcher } from '@/features/shared/components/LanguageSwitcher';
 
 interface LocationHeaderProps {
   locationName: string;
@@ -20,7 +21,7 @@ export const LocationHeader = React.memo<LocationHeaderProps>(({
   const { t } = useTranslation('common');
 
   return (
-    <div className="flex justify-between items-center mb-8">
+    <div className="grid grid-cols-3 items-center gap-4 mb-8">
       <div className="flex gap-2">
         <button
           onClick={onSearchClick}
@@ -39,18 +40,21 @@ export const LocationHeader = React.memo<LocationHeaderProps>(({
           </button>
         )}
       </div>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center justify-center gap-2">
         <MapPin size={18} className="text-white/80" aria-hidden="true" />
         <h1 className="text-xl font-bold tracking-tight">{locationName}</h1>
       </div>
-      <button
-        onClick={onFavoriteToggle}
-        className="p-3 glass rounded-full active:scale-90 transition-all"
-        aria-label={isFavorite ? t('favorites.ariaLabel.remove') : t('favorites.ariaLabel.add')}
-        aria-pressed={isFavorite}
-      >
-        <Heart size={24} fill={isFavorite ? "white" : "none"} aria-hidden="true" />
-      </button>
+      <div className="flex gap-2 justify-end">
+        <button
+          onClick={onFavoriteToggle}
+          className="p-3 glass rounded-full active:scale-90 transition-all"
+          aria-label={isFavorite ? t('favorites.ariaLabel.remove') : t('favorites.ariaLabel.add')}
+          aria-pressed={isFavorite}
+        >
+          <Heart size={24} fill={isFavorite ? "white" : "none"} aria-hidden="true" />
+        </button>
+        <LanguageSwitcher />
+      </div>
     </div>
   );
 });

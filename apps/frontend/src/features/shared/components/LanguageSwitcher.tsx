@@ -17,7 +17,7 @@ export function LanguageSwitcher() {
       className="flex items-center gap-1 p-3 glass rounded-full active:scale-90 transition-all"
       aria-label={`Change language to ${i18n.language === 'ko' ? 'English' : '한국어'}`}
     >
-      <Languages size={18} aria-hidden="true" />
+      <Languages size={24} aria-hidden="true" />
       <span className="text-xs font-bold uppercase">
         {i18n.language === 'ko' ? 'EN' : 'KO'}
       </span>

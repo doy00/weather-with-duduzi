@@ -25,7 +25,6 @@ import { HourlyForecast } from '@/features/weather/components/HourlyForecast';
 import { WeatherDetails } from '@/features/weather/components/WeatherDetails';
 import { FavoritesList } from '@/features/favorites/components/FavoritesList';
 import { ThemeSelector } from '@/features/favorites/components/ThemeSelector';
-import { LanguageSwitcher } from '@/features/shared/components/LanguageSwitcher';
 import { LoadingScreen } from '@/features/shared/components/LoadingScreen';
 import { ErrorScreen } from '@/features/shared/components/ErrorScreen';
 import { PWAInstallPrompt } from '@/components/PWAInstallPrompt';
@@ -227,19 +226,16 @@ export const MainPage: React.FC = () => {
       >
         {/* Header */}
         <div className="flex flex-col gap-2 mb-2">
-          <div className="flex items-center justify-between">
-            {selectedLocation && (
-              <LocationHeader
-                locationName={selectedLocation.name}
-                isFavorite={isFavorite(selectedLocation.fullName)}
-                onSearchClick={() => setView('search')}
-                onFavoriteToggle={handleToggleFavorite}
-                onNotificationClick={() => navigate('/settings/notifications')}
-              />
-            )}
-          </div>
+          {selectedLocation && (
+            <LocationHeader
+              locationName={selectedLocation.name}
+              isFavorite={isFavorite(selectedLocation.fullName)}
+              onSearchClick={() => setView('search')}
+              onFavoriteToggle={handleToggleFavorite}
+              onNotificationClick={() => navigate('/settings/notifications')}
+            />
+          )}
           <div className="flex items-center justify-end gap-2">
-            <LanguageSwitcher />
             {favorites.length > 0 && (
               <ThemeSelector currentThemeId={themeId} onThemeChange={setThemeId} />
             )}
