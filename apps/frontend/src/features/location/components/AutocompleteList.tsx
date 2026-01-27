@@ -1,6 +1,5 @@
 import React from 'react';
 import { Plus } from 'lucide-react';
-import { GlassCard } from '@/features/shared/components/GlassCard';
 
 interface AutocompleteListProps {
   results: string[];

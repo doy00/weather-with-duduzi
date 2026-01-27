@@ -65,14 +65,14 @@ export function NotificationSettingCard({
 
       {/* 설정 폼 */}
       {enabled && (
-        <div className="space-y-4 pt-4 border-t border-white/10">
+        <div className="space-y-4 pt-4 border-white/10">
           <div>
-            <label className="block text-sm font-medium mb-2">알림 시간</label>
+            <div className="block text-sm font-medium mb-2">알림 시간</div>
             <TimePicker value={time} onChange={setTime} disabled={isSaving} />
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-2">요일 선택</label>
+            <div className="block text-sm font-medium mb-2">요일 선택</div>
             <DaySelector value={days} onChange={setDays} disabled={isSaving} />
           </div>
 

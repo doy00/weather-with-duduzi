@@ -1,7 +1,6 @@
 import React from 'react';
 import { Search, MapPin, Heart, Bell } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { GlassCard } from '@/features/shared/components/GlassCard';
 
 interface LocationHeaderProps {
   locationName: string;

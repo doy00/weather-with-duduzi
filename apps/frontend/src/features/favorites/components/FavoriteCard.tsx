@@ -34,6 +34,11 @@ export const FavoriteCard = React.memo<FavoriteCardProps>(({
   return (
     <div
       onClick={onClick}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          onClick();
+        }
+      }}
       className={cn(
         'p-5 relative rounded-3xl transition-all duration-300 cursor-pointer active:scale-95',
         themeClassName,

@@ -3,7 +3,6 @@ import {
   mockFavoritesList,
   mockMaxFavorites,
   mockNewFavorite,
-  mockFavoriteLocation,
 } from '../fixtures/favoriteFixtures';
 
 const BASE_URL = 'http://localhost:3001';

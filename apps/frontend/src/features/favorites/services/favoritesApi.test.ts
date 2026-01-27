@@ -12,7 +12,6 @@ import {
   setTestFavoritesToMax,
   clearTestFavorites,
 } from '@/test/mocks/handlers/favoritesHandlers';
-import type { FavoriteLocation } from '../types/favorite.types';
 
 describe('favoritesApi', () => {
   beforeEach(() => {

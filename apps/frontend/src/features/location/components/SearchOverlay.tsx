@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Search, ChevronLeft, X, AlertCircle } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { GlassCard } from '@/features/shared/components/GlassCard';
 import { POPULAR_CITIES } from '@/features/location/constants/regions';
 import { AutocompleteList } from '@/features/location/components/AutocompleteList';
 import { Portal } from '@/features/shared/components/Portal';
