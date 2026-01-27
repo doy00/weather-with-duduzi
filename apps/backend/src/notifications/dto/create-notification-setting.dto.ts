@@ -1,4 +1,13 @@
-import { IsUUID, IsBoolean, IsOptional, IsString, IsArray, IsInt, Min, Max } from 'class-validator';
+import {
+  IsUUID,
+  IsBoolean,
+  IsOptional,
+  IsString,
+  IsArray,
+  IsInt,
+  Min,
+  Max,
+} from 'class-validator';
 
 export class CreateNotificationSettingDto {
   @IsUUID()
