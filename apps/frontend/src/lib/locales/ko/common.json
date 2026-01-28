@@ -1,0 +1,48 @@
+{
+  "search": {
+    "placeholder": "지역 이름 또는 동 이름 (예: 청운동)",
+    "noResults": "해당 장소의 정보가 제공되지 않습니다.",
+    "popularCities": "인기 도시",
+    "ariaLabel": {
+      "search": "지역 검색",
+      "close": "검색 닫기",
+      "clear": "검색어 지우기"
+    }
+  },
+  "favorites": {
+    "title": "즐겨찾는 지역",
+    "nickname": "별칭",
+    "complete": "완료",
+    "noData": "정보 없음",
+    "ariaLabel": {
+      "remove": "즐겨찾기에서 제거",
+      "add": "즐겨찾기에 추가",
+      "edit": "별칭 편집",
+      "changeTheme": "즐겨찾기 테마 변경",
+      "input": "별칭 입력",
+      "save": "별칭 저장"
+    }
+  },
+  "pwa": {
+    "installTitle": "앱 설치",
+    "installDescription": "홈 화면에 추가하고 빠르게 접속하세요",
+    "installButton": "설치"
+  },
+  "button": {
+    "retry": "다시 시도",
+    "backToMain": "메인으로 돌아가기"
+  },
+  "location": {
+    "myLocation": "내 위치"
+  },
+  "notifications": {
+    "ariaLabel": {
+      "settings": "알림 설정"
+    }
+  },
+  "seo": {
+    "defaultTitle": "Galaxy Weather - 실시간 날씨 정보",
+    "defaultDescription": "실시간 날씨 정보와 시간별 예보를 제공하는 날씨 앱. 즐겨찾기 기능으로 여러 지역의 날씨를 한눈에 확인하세요.",
+    "defaultKeywords": "날씨, 날씨 예보, 실시간 날씨, 시간별 예보, 일기예보, weather, forecast"
+  }
+}

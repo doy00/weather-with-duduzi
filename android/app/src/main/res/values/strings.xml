@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Galaxy Weather</string>
+    <string name="title_activity_main">Galaxy Weather</string>
+    <string name="package_name">com.galaxyweather.app</string>
+    <string name="custom_url_scheme">com.galaxyweather.app</string>
+    <string name="widget_description">현재 위치의 날씨를 표시합니다</string>
+</resources>

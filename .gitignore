@@ -13,6 +13,10 @@ node_modules
 # Build outputs
 dist
 dist-ssr
+dev-dist
+
+# Test coverage
+coverage
 
 # Environment variables
 .env

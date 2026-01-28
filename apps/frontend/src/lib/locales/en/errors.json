@@ -1,0 +1,40 @@
+{
+  "api": {
+    "400": "Invalid request.",
+    "401": "Authentication required.",
+    "404": "Requested data not found.",
+    "409": "Data already exists.",
+    "500": "Server error occurred.",
+    "default": "Request failed.",
+    "network": "Please check your network connection.",
+    "unknown": "An unknown error occurred."
+  },
+  "loading": {
+    "weather": "Loading weather data",
+    "status": "Checking global weather data...",
+    "location": "Checking location...",
+    "page": "Loading page..."
+  },
+  "screen": {
+    "errorTitle": "Unable to retrieve weather data.",
+    "errorDetail": "API key may not be activated yet,\nor network connection is unstable.",
+    "favoriteNotFound": "Favorite not found.",
+    "offline": "Offline Mode",
+    "offlineDetail": "Displaying cached data"
+  },
+  "toast": {
+    "locationFailed": "Failed to select location.",
+    "favoriteRemoved": "Removed from favorites.",
+    "favoriteRemoveFailed": "Failed to remove favorite.",
+    "favoriteAdded": "Added to favorites.",
+    "favoriteExists": "Location is already in favorites.",
+    "favoriteLimit": "Maximum 6 favorites allowed.",
+    "favoriteAddFailed": "Failed to add favorite.",
+    "orderUpdateFailed": "Failed to change order."
+  },
+  "geolocation": {
+    "notSupported": "Browser does not support geolocation.",
+    "fallbackToSeoul": "Unable to get location, using default location (Seoul).",
+    "checking": "Determining your location..."
+  }
+}

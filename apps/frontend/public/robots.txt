@@ -1,0 +1,15 @@
+# Galaxy Weather - Robots.txt
+# 모든 검색엔진 크롤러 허용
+
+User-agent: *
+Allow: /
+
+# Sitemap 위치
+Sitemap: https://galaxy-weather.app/sitemap.xml
+
+# 크롤링 속도 제한 (초 단위)
+Crawl-delay: 1
+
+# 특정 경로 차단 (필요시)
+# Disallow: /api/
+# Disallow: /admin/

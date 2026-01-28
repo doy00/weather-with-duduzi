@@ -1,0 +1,43 @@
+{
+  "status": {
+    "clear": "Clear",
+    "clouds": "Partly Cloudy",
+    "rain": "Rain",
+    "drizzle": "Drizzle",
+    "snow": "Snow",
+    "thunderstorm": "Thunderstorm",
+    "mist": "Mist",
+    "fog": "Fog",
+    "haze": "Haze",
+    "dust": "Dust",
+    "sand": "Sand",
+    "smoke": "Smoke",
+    "ash": "Ash",
+    "squall": "Squall",
+    "tornado": "Tornado"
+  },
+  "suggestion": {
+    "loading": "Checking weather information...",
+    "rain": "It's raining. Don't forget your umbrella! ☂️",
+    "snow": "It's snowing. Watch out for slippery roads. ❄️",
+    "cold": "It's quite cold. Dress warmly to stay comfortable. 🧣",
+    "hot": "It's hot outside. Stay hydrated and take breaks. ☀️",
+    "clear": "Clear and pleasant weather. Have a great day! 😊"
+  },
+  "details": {
+    "feelsLike": "Feels Like",
+    "humidity": "Humidity"
+  },
+  "hourly": {
+    "title": "Today's Hourly Forecast",
+    "now": "Now",
+    "hour": "{{hour}}:00"
+  },
+  "briefing": {
+    "title": "Smart Weather Briefing"
+  },
+  "character": {
+    "dyAlt": "Dy character",
+    "busydogAlt": "Busydog image"
+  }
+}
