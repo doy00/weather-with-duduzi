@@ -7,9 +7,9 @@ import { SubscribePushDto } from './dto/subscribe-push.dto';
 import { CreateNotificationSettingDto } from './dto/create-notification-setting.dto';
 import { UpdateNotificationSettingDto } from './dto/update-notification-setting.dto';
 
-// Shared 패키지에서 메시지 import
-import * as dyMessages from '@weather-duduzi/shared/data/dy-message.json';
-import * as busydogMessages from '@weather-duduzi/shared/data/busydog-message.json';
+// 로컬 데이터에서 메시지 import
+import * as dyMessages from '../data/dy-message.json';
+import * as busydogMessages from '../data/busydog-message.json';
 
 // ===== 타입 정의 (파일 상단) =====
 interface MessageData {

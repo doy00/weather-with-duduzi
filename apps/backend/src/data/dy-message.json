@@ -1,0 +1,480 @@
+{
+  "messages": [
+    {
+      "id": 1,
+      "text": "오늘 내 생일인데 나보다도 더더더 행복한 하루 보내기를 바라!!",
+      "conditions": {
+        "type": "specificDate",
+        "date": "2026-02-01"
+      },
+      "priority": 100
+    },
+    {
+      "id": 2,
+      "text": "오늘 내 생일인데 오늘 내가 받을 축하 다 너가 받아라이 이",
+      "conditions": {
+        "type": "specificDate",
+        "date": "2027-02-01"
+      },
+      "priority": 100
+    },
+    {
+      "id": 3,
+      "text": "오늘 발렌타인데이라는데 초콜릿 받았어? 이건 내가 주는 초콜릿 🍫🍫🍫🍫",
+      "conditions": {
+        "type": "specificDate",
+        "date": "2026-02-14"
+      },
+      "priority": 100
+    },
+    {
+      "id": 4,
+      "text": "초콜릿 직접은 못 주지만 달달한 하루 보내자잉!",
+      "conditions": {
+        "type": "specificDate",
+        "date": "2027-02-14"
+      },
+      "priority": 100
+    },
+    {
+      "id": 5,
+      "text": "비 맞으면 감기 걸려!! 우산 꼭 쓰고 비 맞지 말어!",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Rain"
+      },
+      "priority": 90
+    },
+    {
+      "id": 6,
+      "text": "내내 비 오는 거 아니겠지? 그럼 안돼!!",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Rain"
+      },
+      "priority": 90
+    },
+    {
+      "id": 7,
+      "text": "비 올라나보네… 우산챙기자",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Rain"
+      },
+      "priority": 90
+    },
+    {
+      "id": 8,
+      "text": "비가 와서 감성적이어짐 케케",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Rain"
+      },
+      "priority": 90
+    },
+    {
+      "id": 9,
+      "text": "비 맞으면 감기 걸려!! 우산 꼭 쓰고 비 맞지 말어!",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Drizzle"
+      },
+      "priority": 85
+    },
+    {
+      "id": 10,
+      "text": "내내 비 오는 거 아니겠지? 그럼 안돼!!",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Drizzle"
+      },
+      "priority": 85
+    },
+    {
+      "id": 11,
+      "text": "비 올라나보네… 우산챙기자",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Drizzle"
+      },
+      "priority": 85
+    },
+    {
+      "id": 12,
+      "text": "비가 와서 감성적이어짐 케케",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Drizzle"
+      },
+      "priority": 85
+    },
+    {
+      "id": 13,
+      "text": "눈 온대. 눈길 조심하자!!",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Snow"
+      },
+      "priority": 90
+    },
+    {
+      "id": 14,
+      "text": "눈 땜에 바닥이 겁나 미끄러움!!",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Snow"
+      },
+      "priority": 90
+    },
+    {
+      "id": 15,
+      "text": "눈 쌓일 정도로 많이 오면 졸겠다!!",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Snow"
+      },
+      "priority": 90
+    },
+    {
+      "id": 16,
+      "text": "눈싸움 하자 ㅋㅋㅋ",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Snow"
+      },
+      "priority": 90
+    },
+    {
+      "id": 17,
+      "text": "요즘 너무 덥지 않을? @.@",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 25,
+          "max": null
+        }
+      },
+      "priority": 70
+    },
+    {
+      "id": 18,
+      "text": "더위 조심하자! 선풍기 꼭 챙겨라잉",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 25,
+          "max": null
+        }
+      },
+      "priority": 70
+    },
+    {
+      "id": 19,
+      "text": "오늘 나가면 녹을듯 후",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 25,
+          "max": null
+        }
+      },
+      "priority": 70
+    },
+    {
+      "id": 20,
+      "text": "꿀 후덥지근하다잉",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 18,
+          "max": 24.99
+        }
+      },
+      "priority": 60
+    },
+    {
+      "id": 21,
+      "text": "추위 많이 타면 겉옷 챙기기, 더위 많이 타면 선풍기 챙기기!",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 18,
+          "max": 24.99
+        }
+      },
+      "priority": 60
+    },
+    {
+      "id": 22,
+      "text": "이럴 때 더 조심해야해!!",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 18,
+          "max": 24.99
+        }
+      },
+      "priority": 60
+    },
+    {
+      "id": 23,
+      "text": "오늘의 날씨!! 시원하기도 덥기도 함 조심!!",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 18,
+          "max": 24.99
+        }
+      },
+      "priority": 60
+    },
+    {
+      "id": 24,
+      "text": "오늘 날씨 약간 센치하다잉 감기 조심하구웅 진짜루웅",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 18,
+          "max": 24.99
+        }
+      },
+      "priority": 60
+    },
+    {
+      "id": 25,
+      "text": "군모닝 지금 조금 쌀쌀하다잉",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 10,
+          "max": 18.99
+        }
+      },
+      "priority": 55
+    },
+    {
+      "id": 26,
+      "text": "지금 쌀쌀하니까 놀라지말자",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 10,
+          "max": 18.99
+        }
+      },
+      "priority": 55
+    },
+    {
+      "id": 27,
+      "text": "산책하기 좋은 날씨네이잉",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 10,
+          "max": 18.99
+        }
+      },
+      "priority": 55
+    },
+    {
+      "id": 28,
+      "text": "오늘은 밖에서 조금 걸어보는 거 어때?",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 10,
+          "max": 18.99
+        }
+      },
+      "priority": 55
+    },
+    {
+      "id": 29,
+      "text": "겉옷 꼭 챙겨서 나가자잉○",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 10,
+          "max": 18.99
+        }
+      },
+      "priority": 55
+    },
+    {
+      "id": 30,
+      "text": "오늘 춥다!!! 조심조심",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 3,
+          "max": 10.99
+        }
+      },
+      "priority": 65
+    },
+    {
+      "id": 31,
+      "text": "따뜻하게 보내고 있지~? 꼭 그래야해",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 3,
+          "max": 10.99
+        }
+      },
+      "priority": 65
+    },
+    {
+      "id": 32,
+      "text": "오늘 따뜻한 음식 먹기 좋을듯!!",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 3,
+          "max": 10.99
+        }
+      },
+      "priority": 65
+    },
+    {
+      "id": 33,
+      "text": "붕어빵이나 호빵이 땡긴다양",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 3,
+          "max": 10.99
+        }
+      },
+      "priority": 65
+    },
+    {
+      "id": 34,
+      "text": "핫팩 들고 다니면 좋을듯!!",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 3,
+          "max": 10.99
+        }
+      },
+      "priority": 65
+    },
+    {
+      "id": 35,
+      "text": "목도리랑 장갑 필수임!!",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": null,
+          "max": 2.99
+        }
+      },
+      "priority": 68
+    },
+    {
+      "id": 36,
+      "text": "날씨 이거 진짜 아니다! 따뜻하게 입고 다녀야겠어 무조건",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": null,
+          "max": 2.99
+        }
+      },
+      "priority": 68
+    },
+    {
+      "id": 37,
+      "text": "언제쯤 날이 풀려나…추운 거 싫은데!!",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": null,
+          "max": 2.99
+        }
+      },
+      "priority": 68
+    },
+    {
+      "id": 38,
+      "text": "추운 거 싫어하는 거 알아서 ㅠㅠ 날씨 따뜻해졌으면 좋겠다",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": null,
+          "max": 2.99
+        }
+      },
+      "priority": 68
+    },
+    {
+      "id": 39,
+      "text": "시간이 너무 빠르네 아이고오",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": null,
+          "max": 2.99
+        }
+      },
+      "priority": 68
+    },
+    {
+      "id": 40,
+      "text": "오늘도 좋은 하루 보내라이잉!",
+      "conditions": {
+        "type": "default"
+      },
+      "priority": 10
+    },
+    {
+      "id": 41,
+      "text": "내가 응원하는 거 알지? 모르면 지금 알아!!",
+      "conditions": {
+        "type": "default"
+      },
+      "priority": 10
+    },
+    {
+      "id": 42,
+      "text": "오늘도 하고 싶은 거 다 하자🔥",
+      "conditions": {
+        "type": "default"
+      },
+      "priority": 10
+    },
+    {
+      "id": 43,
+      "text": "오늘도 행복한 하루 보내자!!",
+      "conditions": {
+        "type": "default"
+      },
+      "priority": 10
+    },
+    {
+      "id": 44,
+      "text": "오늘 제일 운 좋을 사람 바로 너!!너너너너너!!",
+      "conditions": {
+        "type": "default"
+      },
+      "priority": 10
+    },
+    {
+      "id": 45,
+      "text": "힘든 일이 있으면 내 생각해….",
+      "conditions": {
+        "type": "default"
+      },
+      "priority": 10
+    },
+    {
+      "id": 46,
+      "text": "오늘이 최고의 하루가 되기를 바랄게",
+      "conditions": {
+        "type": "default"
+      },
+      "priority": 10
+    }
+  ]
+}

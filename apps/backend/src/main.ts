@@ -6,12 +6,17 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  // CORS 설정 - 환경 변수로 관리
+  const allowedOrigins = process.env.ALLOWED_ORIGINS
+    ? process.env.ALLOWED_ORIGINS.split(',')
+    : [
+        'http://localhost:3000',
+        'http://localhost:5173',
+        'http://localhost:4173',
+      ];
+
   app.enableCors({
-    origin: [
-      'http://localhost:3000', // 현재 프론트엔드 개발 서버
-      'http://localhost:5173', // Vite 기본 포트
-      'http://localhost:4173', // Vite preview 포트
-    ],
+    origin: allowedOrigins,
     credentials: true,
   });
 
