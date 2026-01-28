@@ -2,7 +2,14 @@ import { useState, useEffect } from 'react';
 import { subscribeToPush } from '../services/pushService';
 import { subscribeNotificationApi } from '../services/notificationApi';
 
-export function useNotificationPermission() {
+interface UseNotificationPermissionReturn {
+  permission: NotificationPermission;
+  requestPermission: () => Promise<NotificationPermission>;
+  isLoading: boolean;
+  subscriptionId: string | null;
+}
+
+export function useNotificationPermission(): UseNotificationPermissionReturn {
   const [permission, setPermission] = useState<NotificationPermission>('default');
   const [isLoading, setIsLoading] = useState(false);
   const [subscriptionId, setSubscriptionId] = useState<string | null>(null);
@@ -47,5 +54,10 @@ export function useNotificationPermission() {
     }
   };
 
-  return { permission, requestPermission, isLoading, subscriptionId };
+  return {
+    permission,
+    requestPermission,
+    isLoading,
+    subscriptionId,
+  };
 }

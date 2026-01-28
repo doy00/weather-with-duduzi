@@ -83,14 +83,16 @@ export function ToastContainer() {
 
   return (
     <>
-      {toasts.map((toastItem) => (
-        <Toast
-          key={toastItem.id}
-          message={toastItem.message}
-          type={toastItem.type}
-          onClose={() => removeToast(toastItem.id)}
-        />
-      ))}
+      {toasts.map((toastItem: ToastData) => {
+        return (
+          <Toast
+            key={toastItem.id}
+            message={toastItem.message}
+            type={toastItem.type}
+            onClose={() => removeToast(toastItem.id)}
+          />
+        );
+      })}
     </>
   );
 }

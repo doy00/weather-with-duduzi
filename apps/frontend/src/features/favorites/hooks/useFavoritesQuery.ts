@@ -38,7 +38,9 @@ export function useFavoritesQuery() {
       }
     });
 
-    return unsubscribe;
+    return () => {
+      unsubscribe();
+    };
   }, [queryClient]);
 
   const addMutation = useMutation({

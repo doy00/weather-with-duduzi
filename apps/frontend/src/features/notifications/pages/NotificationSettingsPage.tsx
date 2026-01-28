@@ -69,14 +69,16 @@ export function NotificationSettingsPage() {
             </p>
           ) : (
             <div className="space-y-4">
-              {favorites.map(favorite => (
-                <NotificationSettingCard
-                  key={favorite.id}
-                  favorite={favorite}
-                  subscriptionId={subscriptionId}
-                  onSave={handleSaveNotification}
-                />
-              ))}
+              {favorites.map(favorite => {
+                return (
+                  <NotificationSettingCard
+                    key={favorite.id}
+                    favorite={favorite}
+                    subscriptionId={subscriptionId as string}
+                    onSave={handleSaveNotification}
+                  />
+                );
+              })}
             </div>
           )}
         </div>

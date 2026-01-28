@@ -273,7 +273,9 @@ export const MainPage: React.FC = () => {
           weatherResults={favoriteWeatherResults}
           onSelectFavorite={handleSelectFavorite}
           onRemove={removeFavorite}
-          onUpdateNickname={updateNickname}
+          onUpdateNickname={async (id, nickname) => {
+            await updateNickname(id, nickname);
+          }}
           onReorder={handleReorderFavorites}
           themeClassName={theme.cardClassName}
           themeTextClassName={theme.textClassName}

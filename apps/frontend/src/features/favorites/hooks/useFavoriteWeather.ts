@@ -16,7 +16,9 @@ export const useFavoriteWeather = (favorites: FavoriteLocation[]) => {
       }
     });
 
-    return unsubscribe;
+    return () => {
+      unsubscribe();
+    };
   }, [queryClient]);
 
   const results = useQueries({
