@@ -66,7 +66,7 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({
             <input
               autoFocus
               placeholder={t('search.placeholder')}
-              className="bg-transparent border-none outline-none py-4 px-3 flex-1 placeholder:text-white/40 text-white font-medium"
+              className="bg-transparent border-none outline-none py-4 px-3 flex-1 placeholder:text-white/40 text-white font-medium focus:outline-none focus:ring-0 focus:border-none"
               value={searchQuery}
               onChange={(e) => onSearchChange(e.target.value)}
               aria-label={t('search.ariaLabel.search')}
