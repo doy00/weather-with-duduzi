@@ -39,3 +39,6 @@ coverage
 
 # Claude Code configuration
 .claude/
+
+# Personal documentation (not for public repo)
+TECH_STACK_ANALYSIS.md
