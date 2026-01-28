@@ -50,9 +50,11 @@ export class LocationService {
 
   async geocode(query: string) {
     try {
-      const url = `https://api.openweathermap.org/geo/1.0/direct?q=${query},KR&limit=5&appid=${this.weatherApiKey}`;
+      // "제주특별자치도" → "제주", "서울특별시" → "서울"로 변환하여 검색 정확도 향상
+      const shortenedQuery = this.shortenRegionName(query);
+      const url = `https://api.openweathermap.org/geo/1.0/direct?q=${shortenedQuery},KR&limit=5&appid=${this.weatherApiKey}`;
 
-      this.logger.debug(`Geocoding query: ${query}`);
+      this.logger.debug(`Geocoding query: ${query} (shortened: ${shortenedQuery})`);
 
       const response = await firstValueFrom(
         this.httpService.get(url, { timeout: 5000 }),
@@ -110,15 +112,19 @@ export class LocationService {
 
       const result = results[0];
 
-      // 한글 지역명이 있으면 우선 사용
+      // 1순위: local_names.ko (한국어 이름)를 사용하고 축약
       if (result.local_names?.ko) {
-        return result.local_names.ko;
+        return this.shortenRegionName(result.local_names.ko);
       }
 
-      // 시/도 + 시/군/구 조합
+      // 2순위: state + name 조합 (영어 fallback)
       const parts: string[] = [];
-      if (result.state) parts.push(result.state);
-      if (result.name) parts.push(result.name);
+      if (result.state) {
+        parts.push(this.shortenRegionName(result.state));
+      }
+      if (result.name && result.name !== result.state) {
+        parts.push(result.name);
+      }
 
       return parts.join(' ') || result.name || '내 위치';
     } catch (error) {
@@ -163,28 +169,36 @@ export class LocationService {
       const address = data.documents[0].address;
       const roadAddress = data.documents[0].road_address;
 
-      // 도로명 주소가 있으면 우선 사용: 시/도 + 시/군/구 + 동
+      // 도로명 주소가 있으면 우선 사용: 시/도(축약) + 시/군/구 (동 제외)
       if (roadAddress) {
         const parts: string[] = [];
-        if (roadAddress.region_1depth_name)
-          parts.push(String(roadAddress.region_1depth_name));
-        if (roadAddress.region_2depth_name)
+        // 수정: region_1depth_name("인천광역시")을 shortenRegionName 함수로 축약 → "인천"
+        if (roadAddress.region_1depth_name) {
+          parts.push(this.shortenRegionName(String(roadAddress.region_1depth_name)));
+        }
+        // 수정 전과 동일: region_2depth_name("계양구")을 그대로 추가
+        if (roadAddress.region_2depth_name) {
           parts.push(String(roadAddress.region_2depth_name));
-        if (roadAddress.region_3depth_name)
-          parts.push(String(roadAddress.region_3depth_name));
-        return parts.join(' ');
+        }
+        // 수정: region_3depth_name("작전동")을 제외하여 동 단위 숨김
+        // 이전 코드에서는 parts.push(region_3depth_name) 했었음 → 제거
+        return parts.join(' '); // "인천 계양구" 반환
       }
 
-      // 지번 주소 사용: 시/도 + 시/군/구 + 동
+      // 지번 주소 사용: 시/도(축약) + 시/군/구 (동 제외)
       if (address) {
         const parts: string[] = [];
-        if (address.region_1depth_name)
-          parts.push(String(address.region_1depth_name));
-        if (address.region_2depth_name)
+        // 수정: region_1depth_name("인천광역시")을 shortenRegionName 함수로 축약 → "인천"
+        if (address.region_1depth_name) {
+          parts.push(this.shortenRegionName(String(address.region_1depth_name)));
+        }
+        // 수정 전과 동일: region_2depth_name("계양구")을 그대로 추가
+        if (address.region_2depth_name) {
           parts.push(String(address.region_2depth_name));
-        if (address.region_3depth_name)
-          parts.push(String(address.region_3depth_name));
-        return parts.join(' ');
+        }
+        // 수정: region_3depth_name("작전동")을 제외하여 동 단위 숨김
+        // 이전 코드에서는 parts.push(region_3depth_name) 했었음 → 제거
+        return parts.join(' '); // "인천 계양구" 반환
       }
 
       return null;
@@ -194,5 +208,20 @@ export class LocationService {
       }
       return null;
     }
+  }
+
+  /**
+   * 수정: 시/도 이름을 축약하는 헬퍼 함수 추가
+   * 목적: "인천광역시" → "인천", "서울특별시" → "서울"로 짧게 표시
+   * @param name - 원본 지역명 (예: "인천광역시", "서울특별시", "경기도")
+   * @returns 축약된 지역명 (예: "인천", "서울", "경기")
+   */
+  private shortenRegionName(name: string): string {
+    return name
+      .replace('특별시', '')      // "서울특별시" → "서울"
+      .replace('광역시', '')      // "인천광역시" → "인천", "부산광역시" → "부산"
+      .replace('특별자치시', '')  // "세종특별자치시" → "세종"
+      .replace('특별자치도', '')  // "제주특별자치도" → "제주"
+      .replace('도', '');         // "경기도" → "경기", "강원도" → "강원"
   }
 }
