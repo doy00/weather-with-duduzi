@@ -30,7 +30,7 @@ import { ErrorScreen } from '@/features/shared/components/ErrorScreen';
 import { PWAInstallPrompt } from '@/components/PWAInstallPrompt';
 import { WidgetSync } from '@/plugins/WidgetSync';
 import { DEFAULT_LOCATION } from '@/config/constants';
-import { cn } from '@/lib/utils';
+import { cn, shortenRegionName } from '@/lib/utils';
 import { SEO } from '@/lib/components/SEO';
 
 export const MainPage: React.FC = () => {
@@ -105,9 +105,22 @@ export const MainPage: React.FC = () => {
 
   const handleSelectLocation = useCallback(async (fullName: string) => {
     try {
-      const parts = fullName.split('-');
-      const name = parts[parts.length - 1];
-      const geo = await geocode(name);
+      // fullName은 "서울특별시-강남구-역삼동" 형태
+      const parts = fullName.split('-'); // ["서울특별시", "강남구", "역삼동"]
+
+      // 헤더에 표시할 이름 생성 로직
+      const name = parts.length >= 3
+        ? `${parts[parts.length - 2]} ${parts[parts.length - 1]}`  // "강남구 역삼동" (구 + 동)
+        : parts.length === 2
+          ? `${shortenRegionName(parts[0])} ${parts[1]}`  // "서울 강남구" (시/도 축약 + 구)
+          : shortenRegionName(parts[0]);  // "제주" (시/도만 축약)
+
+      // Geocoding: 검색 정확도를 위해 전체 경로를 공백으로 연결하여 전달
+      // "서울특별시 강남구" 또는 "서울특별시 강남구 역삼동" 형태로 검색
+      // Backend에서 shortenRegionName 적용하여 "서울 강남구" 등으로 변환됨
+      const searchQuery = parts.join(' ');
+
+      const geo = await geocode(searchQuery);
 
       setSelectedLocation({
         id: Date.now().toString(),
