@@ -21,8 +21,8 @@ export class FavoritesService {
     const { data, error } = await supabase
       .from('favorites')
       .select('*')
-      .order('display_order', { ascending: true })
-      .order('created_at', { ascending: false });
+      .order('display_order', { ascending: true, nullsFirst: true })
+
 
     if (error) throw error;
     return (data as FavoriteEntity[]) || [];
