@@ -6,17 +6,29 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // CORS 설정 - 환경 변수로 관리
-  const allowedOrigins = process.env.ALLOWED_ORIGINS
+  const allowedOriginsFromEnv = process.env.ALLOWED_ORIGINS
     ? process.env.ALLOWED_ORIGINS.split(',')
-    : [
-        'http://localhost:3000',
-        'http://localhost:5173',
-        'http://localhost:4173',
-      ];
+    : [];
+
+  const whitelist = [
+    'http://localhost:3000',
+    'http://localhost:5173',
+    'http://localhost:4173',
+    ...allowedOriginsFromEnv,
+  ];
 
   app.enableCors({
-    origin: allowedOrigins,
+    origin: (origin, callback) => {
+      // Allow requests with no origin (like mobile apps or curl requests)
+      if (!origin) return callback(null, true);
+
+      // Check if origin is in the dynamic whitelist OR is a vercel.app preview domain
+      if (whitelist.includes(origin) || /\.vercel\.app$/.test(origin)) {
+        return callback(null, true);
+      }
+      
+      return callback(new Error('Not allowed by CORS'));
+    },
     credentials: true,
   });
 
