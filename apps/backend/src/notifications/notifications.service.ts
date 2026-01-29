@@ -75,6 +75,13 @@ export class NotificationsService {
   private readonly supabase: SupabaseClient;
 
   constructor(private configService: ConfigService) {
+    const vapidPublicKey = this.configService.get<string>('VAPID_PUBLIC_KEY');
+    const vapidPrivateKey = this.configService.get<string>('VAPID_PRIVATE_KEY');
+    const vapidSubject = this.configService.get<string>('VAPID_SUBJECT');
+
+    this.logger.log(`VAPID Public Key: ${vapidPublicKey}`);
+    this.logger.log(`VAPID Private Key: ${vapidPrivateKey ? 'Set' : 'Not Set'}`);
+    this.logger.log(`VAPID Subject: ${vapidSubject}`);
     // VAPID 설정
     (
       webPush as {
@@ -85,9 +92,9 @@ export class NotificationsService {
         ) => void;
       }
     ).setVapidDetails(
-      this.configService.get('VAPID_SUBJECT') as string,
-      this.configService.get('VAPID_PUBLIC_KEY') as string,
-      this.configService.get('VAPID_PRIVATE_KEY') as string,
+      vapidSubject as string,
+      vapidPublicKey as string,
+      vapidPrivateKey as string,
     );
 
     // Supabase 클라이언트
