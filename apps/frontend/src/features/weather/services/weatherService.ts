@@ -5,7 +5,7 @@ import type { GeocodingResult } from '@/types/location.types';
 
 export const fetchCurrentWeather = async (lat: number, lon: number): Promise<WeatherData> => {
   try {
-    const response = await fetch(`${API_BASE_URL}api/weather/current?lat=${lat}&lon=${lon}`);
+    const response = await fetch(`${API_BASE_URL}/api/weather/current?lat=${lat}&lon=${lon}`);
 
     if (!response.ok) {
       const error = await response.json().catch(() => ({}));
@@ -25,7 +25,7 @@ export const fetchCurrentWeather = async (lat: number, lon: number): Promise<Wea
 
 export const fetchHourlyWeather = async (lat: number, lon: number): Promise<HourlyWeather> => {
   try {
-    const response = await fetch(`${API_BASE_URL}api/weather/hourly?lat=${lat}&lon=${lon}`);
+    const response = await fetch(`${API_BASE_URL}/api/weather/hourly?lat=${lat}&lon=${lon}`);
 
     if (!response.ok) {
       const error = await response.json().catch(() => ({}));
@@ -46,7 +46,7 @@ export const fetchHourlyWeather = async (lat: number, lon: number): Promise<Hour
 export const geocodeLocation = async (query: string): Promise<GeocodingResult[]> => {
   try {
     const response = await fetch(
-      `${API_BASE_URL}api/location/geocode?q=${encodeURIComponent(query)}`
+      `${API_BASE_URL}/api/location/geocode?q=${encodeURIComponent(query)}`
     );
 
     if (!response.ok) {
@@ -68,7 +68,7 @@ export const geocodeLocation = async (query: string): Promise<GeocodingResult[]>
 export const reverseGeocode = async (lat: number, lon: number): Promise<string> => {
   try {
     const response = await fetch(
-      `${API_BASE_URL}api/location/reverse-geocode?lat=${lat}&lon=${lon}`
+      `${API_BASE_URL}/api/location/reverse-geocode?lat=${lat}&lon=${lon}`
     );
 
     if (!response.ok) {
