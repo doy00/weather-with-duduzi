@@ -21,8 +21,7 @@ export class FavoritesService {
     const { data, error } = await supabase
       .from('favorites')
       .select('*')
-      .order('display_order', { ascending: true, nullsFirst: true })
-
+      .order('created_at', { ascending: false });
 
     if (error) throw error;
     return (data as FavoriteEntity[]) || [];
@@ -57,19 +56,6 @@ export class FavoritesService {
       throw new BadRequestException('이미 즐겨찾기에 등록된 지역입니다.');
     }
 
-    // 현재 최대 order 조회
-    const { data: maxOrderData } = await supabase
-      .from('favorites')
-      .select('display_order')
-      .order('display_order', { ascending: false })
-      .limit(1)
-      .single();
-
-    const newOrder = maxOrderData
-      ? (maxOrderData as { display_order: number }).display_order + 1
-      : 0;
-
-    // 추가
     const { data, error } = await supabase
       .from('favorites')
       .insert([
@@ -79,7 +65,7 @@ export class FavoritesService {
           nickname: createFavoriteDto.nickname,
           lat: createFavoriteDto.lat,
           lon: createFavoriteDto.lon,
-          display_order: newOrder,
+          display_order: 0,
         },
       ])
       .select()
@@ -118,6 +104,7 @@ export class FavoritesService {
     return data as FavoriteEntity;
   }
 
+  /*
   async reorder(reorderDto: ReorderFavoritesDto) {
     const supabase = this.supabaseService.getClient();
 
@@ -151,4 +138,5 @@ export class FavoritesService {
 
     return { success: true, message: '즐겨찾기 순서가 변경되었습니다.' };
   }
+  */
 }

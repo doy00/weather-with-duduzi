@@ -121,6 +121,7 @@ export class FavoritesController {
     return { favorite };
   }
 
+  /*
   @Patch('reorder')
   @ApiOperation({
     summary: '즐겨찾기 순서 변경',
@@ -145,4 +146,5 @@ export class FavoritesController {
   async reorder(@Body() reorderDto: ReorderFavoritesDto) {
     return this.favoritesService.reorder(reorderDto);
   }
+  */
 }
