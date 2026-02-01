@@ -6,7 +6,6 @@ import {
 import { SupabaseService } from '../supabase/supabase.service';
 import { CreateFavoriteDto } from './dto/create-favorite.dto';
 import { UpdateNicknameDto } from './dto/update-nickname.dto';
-import { ReorderFavoritesDto } from './dto/reorder-favorites.dto';
 import { FavoriteEntity } from './entities/favorite.entity';
 
 const MAX_FAVORITES = 6;

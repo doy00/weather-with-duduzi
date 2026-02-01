@@ -19,7 +19,6 @@ import {
 import { FavoritesService } from './favorites.service';
 import { CreateFavoriteDto } from './dto/create-favorite.dto';
 import { UpdateNicknameDto } from './dto/update-nickname.dto';
-import { ReorderFavoritesDto } from './dto/reorder-favorites.dto';
 import { FavoriteEntity } from './entities/favorite.entity';
 
 @ApiTags('Favorites')
