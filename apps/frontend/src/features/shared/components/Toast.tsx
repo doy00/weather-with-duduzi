@@ -10,10 +10,21 @@ interface ToastProps {
 }
 
 export function Toast({ message, type = 'info', duration = 3000, onClose }: ToastProps) {
+  const [isClosing, setIsClosing] = useState(false);
+
   useEffect(() => {
-    const timer = setTimeout(onClose, duration);
+    const timer = setTimeout(() => {
+      setIsClosing(true);
+      // 애니메이션 완료 후 실제 제거
+      setTimeout(onClose, 300);
+    }, duration);
     return () => clearTimeout(timer);
   }, [duration, onClose]);
+
+  const handleClose = () => {
+    setIsClosing(true);
+    setTimeout(onClose, 300);
+  };
 
   const icons = {
     success: <CheckCircle size={20} />,
@@ -28,13 +39,15 @@ export function Toast({ message, type = 'info', duration = 3000, onClose }: Toas
   };
 
   return createPortal(
-    <div className="fixed top-20 left-1/2 -translate-x-1/2 z-50 animate-slide-down">
+    <div
+      className={`fixed top-20 left-1/2 -translate-x-1/2 z-50 ${isClosing ? 'animate-fade-out' : 'animate-slide-down'}`}
+    >
       <div
         className={`${colors[type]} text-white px-4 py-3 rounded-lg shadow-lg flex items-center gap-3 min-w-[280px] max-w-[90vw]`}
       >
         {icons[type]}
-        <span className="flex-1 text-sm font-medium">{message}</span>
-        <button onClick={onClose} className="p-1 hover:bg-white/20 rounded">
+        <span className="flex-1 text-sm font-medium truncate">{message}</span>
+        <button onClick={handleClose} className="p-1 hover:bg-white/20 rounded">
           <X size={16} />
         </button>
       </div>
@@ -81,18 +94,19 @@ export function ToastContainer() {
     listeners.forEach((listener) => listener(toastList));
   };
 
+  // 한 번에 하나씩만 표시 (큐 방식)
+  const currentToast = toasts[0];
+
   return (
     <>
-      {toasts.map((toastItem: ToastData) => {
-        return (
-          <Toast
-            key={toastItem.id}
-            message={toastItem.message}
-            type={toastItem.type}
-            onClose={() => removeToast(toastItem.id)}
-          />
-        );
-      })}
+      {currentToast && (
+        <Toast
+          key={currentToast.id}
+          message={currentToast.message}
+          type={currentToast.type}
+          onClose={() => removeToast(currentToast.id)}
+        />
+      )}
     </>
   );
 }
