@@ -2,6 +2,7 @@ import {
   Injectable,
   NotFoundException,
   BadRequestException,
+  ConflictException,
 } from '@nestjs/common';
 import { SupabaseService } from '../supabase/supabase.service';
 import { CreateFavoriteDto } from './dto/create-favorite.dto';
@@ -52,7 +53,7 @@ export class FavoritesService {
       .single();
 
     if (existing) {
-      throw new BadRequestException('이미 즐겨찾기에 등록된 지역입니다.');
+      throw new ConflictException('이미 즐겨찾기에 등록된 지역입니다.');
     }
 
     const { data, error } = await supabase
