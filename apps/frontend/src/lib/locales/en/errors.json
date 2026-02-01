@@ -11,9 +11,7 @@
   },
   "loading": {
     "weather": "Loading weather data",
-    "status": "Checking global weather data...",
-    "location": "Checking location...",
-    "page": "Loading page..."
+    "status": "Checking global weather data..."
   },
   "screen": {
     "errorTitle": "Unable to retrieve weather data.",
