@@ -15,3 +15,5 @@ afterAll(() => server.close());
 vi.stubEnv('VITE_WEATHER_API_KEY', 'test-api-key');
 vi.stubEnv('VITE_WEATHER_BASE_URL', 'https://api.openweathermap.org/data/2.5');
 vi.stubEnv('VITE_KAKAO_API_KEY', 'test-kakao-key');
+vi.stubEnv('VITE_VAPID_PUBLIC_KEY', 'BNxnJ8K8K8K8K8K8K8K8K8K8K8K8K8K8K8K8K8K8K8K8K8K8');
+vi.stubEnv('VITE_API_BASE_URL', 'http://localhost:3001');
