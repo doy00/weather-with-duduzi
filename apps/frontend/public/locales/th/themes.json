@@ -1,0 +1,22 @@
+{
+  "default": {
+    "name": "พื้นฐาน",
+    "description": "สไตล์กระจกโปร่งแสง"
+  },
+  "dark": {
+    "name": "ดาร์ก",
+    "description": "พื้นหลังสีดำเข้ม"
+  },
+  "light": {
+    "name": "ไลท์",
+    "description": "พื้นหลังสีขาวสว่าง"
+  },
+  "colorful": {
+    "name": "คัลเลอร์ฟูล",
+    "description": "ไล่เฉดสีชมพู-ม่วง"
+  },
+  "selector": {
+    "button": "ธีม",
+    "title": "เลือกธีมการ์ด"
+  }
+}

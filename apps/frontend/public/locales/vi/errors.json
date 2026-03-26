@@ -1,0 +1,38 @@
+{
+  "api": {
+    "400": "Yêu cầu không hợp lệ.",
+    "401": "Cần xác thực để tiếp tục.",
+    "404": "Không tìm thấy dữ liệu yêu cầu.",
+    "409": "Dữ liệu này đã tồn tại.",
+    "500": "Đã xảy ra lỗi máy chủ.",
+    "default": "Yêu cầu thất bại.",
+    "network": "Vui lòng kiểm tra kết nối mạng của bạn.",
+    "unknown": "Đã xảy ra lỗi không xác định."
+  },
+  "loading": {
+    "weather": "Đang tải thời tiết...",
+    "status": "Đang kiểm tra dữ liệu thời tiết toàn cầu..."
+  },
+  "screen": {
+    "errorTitle": "Không thể tải dữ liệu thời tiết.",
+    "errorDetail": "API key chưa được kích hoạt hoặc\nkết nối mạng của bạn không ổn định.",
+    "favoriteNotFound": "Không tìm thấy mục yêu thích.",
+    "offline": "Chế độ ngoại tuyến",
+    "offlineDetail": "Đang hiển thị dữ liệu đã lưu trong bộ nhớ đệm"
+  },
+  "toast": {
+    "locationFailed": "Chọn vị trí thất bại.",
+    "favoriteRemoved": "Đã xóa khỏi mục yêu thích.",
+    "favoriteRemoveFailed": "Xóa mục yêu thích thất bại.",
+    "favoriteAdded": "Đã thêm vào mục yêu thích.",
+    "favoriteExists": "Khu vực này đã có trong mục yêu thích.",
+    "favoriteLimit": "Bạn chỉ có thể lưu tối đa 6 mục yêu thích.",
+    "favoriteAddFailed": "Thêm vào mục yêu thích thất bại.",
+    "orderUpdateFailed": "Thay đổi thứ tự thất bại."
+  },
+  "geolocation": {
+    "notSupported": "Trình duyệt của bạn không hỗ trợ định vị.",
+    "fallbackToSeoul": "Không thể xác định vị trí, đang sử dụng vị trí mặc định (Seoul).",
+    "checking": "Đang xác định vị trí của bạn..."
+  }
+}

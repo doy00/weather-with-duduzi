@@ -1,0 +1,22 @@
+{
+  "default": {
+    "name": "Estándar",
+    "description": "Estilo de cristal translúcido"
+  },
+  "dark": {
+    "name": "Oscuro",
+    "description": "Fondo negro intenso"
+  },
+  "light": {
+    "name": "Claro",
+    "description": "Fondo blanco brillante"
+  },
+  "colorful": {
+    "name": "Colorido",
+    "description": "Degradado rosa y morado"
+  },
+  "selector": {
+    "button": "Tema",
+    "title": "Selecciona el tema de la tarjeta"
+  }
+}

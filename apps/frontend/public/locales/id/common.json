@@ -1,0 +1,48 @@
+{
+  "search": {
+    "placeholder": "Cari nama kota atau daerah (contoh: Jakarta)",
+    "noResults": "Maaf, info untuk lokasi ini tidak tersedia.",
+    "popularCities": "Kota populer",
+    "ariaLabel": {
+      "search": "Cari lokasi",
+      "close": "Tutup pencarian",
+      "clear": "Hapus kata kunci"
+    }
+  },
+  "favorites": {
+    "title": "Lokasi favorit",
+    "nickname": "Nama panggilan",
+    "complete": "Selesai",
+    "noData": "Belum ada data",
+    "ariaLabel": {
+      "remove": "Hapus dari favorit",
+      "add": "Tambah ke favorit",
+      "edit": "Edit nama panggilan",
+      "changeTheme": "Ubah tema favorit",
+      "input": "Masukkan nama panggilan",
+      "save": "Simpan nama panggilan"
+    }
+  },
+  "pwa": {
+    "installTitle": "Pasang aplikasi",
+    "installDescription": "Tambahkan ke layar utama agar lebih cepat diakses",
+    "installButton": "Pasang"
+  },
+  "button": {
+    "retry": "Coba lagi",
+    "backToMain": "Kembali ke beranda"
+  },
+  "location": {
+    "myLocation": "Lokasi saya"
+  },
+  "notifications": {
+    "ariaLabel": {
+      "settings": "Pengaturan notifikasi"
+    }
+  },
+  "seo": {
+    "defaultTitle": "Galaxy Weather - Info cuaca terkini",
+    "defaultDescription": "Aplikasi cuaca dengan info terkini dan prakiraan per jam. Pantau cuaca di berbagai lokasi dengan fitur favorit.",
+    "defaultKeywords": "cuaca, prakiraan cuaca, cuaca terkini, prakiraan per jam, ramalan cuaca, weather, forecast"
+  }
+}

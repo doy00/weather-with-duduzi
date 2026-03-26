@@ -1,0 +1,48 @@
+{
+  "search": {
+    "placeholder": "Nombre de la ciudad o barrio (ej: Cheongun-dong)",
+    "noResults": "No tenemos información de ese lugar.",
+    "popularCities": "Ciudades populares",
+    "ariaLabel": {
+      "search": "Buscar ubicación",
+      "close": "Cerrar búsqueda",
+      "clear": "Borrar búsqueda"
+    }
+  },
+  "favorites": {
+    "title": "Mis lugares favoritos",
+    "nickname": "Apodo",
+    "complete": "Listo",
+    "noData": "Sin información",
+    "ariaLabel": {
+      "remove": "Eliminar de favoritos",
+      "add": "Añadir a favoritos",
+      "edit": "Editar apodo",
+      "changeTheme": "Cambiar tema de favoritos",
+      "input": "Ingresar apodo",
+      "save": "Guardar apodo"
+    }
+  },
+  "pwa": {
+    "installTitle": "Instalar app",
+    "installDescription": "Añádela a tu pantalla de inicio para acceder rápidamente",
+    "installButton": "Instalar"
+  },
+  "button": {
+    "retry": "Reintentar",
+    "backToMain": "Volver al inicio"
+  },
+  "location": {
+    "myLocation": "Mi ubicación"
+  },
+  "notifications": {
+    "ariaLabel": {
+      "settings": "Ajustes de notificaciones"
+    }
+  },
+  "seo": {
+    "defaultTitle": "Galaxy Weather - El tiempo en tiempo real",
+    "defaultDescription": "Consulta el tiempo en tiempo real y el pronóstico por horas. Guarda tus lugares favoritos para ver el clima de un vistazo.",
+    "defaultKeywords": "tiempo, pronóstico del tiempo, clima en vivo, pronóstico por horas, meteorología, weather, forecast"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "search": {
+    "placeholder": "Nhập tên khu vực hoặc phường (ví dụ: Cheongun-dong)",
+    "noResults": "Rất tiếc, không tìm thấy thông tin cho địa điểm này.",
+    "popularCities": "Thành phố phổ biến",
+    "ariaLabel": {
+      "search": "Tìm kiếm khu vực",
+      "close": "Đóng tìm kiếm",
+      "clear": "Xóa nội dung tìm kiếm"
+    }
+  },
+  "favorites": {
+    "title": "Khu vực yêu thích",
+    "nickname": "Biệt danh",
+    "complete": "Hoàn tất",
+    "noData": "Chưa có dữ liệu",
+    "ariaLabel": {
+      "remove": "Xóa khỏi mục yêu thích",
+      "add": "Thêm vào mục yêu thích",
+      "edit": "Chỉnh sửa biệt danh",
+      "changeTheme": "Thay đổi chủ đề yêu thích",
+      "input": "Nhập biệt danh",
+      "save": "Lưu biệt danh"
+    }
+  },
+  "pwa": {
+    "installTitle": "Cài đặt ứng dụng",
+    "installDescription": "Thêm vào màn hình chính để truy cập nhanh hơn",
+    "installButton": "Cài đặt"
+  },
+  "button": {
+    "retry": "Thử lại",
+    "backToMain": "Quay lại trang chính"
+  },
+  "location": {
+    "myLocation": "Vị trí của tôi"
+  },
+  "notifications": {
+    "ariaLabel": {
+      "settings": "Cài đặt thông báo"
+    }
+  },
+  "seo": {
+    "defaultTitle": "Galaxy Weather - Thông tin thời tiết thời gian thực",
+    "defaultDescription": "Ứng dụng thời tiết cung cấp thông tin thời tiết thời gian thực và dự báo theo giờ. Kiểm tra thời tiết tại nhiều khu vực trong nháy mắt với tính năng yêu thích.",
+    "defaultKeywords": "thời tiết, dự báo thời tiết, thời tiết thời gian thực, dự báo theo giờ, dự báo, weather, forecast"
+  }
+}

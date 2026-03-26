@@ -1,0 +1,43 @@
+{
+  "status": {
+    "clear": "Cerah",
+    "clouds": "Berawan",
+    "rain": "Hujan",
+    "drizzle": "Gerimis",
+    "snow": "Salju",
+    "thunderstorm": "Badai petir",
+    "mist": "Berkabut",
+    "fog": "Berkabut tebal",
+    "haze": "Berkabut",
+    "dust": "Berdebu",
+    "sand": "Badai pasir",
+    "smoke": "Berasap",
+    "ash": "Abu vulkanik",
+    "squall": "Angin kencang",
+    "tornado": "Tornado"
+  },
+  "suggestion": {
+    "loading": "Lagi cek cuaca buat kamu nih...",
+    "rain": "Wah, lagi hujan! Jangan lupa bawa payung ya kalau mau keluar! ☂️",
+    "snow": "Salju sedang turun, nih. Hati-hati ya jalannya licin. ❄️",
+    "cold": "Brrr, dingin banget! Pakai baju yang hangat ya biar nggak sakit. 🧣",
+    "hot": "Panas banget hari ini! Jangan lupa minum air yang banyak dan istirahat ya. ☀️",
+    "clear": "Cuacanya cerah dan nyaman banget. Semoga harimu menyenangkan! 😊"
+  },
+  "details": {
+    "feelsLike": "Terasa seperti",
+    "humidity": "Kelembapan"
+  },
+  "hourly": {
+    "title": "Prakiraan cuaca per jam hari ini",
+    "now": "Sekarang",
+    "hour": "Jam {{hour}}"
+  },
+  "briefing": {
+    "title": "Info cuaca cerdas untukmu"
+  },
+  "character": {
+    "dyAlt": "Karakter dy",
+    "busydogAlt": "Gambar busydog"
+  }
+}

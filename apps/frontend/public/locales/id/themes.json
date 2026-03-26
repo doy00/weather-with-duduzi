@@ -1,0 +1,22 @@
+{
+  "default": {
+    "name": "Standar",
+    "description": "Gaya kaca transparan"
+  },
+  "dark": {
+    "name": "Gelap",
+    "description": "Latar belakang hitam pekat"
+  },
+  "light": {
+    "name": "Terang",
+    "description": "Latar belakang putih cerah"
+  },
+  "colorful": {
+    "name": "Warna-warni",
+    "description": "Gradasi merah muda dan ungu"
+  },
+  "selector": {
+    "button": "Tema",
+    "title": "Pilih tema kartu"
+  }
+}

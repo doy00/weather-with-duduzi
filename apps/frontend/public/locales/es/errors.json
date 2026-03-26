@@ -1,0 +1,38 @@
+{
+  "api": {
+    "400": "Solicitud incorrecta.",
+    "401": "Se requiere autenticación.",
+    "404": "No se encontraron los datos solicitados.",
+    "409": "Los datos ya existen.",
+    "500": "Error interno del servidor.",
+    "default": "La solicitud ha fallado.",
+    "network": "Por favor, comprueba tu conexión a internet.",
+    "unknown": "Ha ocurrido un error desconocido."
+  },
+  "loading": {
+    "weather": "Cargando el clima",
+    "status": "Consultando datos meteorológicos globales..."
+  },
+  "screen": {
+    "errorTitle": "No se pueden obtener los datos del clima.",
+    "errorDetail": "La clave API aún no está activa o\nla conexión a internet es inestable.",
+    "favoriteNotFound": "No se encontraron favoritos.",
+    "offline": "Modo sin conexión",
+    "offlineDetail": "Mostrando datos almacenados en caché"
+  },
+  "toast": {
+    "locationFailed": "Error al seleccionar la ubicación.",
+    "favoriteRemoved": "Eliminado de favoritos.",
+    "favoriteRemoveFailed": "Error al eliminar de favoritos.",
+    "favoriteAdded": "Añadido a favoritos.",
+    "favoriteExists": "Esta ubicación ya está en tus favoritos.",
+    "favoriteLimit": "Puedes tener un máximo de 6 favoritos.",
+    "favoriteAddFailed": "Error al añadir a favoritos.",
+    "orderUpdateFailed": "Error al cambiar el orden."
+  },
+  "geolocation": {
+    "notSupported": "Tu navegador no admite información de ubicación.",
+    "fallbackToSeoul": "No se pudo obtener la ubicación, usando la predeterminada (Seúl).",
+    "checking": "Detectando tu ubicación..."
+  }
+}

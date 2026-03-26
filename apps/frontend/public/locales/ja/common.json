@@ -1,0 +1,48 @@
+{
+  "search": {
+    "placeholder": "地域名や町名を入力（例：清雲洞）",
+    "noResults": "該当する場所の情報は見つかりませんでした。",
+    "popularCities": "人気の都市",
+    "ariaLabel": {
+      "search": "地域を検索",
+      "close": "検索を閉じる",
+      "clear": "検索ワードを消去"
+    }
+  },
+  "favorites": {
+    "title": "お気に入り",
+    "nickname": "ニックネーム",
+    "complete": "完了",
+    "noData": "データなし",
+    "ariaLabel": {
+      "remove": "お気に入りから削除",
+      "add": "お気に入りに追加",
+      "edit": "ニックネームを編集",
+      "changeTheme": "お気に入りのテーマを変更",
+      "input": "ニックネームを入力",
+      "save": "ニックネームを保存"
+    }
+  },
+  "pwa": {
+    "installTitle": "アプリをインストール",
+    "installDescription": "ホーム画面に追加して、いつでもすぐにチェック！",
+    "installButton": "インストール"
+  },
+  "button": {
+    "retry": "再試行",
+    "backToMain": "メインに戻る"
+  },
+  "location": {
+    "myLocation": "現在地"
+  },
+  "notifications": {
+    "ariaLabel": {
+      "settings": "通知設定"
+    }
+  },
+  "seo": {
+    "defaultTitle": "Galaxy Weather - リアルタイム天気情報",
+    "defaultDescription": "リアルタイムの天気や時間ごとの予報をお届けする天気アプリ。お気に入り機能で、気になる地域の天気をまとめてチェックしよう。",
+    "defaultKeywords": "天気, 天気予報, リアルタイム天気, 時間別予報, 気象情報, weather, forecast"
+  }
+}

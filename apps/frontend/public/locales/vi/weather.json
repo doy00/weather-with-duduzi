@@ -1,0 +1,43 @@
+{
+  "status": {
+    "clear": "Trời trong xanh",
+    "clouds": "Có mây",
+    "rain": "Mưa",
+    "drizzle": "Mưa phùn",
+    "snow": "Tuyết rơi",
+    "thunderstorm": "Dông bão",
+    "mist": "Sương mù",
+    "fog": "Sương mù dày",
+    "haze": "Sương mù",
+    "dust": "Bụi bặm",
+    "sand": "Bão cát",
+    "smoke": "Khói",
+    "ash": "Tro bụi",
+    "squall": "Gió giật",
+    "tornado": "Lốc xoáy"
+  },
+  "suggestion": {
+    "loading": "Đang kiểm tra thời tiết cho bạn nè...",
+    "rain": "Trời đang mưa rồi, nhớ mang theo ô khi ra ngoài nhé! ☂️",
+    "snow": "Tuyết đang rơi nè, đường trơn lắm nên cẩn thận nha. ❄️",
+    "cold": "Thời tiết khá lạnh đó, mặc ấm để giữ sức khỏe nhé. 🧣",
+    "hot": "Trời nóng quá đi, nhớ uống đủ nước và nghỉ ngơi nha. ☀️",
+    "clear": "Thời tiết đẹp và dễ chịu quá, chúc bạn một ngày thật vui vẻ! 😊"
+  },
+  "details": {
+    "feelsLike": "Nhiệt độ cảm nhận",
+    "humidity": "Độ ẩm"
+  },
+  "hourly": {
+    "title": "Thời tiết theo giờ hôm nay",
+    "now": "Bây giờ",
+    "hour": "{{hour}} giờ"
+  },
+  "briefing": {
+    "title": "Bản tin thời tiết thông minh"
+  },
+  "character": {
+    "dyAlt": "Nhân vật dy",
+    "busydogAlt": "Hình ảnh chú chó bận rộn"
+  }
+}
