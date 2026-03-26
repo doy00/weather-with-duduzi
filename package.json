@@ -25,14 +25,22 @@
     "supabase:db:pull": "supabase db pull",
     "supabase:db:pull:help": "echo '💡 원격 DB 스키마를 로컬로 가져오기'",
     "supabase:gen:types": "supabase gen types typescript --local > apps/frontend/src/types/supabase.types.ts",
-    "supabase:gen:types:help": "echo '💡 DB 스키마에서 TypeScript 타입 자동 생성 (apps/frontend/src/types/supabase.types.ts)'"
+    "supabase:gen:types:help": "echo '💡 DB 스키마에서 TypeScript 타입 자동 생성 (apps/frontend/src/types/supabase.types.ts)'",
+    "i18n:translate": "tsx scripts/translate.ts",
+    "i18n:translate:help": "echo '💡 Gemini API로 7개 언어 자동 번역 (GEMINI_API_KEY 환경 변수 필요)'",
+    "i18n:validate": "tsx scripts/validate-i18n.ts",
+    "i18n:validate:help": "echo '💡 번역 파일 검증 (누락 키, 변수 불일치, 미사용 키 감지)'"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",
+    "@google/generative-ai": "^0.24.1",
+    "dotenv": "^17.3.1",
     "eslint": "^9.39.2",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.0.1",
+    "glob": "^13.0.6",
+    "tsx": "^4.21.0",
     "typescript": "~5.8.2",
     "typescript-eslint": "^8.53.1"
   }
