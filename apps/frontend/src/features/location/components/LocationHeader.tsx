@@ -25,7 +25,7 @@ export const LocationHeader = React.memo<LocationHeaderProps>(({
       <div className="flex gap-2">
         <button
           onClick={onSearchClick}
-          className="p-3 glass rounded-full active:scale-90 transition-all"
+          className="w-12 h-12 flex items-center justify-center glass rounded-full active:scale-90 transition-all"
           aria-label={t('search.ariaLabel.search')}
         >
           <Search size={24} aria-hidden="true" />
@@ -33,7 +33,7 @@ export const LocationHeader = React.memo<LocationHeaderProps>(({
         {onNotificationClick && (
           <button
             onClick={onNotificationClick}
-            className="p-3 glass rounded-full active:scale-90 transition-all"
+            className="w-12 h-12 flex items-center justify-center glass rounded-full active:scale-90 transition-all"
             aria-label={t('notifications.ariaLabel.settings')}
           >
             <Bell size={24} aria-hidden="true" />
@@ -47,7 +47,7 @@ export const LocationHeader = React.memo<LocationHeaderProps>(({
       <div className="flex gap-2 justify-end">
         <button
           onClick={onFavoriteToggle}
-          className="p-3 glass rounded-full active:scale-90 transition-all"
+          className="w-12 h-12 flex items-center justify-center glass rounded-full active:scale-90 transition-all"
           aria-label={isFavorite ? t('favorites.ariaLabel.remove') : t('favorites.ariaLabel.add')}
           aria-pressed={isFavorite}
         >
