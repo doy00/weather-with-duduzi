@@ -10,6 +10,7 @@ import { RealtimeStatus } from '@/features/shared/components/RealtimeStatus';
 import { ToastContainer } from '@/features/shared/components/Toast';
 import { LoadingScreen } from '@/features/shared/components/LoadingScreen';
 import { useSupabaseSync } from '@/features/favorites/hooks/useSupabaseSync';
+import { useFontLoader } from '@/hooks/useFontLoader';
 
 const MainPage = lazy(() => import('@/pages/MainPage').then(m => ({ default: m.MainPage })));
 const DetailPage = lazy(() => import('@/pages/DetailPage').then(m => ({ default: m.DetailPage })));
@@ -17,6 +18,7 @@ const NotificationSettingsPage = lazy(() => import('@/features/notifications/pag
 
 const App: React.FC = () => {
   useSupabaseSync();
+  useFontLoader();
 
   return (
     <HelmetProvider>
