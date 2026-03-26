@@ -20,7 +20,7 @@ export default defineConfig(({ mode }) => {
           includeAssets: ['icons/*.png'],
           manifest: false,
           injectManifest: {
-            globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
+            globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2,json}'],
           },
           devOptions: {
             enabled: false,
