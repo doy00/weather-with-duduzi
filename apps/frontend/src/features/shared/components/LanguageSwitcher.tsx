@@ -19,8 +19,8 @@ export function LanguageSwitcher() {
         aria-label="Change language"
       >
         <Globe size={24} aria-hidden="true" />
-        <span className="text-xs font-bold">
-          {currentLang.flag} {currentLang.nativeName}
+        <span className="text-xs font-bold uppercase">
+          {currentLang.code}
         </span>
       </DropdownMenu.Trigger>
 
