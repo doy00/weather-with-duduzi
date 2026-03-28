@@ -65,8 +65,8 @@ export const getBubbleMessage = (
   const highestPriorityMessages = sortedMessages.filter(msg => msg.priority === highestPriority);
   const selectedMessage = getRandomMessage(highestPriorityMessages);
 
-  // Return selected message or fallback to default
-  return selectedMessage?.text || 'Error: No message found';
+  // Return selected message key or fallback to default
+  return selectedMessage?.textKey || 'messages:dy.40';
 };
 
 export const getDogBubbleMessage = (

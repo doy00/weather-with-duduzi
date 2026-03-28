@@ -8,7 +8,7 @@ export interface MessageConditions {
 
 export interface MessageData {
   id: number;
-  text: string;
+  textKey: string;
   conditions: MessageConditions;
   priority: number;
 }

@@ -14,16 +14,19 @@ interface BubbleMessageProps {
 }
 
 export const BubbleMessage = React.memo<BubbleMessageProps>(({ weather }) => {
-  const { t } = useTranslation('weather');
-  const rabbitMessage = useMemo(
+  const { t } = useTranslation(['weather', 'messages']);
+  const rabbitMessageKey = useMemo(
     () => getBubbleMessage(weather, messagesData.messages as MessageData[]),
     [weather]
   );
 
-  const dogMessage = useMemo(
+  const dogMessageKey = useMemo(
     () => getDogBubbleMessage(weather, dogMessagesData.messages as MessageData[]),
     [weather]
   );
+
+  const rabbitMessage = t(rabbitMessageKey, { ns: 'messages' });
+  const dogMessage = t(dogMessageKey, { ns: 'messages' });
 
   return (
     <div className="space-y-2 md:space-y-4">
