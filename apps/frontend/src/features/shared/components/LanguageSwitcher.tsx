@@ -8,8 +8,15 @@ export function LanguageSwitcher() {
   const currentLang = LANGUAGES.find((l) => l.code === i18n.language) || LANGUAGES[0];
 
   const handleLanguageChange = (langCode: string) => {
+    // URL에서 lng 파라미터 제거 (localStorage가 우선하도록)
+    const url = new URL(window.location.href);
+    if (url.searchParams.has('lng')) {
+      url.searchParams.delete('lng');
+      window.history.replaceState({}, '', url.toString());
+    }
+
     i18n.changeLanguage(langCode);
-    document.documentElement.lang = langCode;
+    // HTML lang 속성은 i18n 이벤트 리스너가 자동으로 업데이트
   };
 
   return (

@@ -16,3 +16,7 @@ export const LANGUAGES: readonly LanguageInfo[] = [
 ] as const;
 
 export type LanguageCode = (typeof LANGUAGES)[number]['code'];
+
+export type FallbackLanguageMap = {
+  [key: string]: readonly LanguageCode[];
+};
