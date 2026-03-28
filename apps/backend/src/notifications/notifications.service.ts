@@ -220,6 +220,54 @@ export class NotificationsService {
     return { success: true };
   }
 
+  // 테스트용: 즉시 푸시 알림 전송
+  async sendTestNotification() {
+    const { data: settings, error } = await this.supabase
+      .from('notification_settings')
+      .select(
+        `
+        *,
+        favorite:favorites(*),
+        subscription:notification_subscriptions(*)
+      `,
+      )
+      .eq('enabled', true)
+      .limit(1);
+
+    if (error || !settings || settings.length === 0) {
+      this.logger.error('활성화된 알림 설정을 찾을 수 없습니다', error);
+      return { success: false, message: '활성화된 알림 설정이 없습니다' };
+    }
+
+    const setting = settings[0] as NotificationSetting;
+
+    try {
+      const weather = await this.fetchWeather(
+        setting.favorite.lat,
+        setting.favorite.lon,
+      );
+
+      const message = this.selectMessage(weather);
+
+      await this.sendPushNotification(setting.subscription, {
+        title: `테스트 알림 - ${setting.favorite.nickname || setting.favorite.name}`,
+        body: message,
+        icon: '/icons/icon-192x192.png',
+        data: { url: '/', favoriteId: setting.favorite_id },
+      });
+
+      this.logger.log(`테스트 알림 전송 성공: ${setting.favorite.name}`);
+      return {
+        success: true,
+        message: '테스트 알림이 전송되었습니다',
+        data: { location: setting.favorite.name, message },
+      };
+    } catch (error) {
+      this.logger.error('테스트 알림 전송 실패', error);
+      return { success: false, message: '알림 전송 중 오류 발생', error };
+    }
+  }
+
   // ===== Cron 스케줄러 (매 시간 정각) =====
   @Cron('0 * * * *')
   async handleScheduledNotifications() {

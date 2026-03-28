@@ -57,4 +57,9 @@ export class NotificationsController {
   async deleteNotificationSetting(@Param('id') id: string) {
     return this.notificationsService.deleteNotificationSetting(id);
   }
+
+  @Post('test-push')
+  async testPush() {
+    return this.notificationsService.sendTestNotification();
+  }
 }
