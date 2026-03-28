@@ -1,4 +1,3 @@
-import '@/config/i18n';
 import '@/types/i18n.types';
 
 import React, { lazy, Suspense } from 'react';

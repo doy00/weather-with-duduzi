@@ -1,11 +1,12 @@
+import '@/config/i18n';
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { registerSW } from 'virtual:pwa-register';
-import { queryClient } from './src/config/queryClient';
+import { queryClient } from '@/config/queryClient';
 import './index.css';
-import App from './src/App';
+import App from '@/App';
 
 const updateSW = registerSW({
   onNeedRefresh() {
