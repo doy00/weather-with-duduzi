@@ -1,0 +1,480 @@
+{
+  "messages": [
+    {
+      "id": 1,
+      "textKey": "dy.1",
+      "conditions": {
+        "type": "specificDate",
+        "date": "2026-02-01"
+      },
+      "priority": 100
+    },
+    {
+      "id": 2,
+      "textKey": "dy.2",
+      "conditions": {
+        "type": "specificDate",
+        "date": "2027-02-01"
+      },
+      "priority": 100
+    },
+    {
+      "id": 3,
+      "textKey": "dy.3",
+      "conditions": {
+        "type": "specificDate",
+        "date": "2026-02-14"
+      },
+      "priority": 100
+    },
+    {
+      "id": 4,
+      "textKey": "dy.4",
+      "conditions": {
+        "type": "specificDate",
+        "date": "2027-02-14"
+      },
+      "priority": 100
+    },
+    {
+      "id": 5,
+      "textKey": "dy.5",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Rain"
+      },
+      "priority": 90
+    },
+    {
+      "id": 6,
+      "textKey": "dy.6",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Rain"
+      },
+      "priority": 90
+    },
+    {
+      "id": 7,
+      "textKey": "dy.7",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Rain"
+      },
+      "priority": 90
+    },
+    {
+      "id": 8,
+      "textKey": "dy.8",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Rain"
+      },
+      "priority": 90
+    },
+    {
+      "id": 9,
+      "textKey": "dy.9",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Drizzle"
+      },
+      "priority": 85
+    },
+    {
+      "id": 10,
+      "textKey": "dy.10",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Drizzle"
+      },
+      "priority": 85
+    },
+    {
+      "id": 11,
+      "textKey": "dy.11",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Drizzle"
+      },
+      "priority": 85
+    },
+    {
+      "id": 12,
+      "textKey": "dy.12",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Drizzle"
+      },
+      "priority": 85
+    },
+    {
+      "id": 13,
+      "textKey": "dy.13",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Snow"
+      },
+      "priority": 90
+    },
+    {
+      "id": 14,
+      "textKey": "dy.14",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Snow"
+      },
+      "priority": 90
+    },
+    {
+      "id": 15,
+      "textKey": "dy.15",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Snow"
+      },
+      "priority": 90
+    },
+    {
+      "id": 16,
+      "textKey": "dy.16",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Snow"
+      },
+      "priority": 90
+    },
+    {
+      "id": 17,
+      "textKey": "dy.17",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 25,
+          "max": null
+        }
+      },
+      "priority": 70
+    },
+    {
+      "id": 18,
+      "textKey": "dy.18",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 25,
+          "max": null
+        }
+      },
+      "priority": 70
+    },
+    {
+      "id": 19,
+      "textKey": "dy.19",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 25,
+          "max": null
+        }
+      },
+      "priority": 70
+    },
+    {
+      "id": 20,
+      "textKey": "dy.20",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 18,
+          "max": 24.99
+        }
+      },
+      "priority": 60
+    },
+    {
+      "id": 21,
+      "textKey": "dy.21",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 18,
+          "max": 24.99
+        }
+      },
+      "priority": 60
+    },
+    {
+      "id": 22,
+      "textKey": "dy.22",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 18,
+          "max": 24.99
+        }
+      },
+      "priority": 60
+    },
+    {
+      "id": 23,
+      "textKey": "dy.23",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 18,
+          "max": 24.99
+        }
+      },
+      "priority": 60
+    },
+    {
+      "id": 24,
+      "textKey": "dy.24",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 18,
+          "max": 24.99
+        }
+      },
+      "priority": 60
+    },
+    {
+      "id": 25,
+      "textKey": "dy.25",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 10,
+          "max": 18.99
+        }
+      },
+      "priority": 55
+    },
+    {
+      "id": 26,
+      "textKey": "dy.26",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 10,
+          "max": 18.99
+        }
+      },
+      "priority": 55
+    },
+    {
+      "id": 27,
+      "textKey": "dy.27",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 10,
+          "max": 18.99
+        }
+      },
+      "priority": 55
+    },
+    {
+      "id": 28,
+      "textKey": "dy.28",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 10,
+          "max": 18.99
+        }
+      },
+      "priority": 55
+    },
+    {
+      "id": 29,
+      "textKey": "dy.29",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 10,
+          "max": 18.99
+        }
+      },
+      "priority": 55
+    },
+    {
+      "id": 30,
+      "textKey": "dy.30",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 3,
+          "max": 10.99
+        }
+      },
+      "priority": 65
+    },
+    {
+      "id": 31,
+      "textKey": "dy.31",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 3,
+          "max": 10.99
+        }
+      },
+      "priority": 65
+    },
+    {
+      "id": 32,
+      "textKey": "dy.32",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 3,
+          "max": 10.99
+        }
+      },
+      "priority": 65
+    },
+    {
+      "id": 33,
+      "textKey": "dy.33",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 3,
+          "max": 10.99
+        }
+      },
+      "priority": 65
+    },
+    {
+      "id": 34,
+      "textKey": "dy.34",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 3,
+          "max": 10.99
+        }
+      },
+      "priority": 65
+    },
+    {
+      "id": 35,
+      "textKey": "dy.35",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": null,
+          "max": 2.99
+        }
+      },
+      "priority": 68
+    },
+    {
+      "id": 36,
+      "textKey": "dy.36",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": null,
+          "max": 2.99
+        }
+      },
+      "priority": 68
+    },
+    {
+      "id": 37,
+      "textKey": "dy.37",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": null,
+          "max": 2.99
+        }
+      },
+      "priority": 68
+    },
+    {
+      "id": 38,
+      "textKey": "dy.38",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": null,
+          "max": 2.99
+        }
+      },
+      "priority": 68
+    },
+    {
+      "id": 39,
+      "textKey": "dy.39",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": null,
+          "max": 2.99
+        }
+      },
+      "priority": 68
+    },
+    {
+      "id": 40,
+      "textKey": "dy.40",
+      "conditions": {
+        "type": "default"
+      },
+      "priority": 10
+    },
+    {
+      "id": 41,
+      "textKey": "dy.41",
+      "conditions": {
+        "type": "default"
+      },
+      "priority": 10
+    },
+    {
+      "id": 42,
+      "textKey": "dy.42",
+      "conditions": {
+        "type": "default"
+      },
+      "priority": 10
+    },
+    {
+      "id": 43,
+      "textKey": "dy.43",
+      "conditions": {
+        "type": "default"
+      },
+      "priority": 10
+    },
+    {
+      "id": 44,
+      "textKey": "dy.44",
+      "conditions": {
+        "type": "default"
+      },
+      "priority": 10
+    },
+    {
+      "id": 45,
+      "textKey": "dy.45",
+      "conditions": {
+        "type": "default"
+      },
+      "priority": 10
+    },
+    {
+      "id": 46,
+      "textKey": "dy.46",
+      "conditions": {
+        "type": "default"
+      },
+      "priority": 10
+    }
+  ]
+}

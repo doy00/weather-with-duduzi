@@ -13,6 +13,10 @@ node_modules
 # Build outputs
 dist
 dist-ssr
+dev-dist
+
+# Test coverage
+coverage
 
 # Environment variables
 .env
@@ -35,3 +39,7 @@ dist-ssr
 
 # Claude Code configuration
 .claude/
+
+# Personal documentation (not for public repo)
+TECH_STACK_ANALYSIS.md
+.serena/

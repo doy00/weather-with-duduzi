@@ -1,0 +1,38 @@
+{
+  "api": {
+    "400": "リクエストが正しくありません。",
+    "401": "認証が必要です。",
+    "404": "データが見つかりませんでした。",
+    "409": "すでに存在するデータです。",
+    "500": "サーバーエラーが発生しました。",
+    "default": "リクエストに失敗しました。",
+    "network": "ネットワーク接続を確認してください。",
+    "unknown": "不明なエラーが発生しました。"
+  },
+  "loading": {
+    "weather": "天気を読み込んでいます",
+    "status": "世界中の気象データを確認中..."
+  },
+  "screen": {
+    "errorTitle": "天気データを取得できませんでした。",
+    "errorDetail": "APIキーが有効でないか、\nネットワーク接続が不安定です。",
+    "favoriteNotFound": "お気に入りが見つかりません。",
+    "offline": "オフラインモード",
+    "offlineDetail": "キャッシュされたデータを表示しています"
+  },
+  "toast": {
+    "locationFailed": "位置情報の選択に失敗しました。",
+    "favoriteRemoved": "お気に入りから削除しました。",
+    "favoriteRemoveFailed": "お気に入りの削除に失敗しました。",
+    "favoriteAdded": "お気に入りに追加しました。",
+    "favoriteExists": "すでに登録されている地域です。",
+    "favoriteLimit": "お気に入りは最大6件まで登録可能です。",
+    "favoriteAddFailed": "お気に入りの追加に失敗しました。",
+    "orderUpdateFailed": "順序の変更に失敗しました。"
+  },
+  "geolocation": {
+    "notSupported": "お使いのブラウザは位置情報に対応していません。",
+    "fallbackToSeoul": "位置情報を取得できないため、デフォルトの場所（ソウル）を表示します。",
+    "checking": "現在地を確認しています..."
+  }
+}

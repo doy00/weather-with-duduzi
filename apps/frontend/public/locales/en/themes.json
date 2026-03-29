@@ -1,0 +1,22 @@
+{
+  "default": {
+    "name": "Default",
+    "description": "Translucent glass style"
+  },
+  "dark": {
+    "name": "Dark",
+    "description": "Deep black background"
+  },
+  "light": {
+    "name": "Light",
+    "description": "Bright white background"
+  },
+  "colorful": {
+    "name": "Colorful",
+    "description": "Pink-purple gradient"
+  },
+  "selector": {
+    "button": "Theme",
+    "title": "Select Card Theme"
+  }
+}

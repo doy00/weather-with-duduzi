@@ -1,0 +1,48 @@
+{
+  "search": {
+    "placeholder": "City or district name (e.g., Cheongwun-dong)",
+    "noResults": "No information available for this location.",
+    "popularCities": "Popular Cities",
+    "ariaLabel": {
+      "search": "Search location",
+      "close": "Close search",
+      "clear": "Clear search"
+    }
+  },
+  "favorites": {
+    "title": "Favorite Locations",
+    "nickname": "Nickname",
+    "complete": "Done",
+    "noData": "No data",
+    "ariaLabel": {
+      "remove": "Remove from favorites",
+      "add": "Add to favorites",
+      "edit": "Edit nickname",
+      "changeTheme": "Change favorite theme",
+      "input": "Enter nickname",
+      "save": "Save nickname"
+    }
+  },
+  "pwa": {
+    "installTitle": "Install App",
+    "installDescription": "Add to home screen for quick access",
+    "installButton": "Install"
+  },
+  "button": {
+    "retry": "Try Again",
+    "backToMain": "Back to Main"
+  },
+  "location": {
+    "myLocation": "My Location"
+  },
+  "notifications": {
+    "ariaLabel": {
+      "settings": "Notification settings"
+    }
+  },
+  "seo": {
+    "defaultTitle": "Galaxy Weather - Real-time Weather Information",
+    "defaultDescription": "Weather app providing real-time weather information and hourly forecasts. Check weather for multiple locations at a glance with favorites.",
+    "defaultKeywords": "weather, weather forecast, real-time weather, hourly forecast, weather report"
+  }
+}

@@ -1,0 +1,40 @@
+name: Auto Translate i18n
+
+on:
+  pull_request:
+    paths:
+      - 'apps/frontend/public/locales/ko/**'
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run translation script
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: pnpm i18n:translate
+
+      - name: Commit translations
+        run: |
+          git config user.name "i18n-bot"
+          git config user.email "i18n-bot@github.com"
+          git add apps/frontend/public/locales
+          git diff --staged --quiet || git commit -m "chore(i18n): auto-translate new keys"
+          git push

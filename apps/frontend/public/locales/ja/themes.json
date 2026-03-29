@@ -1,0 +1,22 @@
+{
+  "default": {
+    "name": "デフォルト",
+    "description": "半透明のガラススタイル"
+  },
+  "dark": {
+    "name": "ダーク",
+    "description": "深みのあるブラック背景"
+  },
+  "light": {
+    "name": "ライト",
+    "description": "明るいホワイト背景"
+  },
+  "colorful": {
+    "name": "カラフル",
+    "description": "ピンクとパープルのグラデーション"
+  },
+  "selector": {
+    "button": "テーマ",
+    "title": "カードテーマを選択"
+  }
+}

@@ -14,6 +14,18 @@ A production-ready Galaxy-style weather application built with React 19, TypeScr
 - **Responsive Design**: Optimized for mobile (375px), tablet (768px), and desktop (1024px)
 - **Error Handling**: Comprehensive error screens with retry functionality
 - **Error Boundary**: Catch and display component errors gracefully
+- **Multilingual Support**: 7 languages (Korean, English, Japanese, Indonesian, Thai, Vietnamese, Spanish)
+
+## 📚 Documentation
+
+Detailed technical documentation is available in the [`docs/`](./docs) folder:
+
+- **[I18N Implementation](./docs/I18N_IMPLEMENTATION.md)** - 7-language multilingual support with AI auto-translation
+- **[PWA Setup](./docs/PWA_SETUP_COMPLETE.md)** - Progressive Web App implementation
+- **[Android Widget](./docs/ANDROID_WIDGET_COMPLETE.md)** - Native Android widget guide
+- **[CI/CD Setup](./docs/CI_CD_SETUP.md)** - Continuous Integration/Deployment
+- **[Tech Stack Analysis](./docs/TECH_STACK_ANALYSIS.md)** - Technology selection rationale
+- **[Setup Instructions](./docs/SETUP_INSTRUCTIONS.md)** - Installation and configuration
 
 ## Tech Stack
 

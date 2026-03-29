@@ -1,0 +1,384 @@
+{
+  "messages": [
+    {
+      "id": 101,
+      "textKey": "busydog.101",
+      "conditions": {
+        "type": "specificDate",
+        "date": "2026-02-19"
+      },
+      "priority": 100
+    },
+    {
+      "id": 102,
+      "textKey": "busydog.102",
+      "conditions": {
+        "type": "specificDate",
+        "date": "2027-02-19"
+      },
+      "priority": 100
+    },
+    {
+      "id": 103,
+      "textKey": "busydog.103",
+      "conditions": {
+        "type": "specificDate",
+        "date": "2026-02-14"
+      },
+      "priority": 100
+    },
+    {
+      "id": 104,
+      "textKey": "busydog.104",
+      "conditions": {
+        "type": "specificDate",
+        "date": "2027-02-14"
+      },
+      "priority": 100
+    },
+    {
+      "id": 105,
+      "textKey": "busydog.105",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Rain"
+      },
+      "priority": 90
+    },
+    {
+      "id": 106,
+      "textKey": "busydog.106",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Rain"
+      },
+      "priority": 90
+    },
+    {
+      "id": 107,
+      "textKey": "busydog.107",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Rain"
+      },
+      "priority": 90
+    },
+    {
+      "id": 108,
+      "textKey": "busydog.108",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Rain"
+      },
+      "priority": 90
+    },
+    {
+      "id": 109,
+      "textKey": "busydog.109",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Snow"
+      },
+      "priority": 90
+    },
+    {
+      "id": 110,
+      "textKey": "busydog.110",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Snow"
+      },
+      "priority": 90
+    },
+    {
+      "id": 111,
+      "textKey": "busydog.111",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Snow"
+      },
+      "priority": 90
+    },
+    {
+      "id": 112,
+      "textKey": "busydog.112",
+      "conditions": {
+        "type": "weather",
+        "weatherMain": "Snow"
+      },
+      "priority": 90
+    },
+    {
+      "id": 113,
+      "textKey": "busydog.113",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 25,
+          "max": null
+        }
+      },
+      "priority": 70
+    },
+    {
+      "id": 114,
+      "textKey": "busydog.114",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 25,
+          "max": null
+        }
+      },
+      "priority": 70
+    },
+    {
+      "id": 115,
+      "textKey": "busydog.115",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 25,
+          "max": null
+        }
+      },
+      "priority": 70
+    },
+    {
+      "id": 116,
+      "textKey": "busydog.116",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 18,
+          "max": 24.99
+        }
+      },
+      "priority": 60
+    },
+    {
+      "id": 117,
+      "textKey": "busydog.117",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 18,
+          "max": 24.99
+        }
+      },
+      "priority": 60
+    },
+    {
+      "id": 118,
+      "textKey": "busydog.118",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 18,
+          "max": 24.99
+        }
+      },
+      "priority": 60
+    },
+    {
+      "id": 119,
+      "textKey": "busydog.119",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 18,
+          "max": 24.99
+        }
+      },
+      "priority": 60
+    },
+    {
+      "id": 120,
+      "textKey": "busydog.120",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 18,
+          "max": 24.99
+        }
+      },
+      "priority": 60
+    },
+    {
+      "id": 121,
+      "textKey": "busydog.121",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 3,
+          "max": 10.99
+        }
+      },
+      "priority": 65
+    },
+    {
+      "id": 122,
+      "textKey": "busydog.122",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 3,
+          "max": 10.99
+        }
+      },
+      "priority": 65
+    },
+    {
+      "id": 123,
+      "textKey": "busydog.123",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 3,
+          "max": 10.99
+        }
+      },
+      "priority": 65
+    },
+    {
+      "id": 124,
+      "textKey": "busydog.124",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 3,
+          "max": 10.99
+        }
+      },
+      "priority": 65
+    },
+    {
+      "id": 125,
+      "textKey": "busydog.125",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": 3,
+          "max": 10.99
+        }
+      },
+      "priority": 65
+    },
+    {
+      "id": 126,
+      "textKey": "busydog.126",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": null,
+          "max": 2.99
+        }
+      },
+      "priority": 68
+    },
+    {
+      "id": 127,
+      "textKey": "busydog.127",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": null,
+          "max": 2.99
+        }
+      },
+      "priority": 68
+    },
+    {
+      "id": 128,
+      "textKey": "busydog.128",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": null,
+          "max": 2.99
+        }
+      },
+      "priority": 68
+    },
+    {
+      "id": 129,
+      "textKey": "busydog.129",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": null,
+          "max": 2.99
+        }
+      },
+      "priority": 68
+    },
+    {
+      "id": 130,
+      "textKey": "busydog.130",
+      "conditions": {
+        "type": "temperature",
+        "feelsLike": {
+          "min": null,
+          "max": 2.99
+        }
+      },
+      "priority": 68
+    },
+    {
+      "id": 131,
+      "textKey": "busydog.131",
+      "conditions": {
+        "type": "default"
+      },
+      "priority": 10
+    },
+    {
+      "id": 132,
+      "textKey": "busydog.132",
+      "conditions": {
+        "type": "default"
+      },
+      "priority": 10
+    },
+    {
+      "id": 133,
+      "textKey": "busydog.133",
+      "conditions": {
+        "type": "default"
+      },
+      "priority": 10
+    },
+    {
+      "id": 134,
+      "textKey": "busydog.134",
+      "conditions": {
+        "type": "default"
+      },
+      "priority": 10
+    },
+    {
+      "id": 135,
+      "textKey": "busydog.135",
+      "conditions": {
+        "type": "default"
+      },
+      "priority": 10
+    },
+    {
+      "id": 136,
+      "textKey": "busydog.136",
+      "conditions": {
+        "type": "default"
+      },
+      "priority": 10
+    },
+    {
+      "id": 137,
+      "textKey": "busydog.137",
+      "conditions": {
+        "type": "default"
+      },
+      "priority": 10
+    }
+  ]
+}

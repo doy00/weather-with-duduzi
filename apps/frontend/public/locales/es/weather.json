@@ -1,0 +1,43 @@
+{
+  "status": {
+    "clear": "Despejado",
+    "clouds": "Nublado",
+    "rain": "Lluvia",
+    "drizzle": "Llovizna",
+    "snow": "Nieve",
+    "thunderstorm": "Tormenta",
+    "mist": "Neblina",
+    "fog": "Niebla",
+    "haze": "Bruma",
+    "dust": "Polvo",
+    "sand": "Tormenta de arena",
+    "smoke": "Humo",
+    "ash": "Ceniza volcánica",
+    "squall": "Chubasco",
+    "tornado": "Tornado"
+  },
+  "suggestion": {
+    "loading": "Consultando el clima para ti...",
+    "rain": "Está lloviendo. ¡No olvides tu paraguas antes de salir! ☂️",
+    "snow": "Está nevando. Ten cuidado, las calles pueden estar resbaladizas. ❄️",
+    "cold": "Hace bastante frío. Abrígate bien para mantenerte calientito. 🧣",
+    "hot": "Hace mucho calor. Mantente hidratado y descansa un poco. ☀️",
+    "clear": "El clima está despejado y agradable. ¡Que tengas un día maravilloso! 😊"
+  },
+  "details": {
+    "feelsLike": "Sensación térmica",
+    "humidity": "Humedad"
+  },
+  "hourly": {
+    "title": "Pronóstico por horas",
+    "now": "Ahora",
+    "hour": "{{hour}}:00"
+  },
+  "briefing": {
+    "title": "Tu reporte del clima"
+  },
+  "character": {
+    "dyAlt": "Personaje dy",
+    "busydogAlt": "Imagen de busydog"
+  }
+}

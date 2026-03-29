@@ -1,0 +1,22 @@
+{
+  "default": {
+    "name": "Mặc định",
+    "description": "Phong cách kính mờ"
+  },
+  "dark": {
+    "name": "Tối",
+    "description": "Nền đen huyền bí"
+  },
+  "light": {
+    "name": "Sáng",
+    "description": "Nền trắng tinh khôi"
+  },
+  "colorful": {
+    "name": "Rực rỡ",
+    "description": "Chuyển màu hồng-tím"
+  },
+  "selector": {
+    "button": "Chủ đề",
+    "title": "Chọn chủ đề thẻ"
+  }
+}

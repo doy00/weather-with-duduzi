@@ -1,0 +1,38 @@
+{
+  "api": {
+    "400": "Permintaan tidak valid.",
+    "401": "Autentikasi diperlukan.",
+    "404": "Data yang diminta tidak ditemukan.",
+    "409": "Data sudah ada.",
+    "500": "Terjadi kesalahan pada server.",
+    "default": "Permintaan gagal.",
+    "network": "Silakan periksa koneksi jaringan Anda.",
+    "unknown": "Terjadi kesalahan yang tidak diketahui."
+  },
+  "loading": {
+    "weather": "Sedang memuat cuaca",
+    "status": "Sedang memeriksa data cuaca global..."
+  },
+  "screen": {
+    "errorTitle": "Gagal memuat data cuaca.",
+    "errorDetail": "API key belum aktif atau\nkoneksi jaringan Anda tidak stabil.",
+    "favoriteNotFound": "Favorit tidak ditemukan.",
+    "offline": "Mode offline",
+    "offlineDetail": "Menampilkan data yang tersimpan (cache)"
+  },
+  "toast": {
+    "locationFailed": "Gagal memilih lokasi.",
+    "favoriteRemoved": "Berhasil dihapus dari favorit.",
+    "favoriteRemoveFailed": "Gagal menghapus dari favorit.",
+    "favoriteAdded": "Berhasil ditambahkan ke favorit.",
+    "favoriteExists": "Lokasi ini sudah ada di daftar favorit.",
+    "favoriteLimit": "Maksimal 6 lokasi untuk favorit.",
+    "favoriteAddFailed": "Gagal menambahkan ke favorit.",
+    "orderUpdateFailed": "Gagal mengubah urutan."
+  },
+  "geolocation": {
+    "notSupported": "Browser Anda tidak mendukung informasi lokasi.",
+    "fallbackToSeoul": "Gagal mendapatkan lokasi, menggunakan lokasi default (Seoul).",
+    "checking": "Sedang mendeteksi lokasi Anda..."
+  }
+}

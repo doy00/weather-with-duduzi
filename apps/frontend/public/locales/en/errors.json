@@ -1,0 +1,38 @@
+{
+  "api": {
+    "400": "Invalid request.",
+    "401": "Authentication required.",
+    "404": "Data not found.",
+    "409": "Data already exists.",
+    "500": "Server error.",
+    "default": "Request failed.",
+    "network": "Please check your network connection.",
+    "unknown": "An unknown error occurred."
+  },
+  "loading": {
+    "weather": "Loading weather...",
+    "status": "Checking global weather data..."
+  },
+  "screen": {
+    "errorTitle": "Unable to load weather data.",
+    "errorDetail": "Your API key may not be active yet,\nor your network connection is unstable.",
+    "favoriteNotFound": "Favorite not found.",
+    "offline": "Offline Mode",
+    "offlineDetail": "Displaying cached data."
+  },
+  "toast": {
+    "locationFailed": "Failed to select location.",
+    "favoriteRemoved": "Removed from favorites.",
+    "favoriteRemoveFailed": "Failed to remove from favorites.",
+    "favoriteAdded": "Added to favorites.",
+    "favoriteExists": "This location is already in your favorites.",
+    "favoriteLimit": "You can add up to 6 favorites.",
+    "favoriteAddFailed": "Failed to add to favorites.",
+    "orderUpdateFailed": "Failed to update order."
+  },
+  "geolocation": {
+    "notSupported": "Your browser does not support location services.",
+    "fallbackToSeoul": "Unable to retrieve location; defaulting to Seoul.",
+    "checking": "Detecting your location..."
+  }
+}
