@@ -2,15 +2,23 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 import { readFile, writeFile } from 'fs/promises';
 import { join } from 'path';
 import { config } from 'dotenv';
+import { existsSync } from 'fs';
 
-// backend/.env 파일 로드
-config({ path: join(__dirname, '../apps/backend/.env') });
+// backend/.env 파일 로드 (파일이 있으면)
+const envPath = join(__dirname, '../apps/backend/.env');
+if (existsSync(envPath)) {
+  config({ path: envPath });
+}
 
 // 환경 변수 체크
 if (!process.env.GEMINI_API_KEY) {
   console.error('❌ GEMINI_API_KEY environment variable is required');
-  console.error('   Please add it to apps/backend/.env:');
+  console.error('');
+  console.error('   For local development, add it to apps/backend/.env:');
   console.error('   GEMINI_API_KEY=your_api_key_here');
+  console.error('');
+  console.error('   For GitHub Actions, add it to repository secrets:');
+  console.error('   https://github.com/YOUR_REPO/settings/secrets/actions');
   console.error('');
   console.error('   Or set it temporarily with:');
   console.error('   export GEMINI_API_KEY=your_api_key');
