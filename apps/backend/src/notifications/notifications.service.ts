@@ -80,23 +80,32 @@ export class NotificationsService {
     const vapidPrivateKey = this.configService.get<string>('VAPID_PRIVATE_KEY');
     const vapidSubject = this.configService.get<string>('VAPID_SUBJECT');
 
-    this.logger.log(`VAPID Public Key: ${vapidPublicKey}`);
-    this.logger.log(`VAPID Private Key: ${vapidPrivateKey ? 'Set' : 'Not Set'}`);
-    this.logger.log(`VAPID Subject: ${vapidSubject}`);
-    // VAPID 설정
-    (
-      webPush as {
-        setVapidDetails: (
-          subject: string,
-          publicKey: string,
-          privateKey: string,
-        ) => void;
-      }
-    ).setVapidDetails(
-      vapidSubject as string,
-      vapidPublicKey as string,
-      vapidPrivateKey as string,
-    );
+    // VAPID 설정 (환경 변수가 모두 있을 때만)
+    if (vapidPublicKey && vapidPrivateKey && vapidSubject) {
+      this.logger.log('VAPID 설정 완료');
+      (
+        webPush as {
+          setVapidDetails: (
+            subject: string,
+            publicKey: string,
+            privateKey: string,
+          ) => void;
+        }
+      ).setVapidDetails(vapidSubject, vapidPublicKey, vapidPrivateKey);
+    } else {
+      this.logger.warn(
+        '⚠️ VAPID 환경 변수가 설정되지 않았습니다. 푸시 알림 기능이 비활성화됩니다.',
+      );
+      this.logger.warn(
+        `  - VAPID_PUBLIC_KEY: ${vapidPublicKey ? 'Set' : 'Not Set'}`,
+      );
+      this.logger.warn(
+        `  - VAPID_PRIVATE_KEY: ${vapidPrivateKey ? 'Set' : 'Not Set'}`,
+      );
+      this.logger.warn(
+        `  - VAPID_SUBJECT: ${vapidSubject ? 'Set' : 'Not Set'}`,
+      );
+    }
 
     // Supabase 클라이언트
     this.supabase = createClient(
