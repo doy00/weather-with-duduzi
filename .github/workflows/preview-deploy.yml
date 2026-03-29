@@ -31,8 +31,6 @@ jobs:
 
       - name: Build (Frontend)
         run: pnpm --filter frontend build
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
 
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v25
