@@ -10,11 +10,12 @@ import { UpdateNotificationSettingDto } from './dto/update-notification-setting.
 // 로컬 데이터에서 메시지 import
 import * as dyMessages from '../data/dy-message.json';
 import * as busydogMessages from '../data/busydog-message.json';
+import * as messagesI18n from '../data/messages.json';
 
 // ===== 타입 정의 (파일 상단) =====
 interface MessageData {
   id: number;
-  text: string;
+  textKey: string;
   conditions: MessageConditions;
   priority: number;
 }
@@ -393,7 +394,12 @@ export class NotificationsService {
     const randomIndex = Math.floor(
       Math.random() * highestPriorityMessages.length,
     );
-    return highestPriorityMessages[randomIndex].text;
+    const selectedMessage = highestPriorityMessages[randomIndex];
+
+    // textKey를 실제 텍스트로 변환 (예: "dy.1" -> messagesI18n.dy[1])
+    const [namespace, key] = selectedMessage.textKey.split('.');
+    const i18nMessages = messagesI18n as Record<string, Record<string, string>>;
+    return i18nMessages[namespace]?.[key] || '좋은 하루 보내세요!';
   }
 
   // ===== Private: 날씨 조회 =====
